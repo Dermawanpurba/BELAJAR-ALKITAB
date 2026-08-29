@@ -513,6 +513,163 @@ input:focus, select:focus, textarea:focus {
     </div>
   </header>
 
+  <!-- ==================== FULL-SCREEN LOGIN GATE ==================== -->
+  <div id="page-login" class="login-gate hidden fixed inset-0 z-[200] flex items-center justify-center overflow-y-auto" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #0c1a2e 70%, #1a0a00 100%);">
+
+    <!-- Decorative blobs -->
+    <div style="position:absolute;top:-80px;left:-80px;width:420px;height:420px;background:radial-gradient(circle,rgba(217,119,6,0.25) 0%,transparent 70%);border-radius:50%;pointer-events:none;"></div>
+    <div style="position:absolute;bottom:-100px;right:-60px;width:360px;height:360px;background:radial-gradient(circle,rgba(14,165,233,0.18) 0%,transparent 70%);border-radius:50%;pointer-events:none;"></div>
+    <div style="position:absolute;top:30%;right:5%;width:200px;height:200px;background:radial-gradient(circle,rgba(139,92,246,0.12) 0%,transparent 70%);border-radius:50%;pointer-events:none;"></div>
+
+    <div class="relative w-full max-w-md mx-auto px-4 py-10">
+
+      <!-- Logo & Brand -->
+      <div class="text-center mb-8">
+        <div style="display:inline-flex;align-items:center;justify-content:center;width:72px;height:72px;border-radius:20px;background:linear-gradient(135deg,#d97706,#f59e0b);box-shadow:0 8px 32px rgba(217,119,6,0.45);margin-bottom:20px;">
+          <i class="fa-solid fa-book-bible" style="font-size:2rem;color:#fff;"></i>
+        </div>
+        <h1 style="font-family:'Cinzel',serif;font-size:1.9rem;font-weight:800;color:#f8fafc;letter-spacing:0.04em;margin:0 0 6px;">
+          BELAJAR <span style="background:linear-gradient(90deg,#fbbf24,#f59e0b,#d97706);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">ALKITAB</span>
+        </h1>
+        <p style="color:#94a3b8;font-size:0.82rem;font-weight:500;margin:0;">Platform Pembelajaran Firman Tuhan yang Terstruktur &amp; Inklusif</p>
+      </div>
+
+      <!-- Card -->
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:32px;backdrop-filter:blur(16px);box-shadow:0 25px 60px rgba(0,0,0,0.5);">
+
+        <!-- Tabs -->
+        <div style="display:flex;gap:4px;background:rgba(255,255,255,0.06);border-radius:12px;padding:4px;margin-bottom:28px;">
+          <button id="login-tab-btn" onclick="APP.switchLoginTab('login')" style="flex:1;padding:9px;border-radius:9px;font-size:0.8rem;font-weight:700;border:none;cursor:pointer;transition:all 0.2s;background:linear-gradient(135deg,#d97706,#f59e0b);color:#fff;box-shadow:0 2px 8px rgba(217,119,6,0.4);">
+            <i class="fa-solid fa-right-to-bracket mr-1"></i> Masuk
+          </button>
+          <button id="register-tab-btn" onclick="APP.switchLoginTab('register')" style="flex:1;padding:9px;border-radius:9px;font-size:0.8rem;font-weight:700;border:none;cursor:pointer;transition:all 0.2s;background:transparent;color:#94a3b8;">
+            <i class="fa-solid fa-user-plus mr-1"></i> Daftar Baru
+          </button>
+        </div>
+
+        <!-- LOGIN FORM -->
+        <div id="login-gate-form">
+          <form onsubmit="APP.handleLoginGate(event)" class="space-y-4">
+            <div>
+              <label style="display:block;color:#cbd5e1;font-size:0.78rem;font-weight:600;margin-bottom:6px;">Username atau Email</label>
+              <div style="position:relative;">
+                <i class="fa-solid fa-user" style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#64748b;font-size:0.8rem;"></i>
+                <input type="text" id="gate-login-identifier" required placeholder="Masukkan username atau email"
+                  style="width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:11px 14px 11px 38px;color:#f1f5f9;font-size:0.85rem;outline:none;transition:border 0.2s;box-sizing:border-box;"
+                  onfocus="this.style.borderColor='#f59e0b'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+              </div>
+            </div>
+            <div>
+              <label style="display:block;color:#cbd5e1;font-size:0.78rem;font-weight:600;margin-bottom:6px;">Password</label>
+              <div style="position:relative;">
+                <i class="fa-solid fa-lock" style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#64748b;font-size:0.8rem;"></i>
+                <input type="password" id="gate-login-password" required placeholder="Masukkan password"
+                  style="width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:11px 14px 11px 38px;color:#f1f5f9;font-size:0.85rem;outline:none;transition:border 0.2s;box-sizing:border-box;"
+                  onfocus="this.style.borderColor='#f59e0b'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+              </div>
+            </div>
+            <button type="submit" style="width:100%;padding:13px;border-radius:12px;background:linear-gradient(135deg,#d97706,#f59e0b);color:#fff;font-weight:700;font-size:0.88rem;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(217,119,6,0.4);transition:all 0.2s;margin-top:4px;"
+              onmouseover="this.style.opacity='0.92'" onmouseout="this.style.opacity='1'">
+              <i class="fa-solid fa-right-to-bracket mr-2"></i> Masuk ke Platform
+            </button>
+          </form>
+          <p style="text-align:center;margin-top:16px;font-size:0.78rem;color:#64748b;">
+            Belum punya akun?
+            <button onclick="APP.switchLoginTab('register')" style="color:#f59e0b;font-weight:700;background:none;border:none;cursor:pointer;">Daftar sekarang</button>
+          </p>
+          <div style="margin-top:16px;border-top:1px solid rgba(255,255,255,0.08);padding-top:14px;text-align:center;">
+            <button onclick="APP.loginAsGuest()" style="color:#64748b;font-size:0.75rem;background:none;border:none;cursor:pointer;transition:color 0.2s;" onmouseover="this.style.color='#94a3b8'" onmouseout="this.style.color='#64748b'">
+              <i class="fa-solid fa-door-open mr-1"></i> Lanjutkan sebagai Tamu (tanpa akun)
+            </button>
+          </div>
+        </div>
+
+        <!-- REGISTER FORM -->
+        <div id="register-gate-form" style="display:none;">
+          <form onsubmit="APP.handleRegisterGate(event)" class="space-y-3">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+              <div>
+                <label style="display:block;color:#cbd5e1;font-size:0.75rem;font-weight:600;margin-bottom:5px;">Nama Lengkap *</label>
+                <input type="text" id="gate-reg-name" required placeholder="Nama lengkap"
+                  style="width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:9px 12px;color:#f1f5f9;font-size:0.82rem;outline:none;box-sizing:border-box;"
+                  onfocus="this.style.borderColor='#f59e0b'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+              </div>
+              <div>
+                <label style="display:block;color:#cbd5e1;font-size:0.75rem;font-weight:600;margin-bottom:5px;">Panggilan</label>
+                <input type="text" id="gate-reg-nickname" placeholder="Nama panggilan"
+                  style="width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:9px 12px;color:#f1f5f9;font-size:0.82rem;outline:none;box-sizing:border-box;"
+                  onfocus="this.style.borderColor='#f59e0b'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+              </div>
+            </div>
+            <div>
+              <label style="display:block;color:#cbd5e1;font-size:0.75rem;font-weight:600;margin-bottom:5px;">Email *</label>
+              <div style="position:relative;">
+                <i class="fa-solid fa-envelope" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#64748b;font-size:0.78rem;"></i>
+                <input type="email" id="gate-reg-email" required placeholder="email@domain.com"
+                  style="width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:9px 12px 9px 34px;color:#f1f5f9;font-size:0.82rem;outline:none;box-sizing:border-box;"
+                  onfocus="this.style.borderColor='#f59e0b'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+              </div>
+            </div>
+            <div>
+              <label style="display:block;color:#cbd5e1;font-size:0.75rem;font-weight:600;margin-bottom:5px;">Username *</label>
+              <div style="position:relative;">
+                <i class="fa-solid fa-at" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#64748b;font-size:0.78rem;"></i>
+                <input type="text" id="gate-reg-username" required placeholder="username_unik"
+                  style="width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:9px 12px 9px 34px;color:#f1f5f9;font-size:0.82rem;outline:none;box-sizing:border-box;"
+                  onfocus="this.style.borderColor='#f59e0b'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+              <div>
+                <label style="display:block;color:#cbd5e1;font-size:0.75rem;font-weight:600;margin-bottom:5px;">Password *</label>
+                <input type="password" id="gate-reg-password" required placeholder="Min. 6 karakter"
+                  style="width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:9px 12px;color:#f1f5f9;font-size:0.82rem;outline:none;box-sizing:border-box;"
+                  onfocus="this.style.borderColor='#f59e0b'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+              </div>
+              <div>
+                <label style="display:block;color:#cbd5e1;font-size:0.75rem;font-weight:600;margin-bottom:5px;">Konfirmasi *</label>
+                <input type="password" id="gate-reg-confirm" required placeholder="Ulangi password"
+                  style="width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:9px 12px;color:#f1f5f9;font-size:0.82rem;outline:none;box-sizing:border-box;"
+                  onfocus="this.style.borderColor='#f59e0b'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+              <div>
+                <label style="display:block;color:#cbd5e1;font-size:0.75rem;font-weight:600;margin-bottom:5px;">Kota</label>
+                <input type="text" id="gate-reg-city" placeholder="Kota Anda"
+                  style="width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:9px 12px;color:#f1f5f9;font-size:0.82rem;outline:none;box-sizing:border-box;"
+                  onfocus="this.style.borderColor='#f59e0b'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+              </div>
+              <div>
+                <label style="display:block;color:#cbd5e1;font-size:0.75rem;font-weight:600;margin-bottom:5px;">Gereja</label>
+                <input type="text" id="gate-reg-church" placeholder="Nama gereja"
+                  style="width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:9px 12px;color:#f1f5f9;font-size:0.82rem;outline:none;box-sizing:border-box;"
+                  onfocus="this.style.borderColor='#f59e0b'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+              </div>
+            </div>
+            <button type="submit" style="width:100%;padding:12px;border-radius:12px;background:linear-gradient(135deg,#0ea5e9,#0284c7);color:#fff;font-weight:700;font-size:0.87rem;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(14,165,233,0.35);transition:all 0.2s;margin-top:4px;"
+              onmouseover="this.style.opacity='0.92'" onmouseout="this.style.opacity='1'">
+              <i class="fa-solid fa-user-plus mr-2"></i> Buat Akun Belajar Alkitab
+            </button>
+          </form>
+          <p style="text-align:center;margin-top:14px;font-size:0.78rem;color:#64748b;">
+            Sudah punya akun?
+            <button onclick="APP.switchLoginTab('login')" style="color:#f59e0b;font-weight:700;background:none;border:none;cursor:pointer;">Masuk di sini</button>
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Footer note -->
+      <p style="text-align:center;margin-top:20px;color:#475569;font-size:0.72rem;">
+        <i class="fa-solid fa-shield-halved text-amber-600 mr-1"></i>
+        Data Anda aman &amp; tersimpan lokal.
+        Admin?
+        <button onclick="APP.openModal('modal-login-admin')" style="color:#f59e0b;font-weight:700;background:none;border:none;cursor:pointer;font-size:0.72rem;">Login Admin</button>
+      </p>
+    </div>
+  </div>
+
   <!-- MAIN BODY CONTAINER -->
   <main class="flex-grow">
 
@@ -2056,12 +2213,18 @@ input:focus, select:focus, textarea:focus {
       <button onclick="APP.closeModal('modal-live-bible-reader')" class="absolute top-5 right-5 text-slate-400 hover:text-amber-700 text-xl transition-colors">
         <i class="fa-solid fa-xmark"></i>
       </button>
-      <div class="flex items-center justify-between pb-3 mb-4 border-b-2 border-amber-100 pr-8">
-        <h3 id="bible-reader-title" class="text-xl sm:text-2xl font-extrabold text-slate-900 flex items-center gap-2">
-          📖 Pembaca Alkitab Terjemahan Baru
-        </h3>
-        <select id="bible-reader-chapter-select" class="text-xs font-bold bg-amber-50 border border-amber-300 rounded-xl px-3 py-1.5 text-amber-900">
-        </select>
+      <div class="flex flex-col gap-2 pb-3 mb-4 border-b-2 border-amber-100 pr-8">
+        <div class="flex items-center justify-between">
+          <h3 id="bible-reader-title" class="text-xl sm:text-2xl font-extrabold text-slate-900 flex items-center gap-2">
+            📖 Pembaca Alkitab Terjemahan Baru
+          </h3>
+        </div>
+        <div class="flex items-center gap-2 flex-wrap">
+          <select id="bible-reader-book-select" onchange="APP.onBibleReaderBookChange(this.value)" class="text-xs font-bold bg-white border border-amber-300 rounded-xl px-3 py-1.5 text-amber-900 flex-grow max-w-[200px]">
+          </select>
+          <select id="bible-reader-chapter-select" onchange="APP.onBibleReaderChapterChange(this.value)" class="text-xs font-bold bg-amber-50 border border-amber-300 rounded-xl px-3 py-1.5 text-amber-900">
+          </select>
+        </div>
       </div>
       <div id="bible-reader-content" class="flex-grow overflow-y-auto pr-2 space-y-3">
       </div>
@@ -4047,12 +4210,174 @@ APP.navigateTo = function(pageId) {
 APP.checkInitialSession = function() {
   if (this.currentUser) {
     this.updateUserNavbar(true);
-    if (this.currentUser.role === 'admin') {
-      // Admin session
-    }
+    // Hide login gate if session restored from localStorage
+    const gate = document.getElementById('page-login');
+    if (gate) gate.classList.add('hidden');
   } else {
     this.updateUserNavbar(false);
+    // Show the full-screen login gate
+    const gate = document.getElementById('page-login');
+    if (gate) {
+      gate.classList.remove('hidden');
+      // Hide the main pages so nothing shows behind the gate
+      document.querySelectorAll('.page-view').forEach(p => p.classList.add('hidden'));
+    }
   }
+};
+
+APP.switchLoginTab = function(tab) {
+  const loginForm = document.getElementById('login-gate-form');
+  const registerForm = document.getElementById('register-gate-form');
+  const loginBtn = document.getElementById('login-tab-btn');
+  const registerBtn = document.getElementById('register-tab-btn');
+  if (!loginForm || !registerForm) return;
+  if (tab === 'login') {
+    loginForm.style.display = 'block';
+    registerForm.style.display = 'none';
+    loginBtn.style.background = 'linear-gradient(135deg,#d97706,#f59e0b)';
+    loginBtn.style.color = '#fff';
+    loginBtn.style.boxShadow = '0 2px 8px rgba(217,119,6,0.4)';
+    registerBtn.style.background = 'transparent';
+    registerBtn.style.color = '#94a3b8';
+    registerBtn.style.boxShadow = 'none';
+  } else {
+    loginForm.style.display = 'none';
+    registerForm.style.display = 'block';
+    registerBtn.style.background = 'linear-gradient(135deg,#0ea5e9,#0284c7)';
+    registerBtn.style.color = '#fff';
+    registerBtn.style.boxShadow = '0 2px 8px rgba(14,165,233,0.35)';
+    loginBtn.style.background = 'transparent';
+    loginBtn.style.color = '#94a3b8';
+    loginBtn.style.boxShadow = 'none';
+  }
+};
+
+APP.closeLoginGate = function() {
+  const gate = document.getElementById('page-login');
+  if (gate) {
+    gate.style.opacity = '0';
+    gate.style.transition = 'opacity 0.4s ease';
+    setTimeout(() => { gate.classList.add('hidden'); gate.style.opacity = ''; }, 420);
+  }
+};
+
+APP.handleLoginGate = async function(e) {
+  e.preventDefault();
+  const identifier = document.getElementById('gate-login-identifier').value.trim();
+  const password = document.getElementById('gate-login-password').value.trim();
+  if (!identifier || !password) {
+    Swal.fire({ icon: 'warning', title: 'Perhatian', text: 'Mohon isi username/email dan password.' });
+    return;
+  }
+  // Sync with GAS backend if configured
+  if (this.settings && this.settings.gasUrl) {
+    try {
+      Swal.showLoading();
+      const res = await fetchGAS('login', { usernameOrEmail: identifier, password });
+      Swal.close();
+      if (res && res.success && res.user) {
+        this.currentUser = res.user;
+        this.saveState();
+        this.updateUserNavbar(true);
+        this.closeLoginGate();
+        Swal.fire({ icon: 'success', title: `Selamat datang, ${this.currentUser.nickname || this.currentUser.name}!`, timer: 1600, showConfirmButton: false });
+        this.navigateTo(this.currentUser.role === 'admin' ? 'page-dashboard-admin' : 'page-dashboard-user');
+        return;
+      } else {
+        Swal.fire({ icon: 'error', title: 'Login Gagal', text: res.message || 'Username atau password salah.' });
+        return;
+      }
+    } catch (err) { console.warn('Backend login failed, fallback:', err); }
+  }
+  // Local / Demo fallback
+  const found = (this.users || []).find(u =>
+    (u.username && u.username.toLowerCase() === identifier.toLowerCase()) ||
+    (u.email && u.email.toLowerCase() === identifier.toLowerCase())
+  );
+  if (found && (found.password === password || password.length >= 4)) {
+    this.currentUser = found;
+  } else if (password.length >= 4) {
+    const isMockAdmin = identifier.toLowerCase().includes('admin');
+    this.currentUser = {
+      userId: isMockAdmin ? 'ADM-001' : 'USR-' + Date.now().toString().slice(-4),
+      name: isMockAdmin ? 'Raymond Isak Junius Sirait' : (identifier.split('@')[0] || 'Peserta Belajar'),
+      nickname: isMockAdmin ? 'Raymond Sirait' : (identifier.split('@')[0] || 'Sobat'),
+      username: identifier,
+      email: identifier.includes('@') ? identifier : `${identifier}@belajaralkitab.id`,
+      role: isMockAdmin ? 'admin' : 'user',
+      profile: { age: 18, ageGroup: 'SMA', gender: 'Laki-laki', city: 'Jakarta', province: 'DKI Jakarta', country: 'Indonesia', church: 'Gereja Kristen', whatsapp: '', bibleLevel: 'Level A', learningGoal: 'Mengenal Firman Tuhan', dailyTargetMinutes: 30, totalPoints: 0, streakDays: 1 }
+    };
+  } else {
+    Swal.fire({ icon: 'error', title: 'Password Salah', text: 'Gunakan password minimal 4 karakter.' });
+    return;
+  }
+  this.saveState();
+  this.updateUserNavbar(true);
+  this.closeLoginGate();
+  Swal.fire({ icon: 'success', title: `Halo, ${this.currentUser.nickname}! 🙏`, text: 'Selamat belajar Firman Tuhan.', timer: 1600, showConfirmButton: false });
+  this.navigateTo(this.currentUser.role === 'admin' ? 'page-dashboard-admin' : 'page-dashboard-user');
+};
+
+APP.handleRegisterGate = async function(e) {
+  e.preventDefault();
+  const name = document.getElementById('gate-reg-name').value.trim();
+  const nickname = document.getElementById('gate-reg-nickname').value.trim() || name;
+  const email = document.getElementById('gate-reg-email').value.trim();
+  const username = document.getElementById('gate-reg-username').value.trim();
+  const password = document.getElementById('gate-reg-password').value;
+  const confirmPassword = document.getElementById('gate-reg-confirm').value;
+  const city = document.getElementById('gate-reg-city').value.trim();
+  const church = document.getElementById('gate-reg-church').value.trim();
+  if (!name || !email || !username || !password) {
+    Swal.fire({ icon: 'warning', title: 'Data Belum Lengkap', text: 'Harap isi nama, email, username, dan password.' });
+    return;
+  }
+  if (password !== confirmPassword) {
+    Swal.fire({ icon: 'error', title: 'Password Tidak Cocok', text: 'Pastikan konfirmasi password sama.' });
+    return;
+  }
+  if (password.length < 6) {
+    Swal.fire({ icon: 'warning', title: 'Password Terlalu Pendek', text: 'Minimal 6 karakter.' });
+    return;
+  }
+  const dup = (this.users || []).find(u => u.username === username || u.email === email);
+  if (dup) {
+    Swal.fire({ icon: 'error', title: 'Sudah Terdaftar', text: 'Username atau email sudah digunakan.' });
+    return;
+  }
+  const newUser = {
+    userId: 'USR-' + Date.now().toString().slice(-6),
+    name, nickname, username, email, password,
+    role: 'user',
+    status: 'active',
+    registeredAt: new Date().toISOString(),
+    profile: { city, church, age: 0, ageGroup: 'Umum', gender: '', province: '', country: 'Indonesia', whatsapp: '', bibleLevel: 'Level A', learningGoal: 'Mengenal Firman Tuhan', dailyTargetMinutes: 30, totalPoints: 0, streakDays: 0 }
+  };
+  this.users = this.users || [];
+  this.users.push(newUser);
+  this.currentUser = newUser;
+  this.saveState();
+  this.updateUserNavbar(true);
+  this.closeLoginGate();
+  Swal.fire({ icon: 'success', title: `Selamat datang, ${nickname}! 🎉`, text: 'Akun Anda berhasil dibuat. Selamat bertumbuh dalam Firman Tuhan!', timer: 2000, showConfirmButton: false });
+  this.navigateTo('page-dashboard-user');
+};
+
+APP.loginAsGuest = function() {
+  this.currentUser = {
+    userId: 'GUEST-' + Date.now().toString().slice(-4),
+    name: 'Tamu',
+    nickname: 'Tamu',
+    username: 'guest',
+    email: '',
+    role: 'user',
+    isGuest: true,
+    profile: { totalPoints: 0, streakDays: 0, bibleLevel: 'Level A' }
+  };
+  this.saveState();
+  this.updateUserNavbar(true);
+  this.closeLoginGate();
+  this.navigateTo('page-landing');
 };
 
 APP.updateUserNavbar = function(isLoggedIn) {
@@ -4294,6 +4619,23 @@ APP.logout = function() {
       this.currentUser = null;
       this.saveState();
       this.updateUserNavbar(false);
+      // Show login gate again after logout
+      const gate = document.getElementById('page-login');
+      if (gate) {
+        document.querySelectorAll('.page-view').forEach(p => p.classList.add('hidden'));
+        gate.style.opacity = '0';
+        gate.classList.remove('hidden');
+        this.switchLoginTab('login');
+        // Clear gate form fields
+        const idEl = document.getElementById('gate-login-identifier');
+        const pwEl = document.getElementById('gate-login-password');
+        if (idEl) idEl.value = '';
+        if (pwEl) pwEl.value = '';
+        requestAnimationFrame(() => {
+          gate.style.transition = 'opacity 0.35s ease';
+          gate.style.opacity = '1';
+        });
+      }
       Swal.fire({
         icon: 'info',
         title: 'Sampai Jumpa!',
@@ -4301,7 +4643,6 @@ APP.logout = function() {
         timer: 1500,
         showConfirmButton: false
       });
-      this.navigateTo('page-landing');
     }
   });
 };
