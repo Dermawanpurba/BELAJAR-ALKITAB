@@ -278,7 +278,7 @@ select, textarea {
   font-weight: 500 !important;
   font-size: 0.95rem !important;
   border-radius: 0.75rem !important;
-  padding: 0.65rem 1rem !important;
+  padding: 0.65rem 1rem;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
@@ -286,6 +286,33 @@ input:focus, select:focus, textarea:focus {
   border-color: #f59e0b !important;
   box-shadow: 0 0 0 3.5px rgba(245, 158, 11, 0.25) !important;
   outline: none !important;
+}
+
+/* Input Icon Support — Ensures icons never overlap input text or placeholder */
+.input-icon-wrapper {
+  position: relative;
+  display: block;
+}
+
+.input-icon-wrapper > i,
+.input-icon-wrapper > svg,
+div.relative > i.fa-solid,
+div.relative > i.fa-regular {
+  pointer-events: none;
+  z-index: 10;
+}
+
+#gate-login-identifier,
+#gate-login-password,
+#gate-reg-email,
+#gate-reg-username,
+#books-search-input,
+#adm-donation-search,
+#adm-user-search,
+#set-adm-users-search,
+.has-icon-left input,
+.input-with-icon {
+  padding-left: 2.85rem !important; /* ~45px clearance to eliminate icon overlapping text */
 }
 
 /* Modals */
@@ -552,20 +579,20 @@ input:focus, select:focus, textarea:focus {
           <form onsubmit="APP.handleLoginGate(event)" class="space-y-4">
             <div>
               <label style="display:block;color:#cbd5e1;font-size:0.78rem;font-weight:600;margin-bottom:6px;">Username atau Email</label>
-              <div style="position:relative;">
-                <i class="fa-solid fa-user" style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#64748b;font-size:0.8rem;"></i>
+              <div class="input-icon-wrapper" style="position:relative;">
+                <i class="fa-solid fa-user" style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#94a3b8;font-size:0.85rem;pointer-events:none;z-index:10;"></i>
                 <input type="text" id="gate-login-identifier" required placeholder="Masukkan username atau email"
-                  style="width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:11px 14px 11px 38px;color:#f1f5f9;font-size:0.85rem;outline:none;transition:border 0.2s;box-sizing:border-box;"
-                  onfocus="this.style.borderColor='#f59e0b'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+                  style="width:100%;border-radius:12px;padding:11px 14px 11px 45px !important;font-size:0.9rem;outline:none;transition:border 0.2s;box-sizing:border-box;"
+                  onfocus="this.style.borderColor='#f59e0b'" onblur="this.style.borderColor='#cbd5e1'">
               </div>
             </div>
             <div>
               <label style="display:block;color:#cbd5e1;font-size:0.78rem;font-weight:600;margin-bottom:6px;">Password</label>
-              <div style="position:relative;">
-                <i class="fa-solid fa-lock" style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#64748b;font-size:0.8rem;"></i>
+              <div class="input-icon-wrapper" style="position:relative;">
+                <i class="fa-solid fa-lock" style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#94a3b8;font-size:0.85rem;pointer-events:none;z-index:10;"></i>
                 <input type="password" id="gate-login-password" required placeholder="Masukkan password"
-                  style="width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:11px 14px 11px 38px;color:#f1f5f9;font-size:0.85rem;outline:none;transition:border 0.2s;box-sizing:border-box;"
-                  onfocus="this.style.borderColor='#f59e0b'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+                  style="width:100%;border-radius:12px;padding:11px 14px 11px 45px !important;font-size:0.9rem;outline:none;transition:border 0.2s;box-sizing:border-box;"
+                  onfocus="this.style.borderColor='#f59e0b'" onblur="this.style.borderColor='#cbd5e1'">
               </div>
             </div>
             <button type="submit" style="width:100%;padding:13px;border-radius:12px;background:linear-gradient(135deg,#d97706,#f59e0b);color:#fff;font-weight:700;font-size:0.88rem;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(217,119,6,0.4);transition:all 0.2s;margin-top:4px;"
@@ -603,20 +630,20 @@ input:focus, select:focus, textarea:focus {
             </div>
             <div>
               <label style="display:block;color:#cbd5e1;font-size:0.75rem;font-weight:600;margin-bottom:5px;">Email *</label>
-              <div style="position:relative;">
-                <i class="fa-solid fa-envelope" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#64748b;font-size:0.78rem;"></i>
+              <div class="input-icon-wrapper" style="position:relative;">
+                <i class="fa-solid fa-envelope" style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#94a3b8;font-size:0.85rem;pointer-events:none;z-index:10;"></i>
                 <input type="email" id="gate-reg-email" required placeholder="email@domain.com"
-                  style="width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:9px 12px 9px 34px;color:#f1f5f9;font-size:0.82rem;outline:none;box-sizing:border-box;"
-                  onfocus="this.style.borderColor='#f59e0b'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+                  style="width:100%;border-radius:10px;padding:10px 12px 10px 45px !important;font-size:0.85rem;outline:none;box-sizing:border-box;"
+                  onfocus="this.style.borderColor='#f59e0b'" onblur="this.style.borderColor='#cbd5e1'">
               </div>
             </div>
             <div>
               <label style="display:block;color:#cbd5e1;font-size:0.75rem;font-weight:600;margin-bottom:5px;">Username *</label>
-              <div style="position:relative;">
-                <i class="fa-solid fa-at" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#64748b;font-size:0.78rem;"></i>
+              <div class="input-icon-wrapper" style="position:relative;">
+                <i class="fa-solid fa-at" style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#94a3b8;font-size:0.85rem;pointer-events:none;z-index:10;"></i>
                 <input type="text" id="gate-reg-username" required placeholder="username_unik"
-                  style="width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:9px 12px 9px 34px;color:#f1f5f9;font-size:0.82rem;outline:none;box-sizing:border-box;"
-                  onfocus="this.style.borderColor='#f59e0b'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+                  style="width:100%;border-radius:10px;padding:10px 12px 10px 45px !important;font-size:0.85rem;outline:none;box-sizing:border-box;"
+                  onfocus="this.style.borderColor='#f59e0b'" onblur="this.style.borderColor='#cbd5e1'">
               </div>
             </div>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
@@ -1125,8 +1152,8 @@ input:focus, select:focus, textarea:focus {
         </div>
 
 <div class="relative w-full md:w-72">
-            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 text-xs"></i>
-            <input type="text" id="books-search-input" oninput="APP.renderBooksGrid()" placeholder="Cari nama kitab, tema, singkatan..." class="w-full bg-white border border-slate-200 rounded-xl pl-9 pr-4 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-amber-500">
+            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 text-xs pointer-events-none z-10"></i>
+            <input type="text" id="books-search-input" oninput="APP.renderBooksGrid()" placeholder="Cari nama kitab, tema, singkatan..." class="w-full bg-white border border-slate-200 rounded-xl pl-10 pr-4 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-amber-500">
           </div>
         </div>
 
@@ -1471,8 +1498,8 @@ input:focus, select:focus, textarea:focus {
           <!-- Filters Row -->
           <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-5">
             <div class="relative flex-grow">
-              <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
-              <input type="text" id="adm-donation-search" oninput="APP.filterAdminDonations()" placeholder="Cari ID, nama donatur, email, WA, atau nominal..." class="w-full bg-amber-50/60 border border-amber-200 rounded-xl pl-8 pr-3 py-2 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-rose-400">
+              <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none z-10"></i>
+              <input type="text" id="adm-donation-search" oninput="APP.filterAdminDonations()" placeholder="Cari ID, nama donatur, email, WA, atau nominal..." class="w-full bg-amber-50/60 border border-amber-200 rounded-xl pl-10 pr-3 py-2 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-rose-400">
             </div>
             <select id="adm-donation-status-filter" onchange="APP.filterAdminDonations()" class="bg-amber-50/60 border border-amber-200 rounded-xl px-3 py-2 text-xs text-slate-800 focus:outline-none focus:border-rose-400 font-medium">
               <option value="ALL">Semua Status</option>
@@ -1525,9 +1552,9 @@ input:focus, select:focus, textarea:focus {
               <p class="text-xs text-slate-500 mt-0.5">Admin memiliki hak penuh untuk mengubah role (User, Mentor, Guru, Admin) serta status akun seluruh pengguna terdaftar.</p>
             </div>
             <div class="flex flex-wrap items-center gap-3">
-              <div class="relative min-w-[220px]">
-                <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
-                <input type="text" id="adm-user-search" oninput="APP.filterAdminUsers()" placeholder="Cari nama, email, username..." class="w-full bg-amber-50/60 border border-amber-200 rounded-xl pl-8 pr-3 py-2 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-amber-400">
+              <div class="relative flex-grow">
+                <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none z-10"></i>
+                <input type="text" id="adm-user-search" oninput="APP.filterAdminUsers()" placeholder="Cari nama, email, username..." class="w-full bg-amber-50/60 border border-amber-200 rounded-xl pl-10 pr-3 py-2 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-amber-400">
               </div>
               <select id="adm-user-role-filter" onchange="APP.filterAdminUsers()" class="bg-amber-50/60 border border-amber-200 rounded-xl px-3 py-2 text-xs text-slate-800 focus:outline-none focus:border-amber-400 font-medium">
                 <option value="ALL">Semua Role</option>
@@ -1888,8 +1915,8 @@ input:focus, select:focus, textarea:focus {
             <!-- Search & Filters -->
             <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 mb-6">
               <div class="sm:col-span-6 relative">
-                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-xs"></i>
-                <input type="text" id="set-adm-users-search" oninput="APP.filterAdminSettingsUsers()" placeholder="Cari nama lengkap, username, email, ID, domisili, gereja..." class="w-full bg-amber-50/70 border border-amber-200 rounded-xl pl-9 pr-4 py-2 text-xs text-slate-800 focus:outline-none focus:border-amber-400">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-xs pointer-events-none z-10"></i>
+                <input type="text" id="set-adm-users-search" oninput="APP.filterAdminSettingsUsers()" placeholder="Cari nama lengkap, username, email, ID, domisili, gereja..." class="w-full bg-amber-50/70 border border-amber-200 rounded-xl pl-10 pr-4 py-2 text-xs text-slate-800 focus:outline-none focus:border-amber-400">
               </div>
               <div class="sm:col-span-3">
                 <select id="set-adm-users-role-filter" onchange="APP.filterAdminSettingsUsers()" class="w-full bg-amber-50/70 border border-amber-200 rounded-xl px-3 py-2 text-xs text-slate-800 focus:outline-none focus:border-amber-400">
