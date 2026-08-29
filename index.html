@@ -1240,16 +1240,96 @@ div.relative > i.fa-regular {
 
     <!-- ==================== PAGE 4: QUIZ CENTER ==================== -->
     <section id="page-quiz-center" class="page-view hidden py-12">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-2xl mx-auto mb-10">
-          <h2 class="text-xs uppercase tracking-widest font-bold text-amber-400 mb-1">UJI PEMAHAMAN FIRMAN</h2>
-          <h1 class="text-3xl font-extrabold text-slate-900 font-serif-sacred mb-3">Pusat Bank Soal Kuis Alkitab</h1>
-          <p class="text-xs text-slate-400">Pilihan Ganda, Benar/Salah, Tebak Kitab, Tebak Tokoh, dan Referensi Ayat dengan Sistem Penilaian Membangun.</p>
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Header -->
+        <div class="text-center max-w-3xl mx-auto mb-8">
+          <div class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-amber-100 border border-amber-300 text-amber-800 text-[10px] font-extrabold tracking-wider mb-2 uppercase">
+            <i class="fa-solid fa-brain text-amber-600"></i> PUSAT UJI PEMAHAMAN FIRMAN TUHAN
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 font-serif-sacred mb-3">
+            Bank Kuis & Soal Alkitab Terpadu
+          </h1>
+          <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
+            Terhubung langsung dengan seluruh 66 Kitab dan Modul Pembelajaran. Uji pemahaman Anda melalui pilihan ganda, benar/salah, tebak kitab, dan referensi ayat firman Tuhan.
+          </p>
         </div>
 
+        <!-- Action Banner & Control Bar -->
+        <div class="p-4 sm:p-6 rounded-3xl bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 text-white shadow-xl mb-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div class="flex items-center gap-3.5 text-left w-full md:w-auto">
+            <div class="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center text-2xl text-amber-100 shrink-0 border border-white/20">
+              <i class="fa-solid fa-play"></i>
+            </div>
+            <div>
+              <h3 class="text-base sm:text-lg font-bold">Simulasi Kuis Interaktif</h3>
+              <p class="text-xs text-amber-100/90">Kerjakan kuis dengan skor langsung, umpan balik ayat, dan evaluasi hasil belajar.</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-2 w-full md:w-auto justify-end">
+            <button onclick="APP.startInteractiveQuiz()" class="flex-1 sm:flex-none px-5 py-2.5 rounded-xl bg-white text-amber-900 font-extrabold text-xs hover:bg-amber-50 shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer">
+              <i class="fa-solid fa-gamepad text-amber-600"></i> Mulai Kuis Interaktif 🚀
+            </button>
+            <button onclick="APP.openManageQuestionModal()" class="flex-1 sm:flex-none px-4 py-2.5 rounded-xl bg-black/25 hover:bg-black/35 text-white font-bold text-xs border border-white/30 transition-all flex items-center justify-center gap-1.5 cursor-pointer">
+              <i class="fa-solid fa-plus text-amber-300"></i> Tambah Soal Baru
+            </button>
+          </div>
+        </div>
+
+        <!-- Filter & Search Controls -->
+        <div class="p-5 rounded-3xl bg-white border border-amber-200 shadow-sm mb-6 space-y-4">
+          
+          <!-- Top Row: Search & Dropdowns -->
+          <div class="grid grid-cols-1 sm:grid-cols-12 gap-3">
+            <!-- Search Input -->
+            <div class="sm:col-span-6 relative">
+              <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
+              <input type="text" id="quiz-search-input" oninput="APP.filterQuizCenter()" placeholder="Cari pertanyaan, ayat referensi, atau kata kunci firman..." class="w-full bg-amber-50/50 border border-amber-200 rounded-xl pl-9 pr-4 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-amber-400 focus:bg-white transition-all">
+            </div>
+
+            <!-- Filter Kitab Dropdown (66 Kitab) -->
+            <div class="sm:col-span-3">
+              <select id="quiz-book-filter" onchange="APP.filterQuizCenter()" class="w-full bg-amber-50/50 border border-amber-200 rounded-xl px-3 py-2.5 text-xs text-slate-800 font-bold focus:outline-none focus:border-amber-400">
+                <option value="ALL">📖 Semua Kitab (66 Kitab)</option>
+                <optgroup label="Perjanjian Lama (39 Kitab)" id="quiz-optgroup-pl"></optgroup>
+                <optgroup label="Perjanjian Baru (27 Kitab)" id="quiz-optgroup-pb"></optgroup>
+              </select>
+            </div>
+
+            <!-- Filter Kesulitan Dropdown -->
+            <div class="sm:col-span-3">
+              <select id="quiz-diff-filter" onchange="APP.filterQuizCenter()" class="w-full bg-amber-50/50 border border-amber-200 rounded-xl px-3 py-2.5 text-xs text-slate-800 font-bold focus:outline-none focus:border-amber-400">
+                <option value="ALL">🎯 Semua Tingkat Kesulitan</option>
+                <option value="Mudah">🟢 Mudah</option>
+                <option value="Sedang">🟡 Sedang</option>
+                <option value="Sulit">🔴 Sulit</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Bottom Row: Quick Testament Filter Pills & Question Count Badge -->
+          <div class="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-amber-100">
+            <div class="flex flex-wrap items-center gap-1.5" id="quiz-testament-pills">
+              <button onclick="APP.setQuizTestamentFilter('ALL')" class="quiz-t-pill px-3.5 py-1.5 rounded-lg text-xs font-bold bg-amber-500 text-white shadow-xs" data-testament="ALL">Semua Kitab</button>
+              <button onclick="APP.setQuizTestamentFilter('PL')" class="quiz-t-pill px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200" data-testament="PL">Perjanjian Lama (PL)</button>
+              <button onclick="APP.setQuizTestamentFilter('PB')" class="quiz-t-pill px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-sky-50 hover:bg-sky-100 text-sky-900 border border-sky-200" data-testament="PB">Perjanjian Baru (PB)</button>
+            </div>
+
+            <div class="text-xs text-slate-500 font-medium flex items-center gap-2">
+              <span>Menampilkan: <strong id="quiz-total-filtered-count" class="text-amber-700 font-bold">0</strong> soal</span>
+              <button onclick="APP.openManageQuestionModal()" class="text-amber-700 hover:text-amber-800 font-bold hover:underline">
+                <i class="fa-solid fa-plus-circle mr-0.5"></i> Buat Soal
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Dynamic List of Questions -->
         <div id="quiz-list-container">
           <!-- Dynamically Loaded by APP.renderQuizCenter() -->
         </div>
+
       </div>
     </section>
 
@@ -1336,27 +1416,56 @@ div.relative > i.fa-regular {
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <!-- Welcome Hero -->
-        <div class="p-8 rounded-3xl bg-gradient-to-r from-amber-50 via-orange-50 to-sky-50 border-2 border-amber-200 shadow-lg mb-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div class="p-8 rounded-3xl bg-gradient-to-r from-amber-50 via-orange-50 to-sky-50 border-2 border-amber-200 shadow-lg mb-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div>
-            <div class="flex items-center gap-2 text-xs text-amber-400 font-bold uppercase tracking-wider mb-2">
-              <span id="dash-user-level-badge" class="px-2.5 py-0.5 rounded-full bg-amber-500/20 border border-amber-500/30">Level A</span>
-              <span>• Selamat Datang Kembali</span>
+            <div class="flex items-center gap-2 text-xs text-amber-500 font-bold uppercase tracking-wider mb-2">
+              <span id="dash-user-level-badge" class="px-2.5 py-0.5 rounded-full bg-amber-500/20 border border-amber-500/30 text-amber-800">Level A</span>
+              <span class="text-slate-600 font-semibold">• Shalom &amp; Selamat Datang</span>
             </div>
             <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2">
-              Halo, <span id="dash-user-name" class="gold-gradient-text">Raymond Sirait</span>!
+              Halo, <span id="dash-user-name" class="gold-gradient-text">Raymond Sirait</span>! 🙏
             </h1>
-            <p class="text-xs sm:text-sm text-slate-600 italic font-reading">
-              “Selamat belajar firman Tuhan dengan mudah, bertahap, dan penuh sukacita.”
+            <p class="text-xs sm:text-sm text-slate-700 italic font-reading">
+              “Selamat belajar Firman Tuhan dengan mudah, bertahap, dan penuh sukacita.”
             </p>
           </div>
           <div class="flex items-center gap-3">
-            <div class="p-3 rounded-2xl bg-white border border-amber-200 text-center min-w-[90px]">
-              <div class="text-xs text-slate-400 mb-0.5">Poin Belajar</div>
-              <div id="dash-user-points" class="text-xl font-bold text-amber-400">250</div>
+            <div class="p-3 rounded-2xl bg-white border border-amber-200 text-center min-w-[90px] shadow-sm">
+              <div class="text-xs text-slate-500 mb-0.5 font-medium">Poin Belajar</div>
+              <div id="dash-user-points" class="text-xl font-bold text-amber-600">250</div>
             </div>
-            <div class="p-3 rounded-2xl bg-white border border-amber-200 text-center min-w-[90px]">
-              <div class="text-xs text-slate-400 mb-0.5">Streak Belajar</div>
-              <div id="dash-user-streak" class="text-xl font-bold text-emerald-400">3 Hari</div>
+            <div class="p-3 rounded-2xl bg-white border border-amber-200 text-center min-w-[90px] shadow-sm">
+              <div class="text-xs text-slate-500 mb-0.5 font-medium">Streak Belajar</div>
+              <div id="dash-user-streak" class="text-xl font-bold text-emerald-600">3 Hari</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Banner Ajakan Belajar Firman Tuhan -->
+        <div class="p-6 sm:p-7 rounded-3xl bg-gradient-to-r from-amber-500 via-amber-600 to-orange-600 text-white shadow-xl mb-8 relative overflow-hidden">
+          <div class="absolute -right-6 -bottom-6 opacity-15 pointer-events-none">
+            <i class="fa-solid fa-book-bible text-[160px]"></i>
+          </div>
+          <div class="relative z-10">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm text-xs font-bold mb-3 border border-white/30">
+              <i class="fa-solid fa-sparkles text-amber-200"></i> AJAKAN BELAJAR FIRMAN TUHAN
+            </div>
+            <h2 class="text-xl sm:text-2xl font-bold mb-2 font-serif-sacred text-white">
+              Mari Selidiki Firman Tuhan Hari Ini! 📖
+            </h2>
+            <p class="text-xs sm:text-sm text-amber-100 max-w-2xl mb-5 leading-relaxed">
+              Tuhan rindu berbicara kepada Anda setiap hari melalui firman-Nya. Mulai langkah belajar Anda hari ini, pelajari kitab Kejadian hingga Wahyu secara terstruktur, dan dapatkan hikmat yang meneguhkan iman.
+            </p>
+            <div class="flex flex-wrap items-center gap-3">
+              <button onclick="APP.navigateTo('page-books-curriculum')" class="px-5 py-2.5 rounded-xl bg-white text-amber-800 hover:bg-amber-50 font-extrabold text-xs shadow-md transition-all flex items-center gap-2">
+                <i class="fa-solid fa-book-open text-amber-600"></i> Buka Modul Belajar Alkitab
+              </button>
+              <button onclick="APP.navigateTo('page-memorization')" class="px-4 py-2.5 rounded-xl bg-black/20 hover:bg-black/30 border border-white/30 text-white font-bold text-xs transition-all flex items-center gap-2">
+                <i class="fa-solid fa-gem text-amber-300"></i> Hafal Ayat Harian
+              </button>
+              <button onclick="APP.navigateTo('page-quiz-center')" class="px-4 py-2.5 rounded-xl bg-black/20 hover:bg-black/30 border border-white/30 text-white font-bold text-xs transition-all flex items-center gap-2">
+                <i class="fa-solid fa-circle-question text-sky-300"></i> Uji Pemahaman &amp; Kuis
+              </button>
             </div>
           </div>
         </div>
@@ -1614,27 +1723,68 @@ div.relative > i.fa-regular {
           </div>
         </div>
 
-        <!-- Tab Content: Questions Table -->
-        <div class="p-6 rounded-3xl glass-panel border border-slate-200 mb-8">
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="text-base font-bold text-slate-900 flex items-center gap-2">
-              <i class="fa-solid fa-brain text-emerald-400"></i> Kelola Bank Soal Kuis
-            </h3>
+        <!-- Tab Content: Questions Management Panel (Enhanced) -->
+        <div class="p-6 rounded-3xl bg-white border-2 border-emerald-200/80 shadow-lg mb-8 relative" id="adm-questions-section">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-5 pb-4 border-b border-emerald-100">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-bold text-[10px]">KURIKULUM & EVALUASI</span>
+                <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2 font-serif-sacred">
+                  <i class="fa-solid fa-brain text-emerald-600"></i> Pengaturan & Bank Soal Kuis Alkitab
+                </h3>
+              </div>
+              <p class="text-xs text-slate-500 mt-0.5">Kelola soal kuis untuk setiap dari 66 Kitab dan modul pembelajaran. Pengaturan ini langsung terhubung dengan Bank Kuis dan evaluasi peserta.</p>
+            </div>
+            
+            <div class="flex flex-wrap items-center gap-2">
+              <button onclick="APP.openManageQuestionModal()" class="px-4 py-2 rounded-xl gold-gradient-bg text-white font-extrabold text-xs shadow-md hover:opacity-95 transition-all flex items-center gap-1.5 cursor-pointer">
+                <i class="fa-solid fa-plus-circle"></i> + Tambah Soal Kuis
+              </button>
+              <button onclick="APP.openModuleQuizManager('Kejadian')" class="px-3.5 py-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 text-emerald-800 font-bold text-xs shadow-sm transition-all flex items-center gap-1.5 cursor-pointer">
+                <i class="fa-solid fa-layer-group text-emerald-600"></i> Kelola per Kitab / Modul
+              </button>
+            </div>
           </div>
-          <div class="overflow-x-auto">
+
+          <!-- Filters Row for Admin Questions -->
+          <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 mb-5">
+            <div class="sm:col-span-6 relative">
+              <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
+              <input type="text" id="adm-quiz-search" oninput="APP.filterAdminQuestions()" placeholder="Cari pertanyaan, opsi jawaban, ayat referensi, atau ID soal..." class="w-full bg-emerald-50/40 border border-emerald-200 rounded-xl pl-9 pr-3 py-2 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-emerald-500">
+            </div>
+            <div class="sm:col-span-3">
+              <select id="adm-quiz-book-filter" onchange="APP.filterAdminQuestions()" class="w-full bg-emerald-50/40 border border-emerald-200 rounded-xl px-3 py-2 text-xs text-slate-800 font-bold focus:outline-none focus:border-emerald-500">
+                <option value="ALL">📖 Semua Kitab (66 Kitab)</option>
+                <optgroup label="Perjanjian Lama" id="adm-quiz-optgroup-pl"></optgroup>
+                <optgroup label="Perjanjian Baru" id="adm-quiz-optgroup-pb"></optgroup>
+              </select>
+            </div>
+            <div class="sm:col-span-3">
+              <select id="adm-quiz-diff-filter" onchange="APP.filterAdminQuestions()" class="w-full bg-emerald-50/40 border border-emerald-200 rounded-xl px-3 py-2 text-xs text-slate-800 font-bold focus:outline-none focus:border-emerald-500">
+                <option value="ALL">🎯 Semua Tingkat Kesulitan</option>
+                <option value="Mudah">🟢 Mudah</option>
+                <option value="Sedang">🟡 Sedang</option>
+                <option value="Sulit">🔴 Sulit</option>
+              </select>
+            </div>
+          </div>
+          
+          <!-- Table of Admin Questions -->
+          <div class="overflow-x-auto rounded-2xl border border-emerald-100">
             <table class="w-full text-left text-xs text-slate-600">
-              <thead class="bg-white text-slate-400 font-bold border-b border-amber-200">
+              <thead class="bg-gradient-to-r from-emerald-50 to-amber-50 text-slate-700 font-bold border-b border-emerald-200">
                 <tr>
                   <th class="p-3">#</th>
-                  <th class="p-3">KITAB</th>
-                  <th class="p-3">PERTANYAAN</th>
-                  <th class="p-3">KUNCI</th>
-                  <th class="p-3">REFERENSI</th>
+                  <th class="p-3">KITAB & MODUL</th>
+                  <th class="p-3">PERTANYAAN / SOAL</th>
+                  <th class="p-3">TIPE & KUNCI</th>
+                  <th class="p-3">REFERENSI AYAT</th>
+                  <th class="p-3">KESULITAN</th>
                   <th class="p-3 text-right">AKSI</th>
                 </tr>
               </thead>
               <tbody id="adm-table-questions-body">
-                <!-- Dynamically Loaded -->
+                <!-- Dynamically Loaded by APP.renderAdminQuestionsTable() -->
               </tbody>
             </table>
           </div>
@@ -3279,15 +3429,240 @@ div.relative > i.fa-regular {
           </div>
         </div>
 
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL 5: TAMBAH & EDIT SOAL KUIS (CRUD SOAL PER MODUL/KITAB) ==================== -->
+  <div id="modal-manage-quiz-question" class="modal-overlay hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/75 backdrop-blur-md overflow-y-auto">
+    <div class="bg-white w-full max-w-2xl p-6 sm:p-8 rounded-3xl border-2 border-amber-300 shadow-2xl relative my-6">
+      <button onclick="APP.closeModal('modal-manage-quiz-question')" class="absolute top-5 right-5 text-slate-400 hover:text-rose-600 text-lg transition-colors">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <!-- Modal Header -->
+      <div class="flex items-center gap-3 mb-5 pb-3 border-b border-amber-100">
+        <div class="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-700 flex items-center justify-center text-xl border border-amber-400/40">
+          <i class="fa-solid fa-brain"></i>
+        </div>
+        <div>
+          <h3 id="modal-quiz-form-title" class="text-xl font-bold font-serif-sacred text-slate-900">
+            Tambah Soal Kuis Baru
+          </h3>
+          <p class="text-xs text-slate-500">Atur pertanyaan, opsi jawaban, kunci, pembahasan firman, dan kaitkan dengan 66 Kitab atau modul.</p>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <form id="form-manage-quiz-question" onsubmit="APP.handleSaveQuizQuestion(event)" class="space-y-4 text-xs">
+        <input type="hidden" id="input-quiz-id" value="">
+
+        <!-- Row: Kitab & Modul Terkait -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-slate-700 font-bold mb-1">
+              <i class="fa-solid fa-book-bible text-amber-500 mr-1"></i> Kitab Terkait (66 Kitab) *
+            </label>
+            <select id="input-quiz-book" required onchange="APP.onQuizFormBookChange()" class="w-full bg-white border border-amber-200 rounded-xl px-3 py-2.5 text-slate-800 font-bold focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500">
+              <!-- Populated by script -->
+            </select>
+          </div>
+          <div>
+            <label class="block text-slate-700 font-bold mb-1">
+              <i class="fa-solid fa-graduation-cap text-amber-500 mr-1"></i> Modul Pelajaran Terkait
+            </label>
+            <select id="input-quiz-lesson-id" class="w-full bg-white border border-amber-200 rounded-xl px-3 py-2.5 text-slate-800 font-medium focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500">
+              <option value="GENERAL">Modul Umum / Semua Modul</option>
+              <option value="LES-001">LES-001 — Penciptaan Langit, Bumi & Manusia (Kejadian 1)</option>
+              <option value="LES-002">LES-002 — Tuhan Adalah Gembalaku (Mazmur 23)</option>
+              <option value="LES-003">LES-003 — Kasih Allah & Kelahiran Baru (Yohanes 3)</option>
+              <option value="LES-004">LES-004 — Sukacita & Damai Sejahtera (Filipi 4)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Pertanyaan -->
+        <div>
+          <label class="block text-slate-700 font-bold mb-1">
+            <i class="fa-solid fa-circle-question text-amber-500 mr-1"></i> Teks Pertanyaan / Soal *
+          </label>
+          <textarea id="input-quiz-question" rows="3" required placeholder="Tuliskan pertanyaan kuis firman Tuhan secara jelas dan santun..." class="w-full bg-white border border-amber-200 rounded-xl p-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 leading-relaxed"></textarea>
+        </div>
+
+        <!-- Tipe Soal & Kunci Jawaban -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-slate-700 font-bold mb-1">
+              <i class="fa-solid fa-list-check text-amber-500 mr-1"></i> Tipe Soal *
+            </label>
+            <select id="input-quiz-type" onchange="APP.onQuizFormTypeChange()" class="w-full bg-white border border-amber-200 rounded-xl px-3 py-2 text-slate-800 font-bold focus:outline-none focus:border-amber-500">
+              <option value="multiple_choice">Pilihan Ganda (4 Pilihan: A, B, C, D)</option>
+              <option value="true_false">Benar / Salah (2 Pilihan: Benar / Salah)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-slate-700 font-bold mb-1">
+              <i class="fa-solid fa-key text-emerald-600 mr-1"></i> Kunci Jawaban yang Benar *
+            </label>
+            <select id="input-quiz-correct" required class="w-full bg-emerald-50 border border-emerald-300 rounded-xl px-3 py-2 text-emerald-900 font-bold focus:outline-none focus:border-emerald-500">
+              <option value="0">Opsi A (Pilihan Pertama)</option>
+              <option value="1">Opsi B (Pilihan Kedua)</option>
+              <option value="2" id="opt-correct-c">Opsi C (Pilihan Ketiga)</option>
+              <option value="3" id="opt-correct-d">Opsi D (Pilihan Keempat)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Opsi Jawaban Container -->
+        <div id="quiz-options-inputs-container" class="space-y-2.5 p-4 rounded-2xl bg-amber-50/50 border border-amber-200">
+          <div class="text-[11px] font-extrabold uppercase tracking-wider text-slate-600 mb-1 flex items-center justify-between">
+            <span>Pilihan Opsi Jawaban:</span>
+            <span class="text-[10px] text-amber-700 italic font-normal">* Pastikan isi opsi dengan jelas</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-lg bg-amber-200 text-amber-800 font-bold flex items-center justify-center shrink-0">A</span>
+            <input type="text" id="input-quiz-opt-0" required placeholder="Teks Pilihan A..." class="w-full bg-white border border-amber-200 rounded-xl px-3 py-2 text-slate-800 focus:outline-none focus:border-amber-500">
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-lg bg-amber-200 text-amber-800 font-bold flex items-center justify-center shrink-0">B</span>
+            <input type="text" id="input-quiz-opt-1" required placeholder="Teks Pilihan B..." class="w-full bg-white border border-amber-200 rounded-xl px-3 py-2 text-slate-800 focus:outline-none focus:border-amber-500">
+          </div>
+          <div class="flex items-center gap-2" id="row-quiz-opt-2">
+            <span class="w-7 h-7 rounded-lg bg-amber-200 text-amber-800 font-bold flex items-center justify-center shrink-0">C</span>
+            <input type="text" id="input-quiz-opt-2" placeholder="Teks Pilihan C..." class="w-full bg-white border border-amber-200 rounded-xl px-3 py-2 text-slate-800 focus:outline-none focus:border-amber-500">
+          </div>
+          <div class="flex items-center gap-2" id="row-quiz-opt-3">
+            <span class="w-7 h-7 rounded-lg bg-amber-200 text-amber-800 font-bold flex items-center justify-center shrink-0">D</span>
+            <input type="text" id="input-quiz-opt-3" placeholder="Teks Pilihan D..." class="w-full bg-white border border-amber-200 rounded-xl px-3 py-2 text-slate-800 focus:outline-none focus:border-amber-500">
+          </div>
+        </div>
+
+        <!-- Referensi Ayat & Tingkat Kesulitan -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div>
+            <label class="block text-slate-700 font-bold mb-1">
+              <i class="fa-solid fa-bookmark text-amber-500 mr-1"></i> Referensi Ayat *
+            </label>
+            <input type="text" id="input-quiz-ref" required placeholder="Contoh: Kejadian 1:1" class="w-full bg-white border border-amber-200 rounded-xl px-3 py-2 text-slate-800 font-mono text-xs focus:outline-none focus:border-amber-500">
+          </div>
+          <div>
+            <label class="block text-slate-700 font-bold mb-1">
+              <i class="fa-solid fa-gauge text-amber-500 mr-1"></i> Tingkat Kesulitan
+            </label>
+            <select id="input-quiz-difficulty" class="w-full bg-white border border-amber-200 rounded-xl px-3 py-2 text-slate-800 font-medium focus:outline-none focus:border-amber-500">
+              <option value="Mudah">🟢 Mudah</option>
+              <option value="Sedang">🟡 Sedang</option>
+              <option value="Sulit">🔴 Sulit</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-slate-700 font-bold mb-1">
+              <i class="fa-solid fa-layer-group text-amber-500 mr-1"></i> Level Pemahaman
+            </label>
+            <select id="input-quiz-level" class="w-full bg-white border border-amber-200 rounded-xl px-3 py-2 text-slate-800 font-medium focus:outline-none focus:border-amber-500">
+              <option value="Level A">Level A (Pemula)</option>
+              <option value="Level B">Level B (Pertumbuhan)</option>
+              <option value="Level C">Level C (Pendalaman)</option>
+              <option value="Level D">Level D (Pelayanan)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Penjelasan / Pembahasan Teologis -->
+        <div>
+          <label class="block text-slate-700 font-bold mb-1">
+            <i class="fa-solid fa-quote-left text-amber-500 mr-1"></i> Penjelasan / Pembahasan Firman Tuhan *
+          </label>
+          <textarea id="input-quiz-explanation" rows="2" required placeholder="Tuliskan pembahasan jawaban firman Tuhan yang mendidik dan menguatkan..." class="w-full bg-white border border-amber-200 rounded-xl p-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-amber-500 leading-relaxed"></textarea>
+        </div>
+
+        <!-- Actions -->
         <div class="pt-3 flex items-center gap-2">
-          <button type="button" onclick="APP.closeModal('modal-edit-donation-settings')" class="w-1/2 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs">
+          <button type="button" onclick="APP.closeModal('modal-manage-quiz-question')" class="w-1/2 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs">
             Batal
           </button>
-          <button type="submit" class="w-1/2 py-2.5 rounded-xl gold-gradient-bg text-white font-bold text-xs shadow-md hover:opacity-95">
-            <i class="fa-solid fa-check mr-1.5"></i> Simpan Rekening
+          <button type="submit" class="w-1/2 py-2.5 rounded-xl gold-gradient-bg text-white font-extrabold text-xs shadow-md hover:opacity-95 transition-all">
+            <i class="fa-solid fa-check mr-1.5"></i> Simpan Soal Kuis
           </button>
         </div>
       </form>
+    </div>
+  </div>
+
+
+  <!-- ==================== MODAL 6: SETTING & KELOLA SOAL PER MODUL / KITAB ==================== -->
+  <div id="modal-module-quiz-manager" class="modal-overlay hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/75 backdrop-blur-md overflow-y-auto">
+    <div class="bg-white w-full max-w-3xl p-6 sm:p-8 rounded-3xl border-2 border-amber-300 shadow-2xl relative my-6">
+      <button onclick="APP.closeModal('modal-module-quiz-manager')" class="absolute top-5 right-5 text-slate-400 hover:text-rose-600 text-lg transition-colors">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <!-- Header -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-amber-100">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-700 flex items-center justify-center text-xl border border-amber-400/40">
+            <i class="fa-solid fa-layer-group"></i>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span id="mod-quiz-testament-badge" class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800">PL</span>
+              <h3 id="mod-quiz-book-title" class="text-xl font-bold font-serif-sacred text-slate-900">
+                Pengaturan Soal: Kitab Kejadian
+              </h3>
+            </div>
+            <p id="mod-quiz-book-subtitle" class="text-xs text-slate-500 mt-0.5">Terdapat 50 Pasal • Total 2 Soal Kuis Terdaftar</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button id="btn-mod-add-question" onclick="APP.openManageQuestionModal(null, APP._currentModQuizBook)" class="px-3.5 py-2 rounded-xl gold-gradient-bg text-white font-bold text-xs shadow-sm hover:opacity-95 transition-all flex items-center gap-1.5 cursor-pointer">
+            <i class="fa-solid fa-plus-circle"></i> + Tambah Soal
+          </button>
+          <button id="btn-mod-start-quiz" onclick="APP.startInteractiveQuiz(APP._currentModQuizBook)" class="px-3.5 py-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 text-emerald-800 font-bold text-xs shadow-sm transition-all flex items-center gap-1.5 cursor-pointer">
+            <i class="fa-solid fa-play text-emerald-600"></i> Uji Kuis
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Book Selector within Modal -->
+      <div class="mb-5 flex items-center gap-2">
+        <label class="text-xs font-bold text-slate-600 shrink-0">Pilih Kitab / Modul Lain:</label>
+        <select id="mod-quiz-select-book" onchange="APP.openModuleQuizManager(this.value)" class="bg-amber-50/70 border border-amber-200 rounded-xl px-3 py-1.5 text-xs text-slate-800 font-bold focus:outline-none focus:border-amber-400 flex-grow">
+          <!-- Populated by script -->
+        </select>
+      </div>
+
+      <!-- Questions List Container -->
+      <div id="mod-quiz-questions-list" class="space-y-3 max-h-[60vh] overflow-y-auto pr-1">
+        <!-- Dynamically rendered -->
+      </div>
+
+      <!-- Footer Actions -->
+      <div class="mt-6 pt-4 border-t border-amber-100 flex items-center justify-between">
+        <span class="text-xs text-slate-500 font-medium">
+          Pengaturan ini otomatis tersinkron ke Bank Kuis dan Materi Pembelajaran.
+        </span>
+        <button type="button" onclick="APP.closeModal('modal-module-quiz-manager')" class="px-5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs">
+          Tutup
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ==================== MODAL 7: SIMULASI & PLAYER KUIS INTERAKTIF ==================== -->
+  <div id="modal-interactive-quiz-player" class="modal-overlay hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md overflow-y-auto">
+    <div class="bg-white w-full max-w-2xl p-6 sm:p-8 rounded-3xl border-2 border-amber-400 shadow-2xl relative my-6 animate-float">
+      <button onclick="APP.closeModal('modal-interactive-quiz-player')" class="absolute top-5 right-5 text-slate-400 hover:text-rose-600 text-lg transition-colors" title="Keluar dari Kuis">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <!-- Quiz Screen Container (Question vs Result) -->
+      <div id="iq-screen-container">
+        <!-- Dynamically loaded by APP.renderInteractiveQuizStep() -->
+      </div>
+
     </div>
   </div>
 
@@ -3487,6 +3862,7 @@ const SAMPLE_LESSONS = [
 
 // ========================== 4. DATA BANK SOAL KUIS CONTOH ========================== //
 const SAMPLE_QUESTIONS = [
+  // 1. Kitab Kejadian
   {
     id: "QST-001",
     lessonId: "LES-001",
@@ -3514,6 +3890,111 @@ const SAMPLE_QUESTIONS = [
     level: "Level A"
   },
   {
+    id: "QST-007",
+    lessonId: "GENERAL",
+    book: "Kejadian",
+    type: "multiple_choice",
+    question: "Siapakah putra Abraham yang diperanakkan dari Sara pada masa tua mereka sesuai janji Allah?",
+    options: ["Ismael", "Ishak", "Esau", "Yakub"],
+    correctAnswer: 1, // Ishak
+    explanation: "Kejadian 21:1-3 mencatat bahwa Sara melahirkan seorang anak laki-laki bagi Abraham pada masa tuanya, dan dinamai Ishak.",
+    verseRef: "Kejadian 21:1-3",
+    difficulty: "Mudah",
+    level: "Level A"
+  },
+  
+  // 2. Kitab Keluaran
+  {
+    id: "QST-008",
+    lessonId: "GENERAL",
+    book: "Keluaran",
+    type: "multiple_choice",
+    question: "Di manakah Allah memberikan Sepuluh Hukum (Dasa Titah) kepada Musa di atas dua loh batu?",
+    options: ["Gunung Nebo", "Gunung Sinai / Horeb", "Gunung Karmel", "Gunung Sion"],
+    correctAnswer: 1, // Sinai
+    explanation: "Keluaran 19-20 mencatat pemberian Hukum Taurat oleh Allah kepada Musa di atas puncak Gunung Sinai.",
+    verseRef: "Keluaran 20:1-17",
+    difficulty: "Mudah",
+    level: "Level A"
+  },
+
+  // 3. Kitab Imamat
+  {
+    id: "QST-009",
+    lessonId: "GENERAL",
+    book: "Imamat",
+    type: "multiple_choice",
+    question: "Apakah tema pokok panggilan kekudusan yang diulang dalam Kitab Imamat?",
+    options: ["Kuduslah kamu, sebab Aku, TUHAN, Allahmu, adalah kudus", "Kuasailah seluruh bumi dengan pedang", "Hukumilah setiap musuhmu", "Kekayaan adalah bukti kebenaran"],
+    correctAnswer: 0,
+    explanation: "Imamat 19:2 menegaskan: 'Kuduslah kamu, sebab Aku, TUHAN, Allahmu, adalah kudus.'",
+    verseRef: "Imamat 19:2",
+    difficulty: "Sedang",
+    level: "Level B"
+  },
+
+  // 4. Kitab Bilangan
+  {
+    id: "QST-010",
+    lessonId: "GENERAL",
+    book: "Bilangan",
+    type: "multiple_choice",
+    question: "Berapa lamakah bangsa Israel harus mengembara di padang gurun akibat ketidakpercayaan mereka?",
+    options: ["10 Tahun", "25 Tahun", "40 Tahun", "70 Tahun"],
+    correctAnswer: 2, // 40 Tahun
+    explanation: "Bilangan 14:34 mencatat hukuman pengembaraan selama 40 tahun sesuai jumlah 40 hari pengintaian tanah Kanaan.",
+    verseRef: "Bilangan 14:34",
+    difficulty: "Mudah",
+    level: "Level A"
+  },
+
+  // 5. Kitab Ulangan
+  {
+    id: "QST-011",
+    lessonId: "GENERAL",
+    book: "Ulangan",
+    type: "multiple_choice",
+    question: "Bunyi pengakuan iman 'Shema Yisrael' yang terkenal terdapat dalam Ulangan 6:4-5, yaitu:",
+    options: ["Dengarlah, hai orang Israel: TUHAN itu Allah kita, TUHAN itu esa!", "Bangsa Israel adalah bangsa terhebat di dunia", "Hukum Taurat berlaku hanya untuk orang dewasa", "Janganlah beribadah di hari Sabat"],
+    correctAnswer: 0,
+    explanation: "Ulangan 6:4 berbunyi: 'Dengarlah, hai orang Israel: TUHAN itu Allah kita, TUHAN itu esa!' dilanjutkan panggilan mengasihi Allah dengan segenap hati, jiwa, dan kekuatan.",
+    verseRef: "Ulangan 6:4-5",
+    difficulty: "Sedang",
+    level: "Level B"
+  },
+
+  // 6. Kitab Yosua
+  {
+    id: "QST-012",
+    lessonId: "GENERAL",
+    book: "Yosua",
+    type: "multiple_choice",
+    question: "Kota berkubu kuat manakah yang runtuh temboknya setelah dikelilingi bangsa Israel selama tujuh hari?",
+    options: ["Yerusalem", "Yerikho", "Ai", "Hebron"],
+    correctAnswer: 1, // Yerikho
+    explanation: "Yosua 6 mengisahkan runtuhnya tembok kota Yerikho setelah ditiupnya sangkakala dan sorak-sorai segenap umat beriman.",
+    verseRef: "Yosua 6:20",
+    difficulty: "Mudah",
+    level: "Level A"
+  },
+
+  // 8. Kitab Rut
+  {
+    id: "QST-013",
+    lessonId: "GENERAL",
+    book: "Rut",
+    type: "multiple_choice",
+    question: "Siapakah kerabat penebus di Betlehem yang akhirnya menikahi Rut perempuan Moab?",
+    options: ["Elimelekh", "Boas", "Mahlon", "Kilyon"],
+    correctAnswer: 1, // Boas
+    explanation: "Boas menjadi penebus bagi Rut dan Naomi. Dari keturunan mereka lahirlah Obed, ayah Isai, kakek dari Raja Daud.",
+    verseRef: "Rut 4:13-17",
+    difficulty: "Sedang",
+    level: "Level B"
+  },
+
+  // 19. Kitab Mazmur
+  {
     id: "QST-003",
     lessonId: "LES-002",
     book: "Mazmur",
@@ -3526,6 +4007,38 @@ const SAMPLE_QUESTIONS = [
     difficulty: "Mudah",
     level: "Level B"
   },
+
+  // 20. Kitab Amsal
+  {
+    id: "QST-014",
+    lessonId: "GENERAL",
+    book: "Amsal",
+    type: "multiple_choice",
+    question: "Menurut Amsal 1:7, apakah permulaan dari segala pengetahuan dan hikmat sejati?",
+    options: ["Kekayaan yang berlimpah", "Takut akan TUHAN", "Pendidikan tinggi duniawi", "Popularitas di masyarakat"],
+    correctAnswer: 1, // Takut akan Tuhan
+    explanation: "Amsal 1:7 menyatakan: 'Takut akan TUHAN adalah permulaan pengetahuan, tetapi orang bodoh menghina hikmat dan didikan.'",
+    verseRef: "Amsal 1:7",
+    difficulty: "Mudah",
+    level: "Level A"
+  },
+
+  // 40. Kitab Matius
+  {
+    id: "QST-015",
+    lessonId: "GENERAL",
+    book: "Matius",
+    type: "multiple_choice",
+    question: "Amanat Agung Tuhan Yesus sebelum terangkat ke sorga dalam Matius 28:19 adalah:",
+    options: ["Pergilah, jadikanlah semua bangsa murid-Ku dan baptislah mereka", "Tinggallah diam di rumahmu dan jangan beritakan Injil", "Kumpulkanlah harta benda sebanyak-banyaknya", "Bangunlah bait suci fisik yang megah"],
+    correctAnswer: 0,
+    explanation: "Matius 28:19-20 adalah Amanat Agung Kristus untuk memuridkan semua bangsa dan membaptis mereka dalam nama Bapa, Anak, dan Roh Kudus.",
+    verseRef: "Matius 28:19-20",
+    difficulty: "Mudah",
+    level: "Level A"
+  },
+
+  // 43. Kitab Yohanes
   {
     id: "QST-004",
     lessonId: "LES-003",
@@ -3540,6 +4053,51 @@ const SAMPLE_QUESTIONS = [
     level: "Level B"
   },
   {
+    id: "QST-006",
+    lessonId: "LES-003",
+    book: "Yohanes",
+    type: "multiple_choice",
+    question: "Berapakah jumlah kitab dalam Alkitab tradisi Protestan?",
+    options: ["39 Kitab", "27 Kitab", "66 Kitab", "73 Kitab"],
+    correctAnswer: 2,
+    explanation: "Alkitab terdiri dari 66 Kitab: 39 Kitab Perjanjian Lama (PL) dan 27 Kitab Perjanjian Baru (PB).",
+    verseRef: "2 Timotius 3:16",
+    difficulty: "Mudah",
+    level: "Level A"
+  },
+
+  // 44. Kisah Para Rasul
+  {
+    id: "QST-016",
+    lessonId: "GENERAL",
+    book: "Kisah Para Rasul",
+    type: "multiple_choice",
+    question: "Peristiwa pencurahan Roh Kudus kepada para murid di Yerusalem pada hari ke-50 setelah Paskah disebut hari raya apa?",
+    options: ["Paskah", "Pentakosta", "Pondok Daun", "Purim"],
+    correctAnswer: 1, // Pentakosta
+    explanation: "Kisah Para Rasul 2 mencatat peristiwa agung hari Pentakosta di mana Roh Kudus dicurahkan dan murid-murid dipenuhi kuasa bersaksi.",
+    verseRef: "Kisah Para Rasul 2:1-4",
+    difficulty: "Mudah",
+    level: "Level A"
+  },
+
+  // 45. Kitab Roma
+  {
+    id: "QST-017",
+    lessonId: "GENERAL",
+    book: "Roma",
+    type: "multiple_choice",
+    question: "Menurut Roma 3:23, siapakah yang telah berbuat dosa dan kehilangan kemuliaan Allah?",
+    options: ["Hanya penjahat besar", "Semua orang telah berbuat dosa", "Hanya bangsa kafir", "Orang yang tidak berpendidikan"],
+    correctAnswer: 1, // Semua orang
+    explanation: "Roma 3:23 menyatakan: 'Karena semua orang telah berbuat dosa dan telah kehilangan kemuliaan Allah.'",
+    verseRef: "Roma 3:23",
+    difficulty: "Mudah",
+    level: "Level A"
+  },
+
+  // 50. Kitab Filipi
+  {
     id: "QST-005",
     lessonId: "LES-004",
     book: "Filipi",
@@ -3552,18 +4110,20 @@ const SAMPLE_QUESTIONS = [
     difficulty: "Sedang",
     level: "Level C"
   },
+
+  // 66. Kitab Wahyu
   {
-    id: "QST-006",
-    lessonId: "LES-003",
-    book: "Yohanes",
+    id: "QST-018",
+    lessonId: "GENERAL",
+    book: "Wahyu",
     type: "multiple_choice",
-    question: "Berapakah jumlah kitab dalam Alkitab tradisi Protestan?",
-    options: ["39 Kitab", "27 Kitab", "66 Kitab", "73 Kitab"],
-    correctAnswer: 2,
-    explanation: "Alkitab terdiri dari 66 Kitab: 39 Kitab Perjanjian Lama (PL) dan 27 Kitab Perjanjian Baru (PB).",
-    verseRef: "2 Timotius 3:16",
-    difficulty: "Mudah",
-    level: "Level A"
+    question: "Kepada berapakah jumlah jemaat di Asia Kecil surat pembuka dalam Kitab Wahyu ditujukan?",
+    options: ["3 Jemaat", "7 Jemaat", "12 Jemaat", "24 Jemaat"],
+    correctAnswer: 1, // 7 Jemaat
+    explanation: "Wahyu 1-3 memuat surat Kristus kepada 7 jemaat di Asia Kecil (Efesus, Smirna, Pergamus, Tiatira, Sardis, Filadelfia, dan Laodikia).",
+    verseRef: "Wahyu 1:11",
+    difficulty: "Sedang",
+    level: "Level B"
   }
 ];
 
@@ -3864,6 +4424,7 @@ window.APP = {
     this.applyTheme();
     this.initEventListeners();
     this.initAutoSync();
+    this.initQuizSelectOptions();
     this.checkInitialSession();
     this.renderAnnouncementsBanner();
     this.renderChurchDonationsStats();
@@ -3912,6 +4473,13 @@ window.APP = {
       const savedAch = localStorage.getItem('APP_ACHIEVEMENTS');
       if (savedAch) this.achievements = JSON.parse(savedAch);
 
+      const savedQuestions = localStorage.getItem('APP_QUESTIONS');
+      if (savedQuestions) {
+        this.questions = JSON.parse(savedQuestions);
+      } else {
+        this.questions = [...SAMPLE_QUESTIONS];
+      }
+
       const savedPlatform = localStorage.getItem('APP_PLATFORM_SETTINGS');
       if (savedPlatform) this.platformSettings = { ...this.platformSettings, ...JSON.parse(savedPlatform) };
     } catch (e) {
@@ -3925,6 +4493,7 @@ window.APP = {
       else localStorage.removeItem('APP_CURRENT_USER');
 
       localStorage.setItem('APP_USERS', JSON.stringify(this.users));
+      localStorage.setItem('APP_QUESTIONS', JSON.stringify(this.questions));
       localStorage.setItem('APP_DONATIONS', JSON.stringify(this.donations));
       localStorage.setItem('APP_DONATION_SETTINGS', JSON.stringify(this.donationSettings));
       localStorage.setItem('APP_PROGRESS', JSON.stringify(this.progress));
@@ -4288,6 +4857,117 @@ APP.closeLoginGate = function() {
   }
 };
 
+APP.showLoginWelcome = function(user, isNewUser = false) {
+  const name = user.nickname || user.name || 'Sobat Belajar';
+  const isAdmin = (user.role || '').toLowerCase() === 'admin';
+
+  if (typeof confetti === 'function') {
+    try {
+      confetti({
+        particleCount: 60,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
+    } catch (e) {}
+  }
+
+  if (isAdmin) {
+    Swal.fire({
+      icon: 'success',
+      title: `<span style="font-family:'Cinzel',serif;color:#d97706;font-size:1.35rem;font-weight:800;">Shalom &amp; Selamat Datang!</span>`,
+      html: `
+        <div style="text-align:center;padding:4px 0;">
+          <div style="font-size:1.1rem;font-weight:800;color:#0f172a;margin-bottom:8px;">
+            Halo Pengelola, <span style="color:#d97706;">${name}</span>! 🛡️
+          </div>
+          <p style="color:#475569;font-size:0.88rem;line-height:1.55;margin-bottom:14px;">
+            Portal Administrator siap digunakan. Anda memiliki wewenang mengelola kurikulum materi 66 Kitab, data peserta belajar, rekap donasi gereja, dan pengaturan sinkronisasi database.
+          </p>
+          <div style="background:linear-gradient(135deg,#fffbeb 0%,#fef3c7 100%);border-left:4px solid #f59e0b;padding:12px 14px;border-radius:10px;font-size:0.82rem;color:#92400e;text-align:left;font-style:italic;">
+            “Lakukanlah segala pekerjaanmu dalam kasih!” — 1 Korintus 16:14
+          </div>
+        </div>
+      `,
+      confirmButtonText: '<i class="fa-solid fa-gauge-high mr-1.5"></i> Buka Dashboard Admin',
+      confirmButtonColor: '#d97706',
+      customClass: {
+        popup: 'rounded-3xl border-2 border-amber-200 shadow-2xl'
+      }
+    }).then(() => {
+      this.navigateTo('page-dashboard-admin');
+      // Tampilkan kembali popup donasi setelah masuk dashboard admin
+      setTimeout(() => {
+        this.openModal('modal-initial-church-donation');
+      }, 600);
+    });
+    return;
+  }
+
+  // User Peserta Belajar
+  Swal.fire({
+    icon: 'success',
+    title: `<span style="font-family:'Cinzel',serif;color:#d97706;font-size:1.4rem;font-weight:800;">Shalom &amp; Selamat Datang! 🙏</span>`,
+    html: `
+      <div style="text-align:center;padding:4px 0;">
+        <div style="font-size:1.15rem;font-weight:800;color:#0f172a;margin-bottom:6px;">
+          ${isNewUser ? 'Selamat Bergabung' : 'Selamat Datang Kembali'}, <span style="color:#d97706;">${name}</span>! 🎉
+        </div>
+        <p style="color:#475569;font-size:0.88rem;line-height:1.55;margin-bottom:14px;">
+          Tuhan rindu berbicara kepada Anda setiap hari. Mari selidiki Firman-Nya, pelajari kisah-kisah Alkitab secara bertahap, dan bangun kehidupan rohani yang semakin teguh.
+        </p>
+
+        <!-- Kotak Ayat Alkitab -->
+        <div style="background:linear-gradient(135deg,#fffbeb 0%,#fef3c7 100%);border:1.5px solid #fde68a;border-radius:14px;padding:12px 16px;text-align:left;margin-bottom:16px;box-shadow:0 2px 8px rgba(245,158,11,0.08);">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+            <i class="fa-solid fa-book-bible" style="color:#d97706;font-size:0.9rem;"></i>
+            <span style="font-weight:800;font-size:0.75rem;color:#b45309;text-transform:uppercase;letter-spacing:0.04em;">Pelita Kehidupan</span>
+          </div>
+          <p style="font-size:0.88rem;color:#1e293b;font-style:italic;line-height:1.5;margin:0 0 4px;font-family:'Lora',serif;">
+            “Firman-Mu itu pelita bagi kakiku dan terang bagi jalanku.”
+          </p>
+          <span style="font-size:0.75rem;font-weight:700;color:#92400e;">— Mazmur 119:105</span>
+        </div>
+
+        <!-- 2 Kolom Pilihan Belajar Cepat -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;text-align:left;">
+          <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:10px;display:flex;align-items:center;gap:10px;">
+            <div style="width:36px;height:36px;border-radius:10px;background:#dbeafe;color:#2563eb;display:flex;align-items:center;justify-content:center;font-size:0.95rem;flex-shrink:0;">
+              <i class="fa-solid fa-book-open"></i>
+            </div>
+            <div>
+              <div style="font-size:0.78rem;font-weight:800;color:#0f172a;">66 Kitab</div>
+              <div style="font-size:0.7rem;color:#64748b;">PL &amp; PB Lengkap</div>
+            </div>
+          </div>
+          <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:10px;display:flex;align-items:center;gap:10px;">
+            <div style="width:36px;height:36px;border-radius:10px;background:#dcfce7;color:#16a34a;display:flex;align-items:center;justify-content:center;font-size:0.95rem;flex-shrink:0;">
+              <i class="fa-solid fa-award"></i>
+            </div>
+            <div>
+              <div style="font-size:0.78rem;font-weight:800;color:#0f172a;">Kuis &amp; Poin</div>
+              <div style="font-size:0.7rem;color:#64748b;">Sertifikat Belajar</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `,
+    showCancelButton: true,
+    confirmButtonText: '<i class="fa-solid fa-book-open-reader mr-1.5"></i> Mulai Belajar Sekarang',
+    cancelButtonText: '<i class="fa-solid fa-gauge-high mr-1"></i> Buka Dashboard',
+    confirmButtonColor: '#d97706',
+    cancelButtonColor: '#64748b',
+    customClass: {
+      popup: 'rounded-3xl border-2 border-amber-200 shadow-2xl'
+    }
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.navigateTo('page-books-curriculum');
+    } else {
+      this.navigateTo('page-dashboard-user');
+    }
+  });
+};
+
 APP.handleLoginGate = async function(e) {
   e.preventDefault();
   const identifier = document.getElementById('gate-login-identifier').value.trim();
@@ -4307,8 +4987,7 @@ APP.handleLoginGate = async function(e) {
         this.saveState();
         this.updateUserNavbar(true);
         this.closeLoginGate();
-        Swal.fire({ icon: 'success', title: `Selamat datang, ${this.currentUser.nickname || this.currentUser.name}!`, timer: 1600, showConfirmButton: false });
-        this.navigateTo(this.currentUser.role === 'admin' ? 'page-dashboard-admin' : 'page-dashboard-user');
+        this.showLoginWelcome(this.currentUser);
         return;
       } else {
         Swal.fire({ icon: 'error', title: 'Login Gagal', text: res.message || 'Username atau password salah.' });
@@ -4341,8 +5020,7 @@ APP.handleLoginGate = async function(e) {
   this.saveState();
   this.updateUserNavbar(true);
   this.closeLoginGate();
-  Swal.fire({ icon: 'success', title: `Halo, ${this.currentUser.nickname}! 🙏`, text: 'Selamat belajar Firman Tuhan.', timer: 1600, showConfirmButton: false });
-  this.navigateTo(this.currentUser.role === 'admin' ? 'page-dashboard-admin' : 'page-dashboard-user');
+  this.showLoginWelcome(this.currentUser);
 };
 
 APP.handleRegisterGate = async function(e) {
@@ -4386,8 +5064,7 @@ APP.handleRegisterGate = async function(e) {
   this.saveState();
   this.updateUserNavbar(true);
   this.closeLoginGate();
-  Swal.fire({ icon: 'success', title: `Selamat datang, ${nickname}! 🎉`, text: 'Akun Anda berhasil dibuat. Selamat bertumbuh dalam Firman Tuhan!', timer: 2000, showConfirmButton: false });
-  this.navigateTo('page-dashboard-user');
+  this.showLoginWelcome(this.currentUser, true);
 };
 
 APP.loginAsGuest = function() {
@@ -4455,15 +5132,8 @@ APP.handleLoginUser = async function(e) {
         this.currentUser = res.user;
         this.saveState();
         this.updateUserNavbar(true);
-        Swal.fire({
-          icon: 'success',
-          title: `Selamat datang, ${this.currentUser.nickname || this.currentUser.name}!`,
-          text: 'Selamat bertumbuh dalam pembelajaran Firman Tuhan.',
-          timer: 1800,
-          showConfirmButton: false
-        });
         this.closeModal('modal-login-user');
-        this.navigateTo('page-dashboard-user');
+        this.showLoginWelcome(this.currentUser);
         return;
       } else {
         Swal.fire({ icon: 'error', title: 'Login Gagal', text: res.message || 'Username atau password salah.' });
@@ -4503,15 +5173,7 @@ APP.handleLoginUser = async function(e) {
     this.saveState();
     this.updateUserNavbar(true);
     this.closeModal('modal-login-user');
-    
-    Swal.fire({
-      icon: 'success',
-      title: `Halo, ${this.currentUser.nickname}!`,
-      text: 'Selamat belajar firman Tuhan dengan mudah dan menyenangkan.',
-      timer: 1600,
-      showConfirmButton: false
-    });
-    this.navigateTo(isMockAdmin ? 'page-dashboard-admin' : 'page-dashboard-user');
+    this.showLoginWelcome(this.currentUser);
   } else {
     Swal.fire({ icon: 'error', title: 'Password Salah', text: 'Gunakan password minimal 4 karakter.' });
   }
@@ -4541,15 +5203,7 @@ APP.handleLoginAdmin = async function(e) {
     this.saveState();
     this.updateUserNavbar(true);
     this.closeModal('modal-login-admin');
-
-    Swal.fire({
-      icon: 'success',
-      title: 'Akses Admin Diterima',
-      text: 'Selamat datang di Panel Manajemen Belajar Alkitab, Raymond Sirait!',
-      timer: 1800,
-      showConfirmButton: false
-    });
-    this.navigateTo('page-dashboard-admin');
+    this.showLoginWelcome(this.currentUser);
   } else {
     Swal.fire({
       icon: 'error',
@@ -4620,15 +5274,7 @@ APP.handleRegisterUser = async function(e) {
   this.saveState();
   this.updateUserNavbar(true);
   this.closeModal('modal-register-user');
-
-  Swal.fire({
-    icon: 'success',
-    title: 'Pendaftaran Berhasil!',
-    text: `Selamat datang di Belajar Alkitab, ${nickname}! Akun Anda siap digunakan.`,
-    confirmButtonColor: '#d97706'
-  }).then(() => {
-    this.navigateTo('page-dashboard-user');
-  });
+  this.showLoginWelcome(this.currentUser, true);
 };
 
 APP.logout = function() {
@@ -5256,23 +5902,29 @@ APP.renderBooksGrid = function() {
     return matchFilter && matchSearch;
   });
 
-  container.innerHTML = filtered.map(b => `
-    <div onclick="APP.showBookDetailModal(${b.id})" class="p-5 rounded-2xl glass-panel glass-card-hover border border-slate-200 cursor-pointer flex flex-col justify-between group">
-      <div>
-        <div class="flex items-center justify-between mb-2">
-          <span class="text-xs font-bold px-2 py-0.5 rounded ${b.testament === 'PL' ? 'bg-amber-100 text-amber-700 border border-amber-200' : 'bg-sky-100 text-sky-700 border border-sky-200'}">${b.testament === 'PL' ? 'Perjanjian Lama' : 'Perjanjian Baru'}</span>
-          <span class="text-xs text-slate-400 font-mono">${b.chapters} Pasal</span>
+  container.innerHTML = filtered.map(b => {
+    const qCount = (this.questions || []).filter(q => q.book === b.name).length;
+    return `
+      <div onclick="APP.showBookDetailModal(${b.id})" class="p-5 rounded-2xl glass-panel glass-card-hover border border-slate-200 cursor-pointer flex flex-col justify-between group">
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-bold px-2 py-0.5 rounded ${b.testament === 'PL' ? 'bg-amber-100 text-amber-700 border border-amber-200' : 'bg-sky-100 text-sky-700 border border-sky-200'}">${b.testament === 'PL' ? 'Perjanjian Lama' : 'Perjanjian Baru'}</span>
+            <div class="flex items-center gap-1.5">
+              ${qCount > 0 ? `<span class="text-[10px] px-2 py-0.5 rounded-full font-bold bg-amber-100/90 text-amber-800 border border-amber-300"><i class="fa-solid fa-brain mr-1 text-amber-600"></i>${qCount} Kuis</span>` : ''}
+              <span class="text-xs text-slate-400 font-mono">${b.chapters} Pasal</span>
+            </div>
+          </div>
+          <h4 class="text-lg font-bold text-slate-800 group-hover:text-amber-600 transition-colors mb-1">${b.name} <span class="text-xs text-slate-400 font-normal">(${b.abbr})</span></h4>
+          <div class="text-xs text-amber-400/90 font-medium mb-2">${b.group}</div>
+          <p class="text-xs text-slate-500 line-clamp-2 leading-relaxed mb-3">${b.theme}</p>
         </div>
-        <h4 class="text-lg font-bold text-slate-800 group-hover:text-amber-600 transition-colors mb-1">${b.name} <span class="text-xs text-slate-400 font-normal">(${b.abbr})</span></h4>
-        <div class="text-xs text-amber-400/90 font-medium mb-2">${b.group}</div>
-        <p class="text-xs text-slate-500 line-clamp-2 leading-relaxed mb-3">${b.theme}</p>
+        <div class="pt-3 border-t border-amber-100 flex items-center justify-between text-xs text-slate-400">
+          <span>Penulis: <strong>${b.author}</strong></span>
+          <span class="text-amber-600 font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform">Pelajari <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+        </div>
       </div>
-      <div class="pt-3 border-t border-amber-100 flex items-center justify-between text-xs text-slate-400">
-        <span>Penulis: <strong>${b.author}</strong></span>
-        <span class="text-amber-600 font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform">Pelajari <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
-      </div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 };
 
 APP.filterBooks = function(filterKey) {
@@ -5294,6 +5946,8 @@ APP.showBookDetailModal = function(bookId) {
   const modal = document.getElementById('modal-book-detail');
   const title = document.getElementById('modal-book-title');
   const content = document.getElementById('modal-book-content');
+  const qCount = (this.questions || []).filter(q => q.book === b.name).length;
+  const isAdmin = this.currentUser && this.currentUser.role === 'admin';
 
   if (title) title.textContent = `Kitab ${b.name} (${b.abbr})`;
   if (content) {
@@ -5314,13 +5968,27 @@ APP.showBookDetailModal = function(bookId) {
           <div class="text-xs font-extrabold text-emerald-800 mb-1">📖 RINGKASAN ISI KITAB</div>
           <p class="text-slate-700 leading-relaxed font-reading text-xs">${b.summary}</p>
         </div>
+
+        <!-- Action Row 1: Reader & Lessons -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-          <button onclick="APP.closeModal('modal-book-detail'); APP.openLiveBibleReader(${b.id}, 1);" class="w-full py-3 px-4 rounded-xl sky-gradient-bg text-white font-extrabold text-xs shadow-md hover:opacity-95 transition-all flex items-center justify-center gap-2 cursor-pointer">
+          <button onclick="APP.closeModal('modal-book-detail'); APP.openLiveBibleReader(${b.id}, 1);" class="w-full py-2.5 px-4 rounded-xl sky-gradient-bg text-white font-extrabold text-xs shadow-md hover:opacity-95 transition-all flex items-center justify-center gap-2 cursor-pointer">
             <i class="fa-solid fa-book-open text-sm"></i> Baca Pasal & Ayat (API TB) 🌐
           </button>
-          <button onclick="APP.closeModal('modal-book-detail'); APP.startLesson('LES-001');" class="w-full py-3 px-4 rounded-xl gold-gradient-bg text-white font-extrabold text-xs shadow-md hover:opacity-95 transition-all flex items-center justify-center gap-2 cursor-pointer">
-            <i class="fa-solid fa-graduation-cap text-sm"></i> Mulai Belajar Kitab Ini 🚀
+          <button onclick="APP.closeModal('modal-book-detail'); APP.startLesson('LES-001');" class="w-full py-2.5 px-4 rounded-xl gold-gradient-bg text-white font-extrabold text-xs shadow-md hover:opacity-95 transition-all flex items-center justify-center gap-2 cursor-pointer">
+            <i class="fa-solid fa-graduation-cap text-sm"></i> Mulai Pelajaran 🚀
           </button>
+        </div>
+
+        <!-- Action Row 2: Quiz & Admin Question Settings -->
+        <div class="grid grid-cols-1 ${isAdmin ? 'sm:grid-cols-2' : ''} gap-3 pt-1 border-t border-slate-100">
+          <button onclick="APP.closeModal('modal-book-detail'); APP.startInteractiveQuiz('${b.name}');" class="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-extrabold text-xs shadow-md hover:opacity-95 transition-all flex items-center justify-center gap-2 cursor-pointer">
+            <i class="fa-solid fa-brain text-sm text-emerald-200"></i> Uji Kuis Kitab Ini (${qCount} Soal) 🎮
+          </button>
+          ${isAdmin ? `
+            <button onclick="APP.closeModal('modal-book-detail'); APP.openModuleQuizManager('${b.name}');" class="w-full py-2.5 px-4 rounded-xl bg-amber-100 hover:bg-amber-200 border border-amber-300 text-amber-900 font-extrabold text-xs shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer">
+              <i class="fa-solid fa-sliders text-sm text-amber-600"></i> Setting Soal Kitab Ini ⚙️
+            </button>
+          ` : ''}
         </div>
       </div>
     `;
@@ -5603,30 +6271,733 @@ APP.handleLiveBibleSearch = async function(e) {
   }
 };
 
-APP.renderQuizCenter = function() {
+// ========================== 13. BANK SOAL KUIS & PENGATURAN PER MODUL / 66 KITAB ========================== //
+APP._quizTestamentFilter = 'ALL';
+APP._currentModQuizBook = 'Kejadian';
+APP.interactiveQuizState = {
+  questions: [],
+  currentIndex: 0,
+  score: 0,
+  answers: {},
+  correctCount: 0,
+  wrongCount: 0,
+  filterTarget: 'Semua Kitab',
+  selectedThisStep: false
+};
+
+APP.initQuizSelectOptions = function() {
+  const plBooks = (this.bibleBooks || []).filter(b => b.testament === 'PL');
+  const pbBooks = (this.bibleBooks || []).filter(b => b.testament === 'PB');
+
+  const buildOptions = (books) => books.map(b => `<option value="${b.name}">${b.id}. Kitab ${b.name} (${b.abbr})</option>`).join('');
+
+  // 1. Quiz Center Filter
+  const optPl = document.getElementById('quiz-optgroup-pl');
+  const optPb = document.getElementById('quiz-optgroup-pb');
+  if (optPl) optPl.innerHTML = buildOptions(plBooks);
+  if (optPb) optPb.innerHTML = buildOptions(pbBooks);
+
+  // 2. Admin Dashboard Filter
+  const admPl = document.getElementById('adm-quiz-optgroup-pl');
+  const admPb = document.getElementById('adm-quiz-optgroup-pb');
+  if (admPl) admPl.innerHTML = buildOptions(plBooks);
+  if (admPb) admPb.innerHTML = buildOptions(pbBooks);
+
+  // 3. Question Form Book Select
+  const formBook = document.getElementById('input-quiz-book');
+  if (formBook) {
+    formBook.innerHTML = `
+      <optgroup label="Perjanjian Lama (39 Kitab)">
+        ${buildOptions(plBooks)}
+      </optgroup>
+      <optgroup label="Perjanjian Baru (27 Kitab)">
+        ${buildOptions(pbBooks)}
+      </optgroup>
+      <optgroup label="Umum / Semua Kitab">
+        <option value="Semua Kitab">Umum / Pengetahuan Alkitab</option>
+      </optgroup>
+    `;
+  }
+
+  // 4. Module Quiz Manager Quick Selector
+  const modSelect = document.getElementById('mod-quiz-select-book');
+  if (modSelect) {
+    modSelect.innerHTML = (this.bibleBooks || []).map(b => `<option value="${b.name}">Kitab ${b.name} (${b.testament} • ${b.chapters} Pasal)</option>`).join('');
+  }
+};
+
+APP.setQuizTestamentFilter = function(testament) {
+  this._quizTestamentFilter = testament;
+  document.querySelectorAll('.quiz-t-pill').forEach(btn => {
+    if (btn.getAttribute('data-testament') === testament) {
+      btn.className = "quiz-t-pill px-3.5 py-1.5 rounded-lg text-xs font-bold bg-amber-500 text-white shadow-xs";
+    } else {
+      btn.className = "quiz-t-pill px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200";
+    }
+  });
+  this.filterQuizCenter();
+};
+
+APP.filterQuizCenter = function() {
+  const query = (document.getElementById('quiz-search-input')?.value || '').toLowerCase().trim();
+  const bookFilter = document.getElementById('quiz-book-filter')?.value || 'ALL';
+  const diffFilter = document.getElementById('quiz-diff-filter')?.value || 'ALL';
+  const testamentFilter = this._quizTestamentFilter || 'ALL';
+
+  const filtered = (this.questions || []).filter(q => {
+    // 1. Search Query
+    const matchQuery = !query || 
+      (q.question && q.question.toLowerCase().includes(query)) ||
+      (q.book && q.book.toLowerCase().includes(query)) ||
+      (q.verseRef && q.verseRef.toLowerCase().includes(query)) ||
+      (q.explanation && q.explanation.toLowerCase().includes(query)) ||
+      (q.options && q.options.some(o => o.toLowerCase().includes(query)));
+
+    // 2. Book Filter
+    const matchBook = (bookFilter === 'ALL') || (q.book === bookFilter);
+
+    // 3. Difficulty Filter
+    const matchDiff = (diffFilter === 'ALL') || (q.difficulty === diffFilter);
+
+    // 4. Testament Filter
+    let matchTestament = true;
+    if (testamentFilter !== 'ALL') {
+      const bookObj = (this.bibleBooks || []).find(b => b.name === q.book);
+      if (bookObj) {
+        matchTestament = (bookObj.testament === testamentFilter);
+      }
+    }
+
+    return matchQuery && matchBook && matchDiff && matchTestament;
+  });
+
+  this.renderQuizCenter(filtered);
+};
+
+APP.renderQuizCenter = function(customList = null) {
   const container = document.getElementById('quiz-list-container');
   if (!container) return;
 
-  container.innerHTML = this.questions.map((q, idx) => `
-    <div class="p-6 rounded-3xl bg-white border-2 border-amber-100 mb-6 shadow-sm hover:shadow-md transition-all">
-      <div class="flex items-center justify-between mb-2">
-        <span class="text-xs font-bold px-2.5 py-1 rounded bg-amber-100 text-amber-700 border border-amber-200">Soal ${idx + 1} • ${q.book}</span>
-        <span class="text-xs text-amber-400 font-semibold">${q.difficulty || 'Mudah'}</span>
+  const list = customList !== null ? customList : (this.questions || []);
+  const countEl = document.getElementById('quiz-total-filtered-count');
+  if (countEl) countEl.textContent = list.length;
+
+  if (list.length === 0) {
+    container.innerHTML = `
+      <div class="text-center py-16 px-4 bg-white rounded-3xl border-2 border-dashed border-amber-200 shadow-sm">
+        <div class="w-16 h-16 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center mx-auto mb-4 text-2xl">
+          <i class="fa-solid fa-brain"></i>
+        </div>
+        <h4 class="text-lg font-bold text-slate-800 font-serif-sacred mb-1">Belum Ada Soal yang Cocok</h4>
+        <p class="text-xs text-slate-500 max-w-md mx-auto mb-5">
+          Tidak ditemukan soal kuis dengan kriteria pencarian ini. Anda dapat membuat soal baru atau mengatur soal untuk modul/kitab terkait.
+        </p>
+        <div class="flex items-center justify-center gap-2">
+          <button onclick="APP.openManageQuestionModal()" class="px-5 py-2.5 rounded-xl gold-gradient-bg text-white font-bold text-xs shadow-md">
+            <i class="fa-solid fa-plus mr-1"></i> Buat Soal Kuis Baru
+          </button>
+          <button onclick="document.getElementById('quiz-search-input').value=''; document.getElementById('quiz-book-filter').value='ALL'; document.getElementById('quiz-diff-filter').value='ALL'; APP.setQuizTestamentFilter('ALL');" class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs">
+            Reset Filter
+          </button>
+        </div>
       </div>
-      <h4 class="text-base font-bold text-slate-800 mb-3">${q.question}</h4>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
-        ${q.options.map((opt, oIdx) => `
-          <div class="p-3 rounded-xl bg-amber-50/70 border border-amber-200 text-xs sm:text-sm text-slate-900 font-semibold flex items-center gap-2.5 shadow-xs">
-            <strong>${String.fromCharCode(65 + oIdx)}.</strong> ${opt}
+    `;
+    return;
+  }
+
+  const isAdmin = this.currentUser && this.currentUser.role === 'admin';
+
+  container.innerHTML = `
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      ${list.map((q, idx) => {
+        const correctIdx = typeof q.correctAnswer === 'number' ? q.correctAnswer : 0;
+        const diffColor = q.difficulty === 'Sulit' ? 'bg-rose-100 text-rose-800 border-rose-200' : (q.difficulty === 'Sedang' ? 'bg-amber-100 text-amber-800 border-amber-200' : 'bg-emerald-100 text-emerald-800 border-emerald-200');
+
+        return `
+          <div class="p-6 rounded-3xl bg-white border-2 border-amber-200/70 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group relative">
+            <div>
+              <!-- Top Badges -->
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <div class="flex items-center gap-1.5 flex-wrap">
+                  <span class="text-[11px] font-extrabold px-2.5 py-0.5 rounded-lg bg-amber-500 text-white shadow-xs flex items-center gap-1">
+                    <i class="fa-solid fa-book-bible text-[10px]"></i> ${q.book}
+                  </span>
+                  ${q.lessonId && q.lessonId !== 'GENERAL' ? `
+                    <span class="text-[10px] font-bold px-2 py-0.5 rounded-lg bg-sky-100 text-sky-800 border border-sky-200">
+                      ${q.lessonId}
+                    </span>
+                  ` : ''}
+                  <span class="text-[10px] font-bold px-2 py-0.5 rounded-lg border ${diffColor}">
+                    ${q.difficulty || 'Mudah'}
+                  </span>
+                </div>
+
+                <div class="flex items-center gap-1">
+                  <button onclick="APP.startInteractiveQuiz('${q.book}')" class="p-1.5 rounded-lg text-emerald-600 hover:bg-emerald-50 text-xs font-bold transition-all" title="Uji Soal Kitab Ini">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                  ${isAdmin ? `
+                    <button onclick="APP.openManageQuestionModal('${q.id}')" class="p-1.5 rounded-lg text-amber-600 hover:bg-amber-50 text-xs font-bold transition-all" title="Edit Soal">
+                      <i class="fa-regular fa-pen-to-square"></i>
+                    </button>
+                    <button onclick="APP.deleteAdminQuestion('${q.id}')" class="p-1.5 rounded-lg text-rose-500 hover:bg-rose-50 text-xs font-bold transition-all" title="Hapus Soal">
+                      <i class="fa-regular fa-trash-can"></i>
+                    </button>
+                  ` : ''}
+                </div>
+              </div>
+
+              <!-- Question Text -->
+              <h4 class="text-sm sm:text-base font-bold text-slate-900 leading-snug mb-3.5">
+                ${q.question}
+              </h4>
+
+              <!-- Options Grid -->
+              <div class="space-y-1.5 mb-4">
+                ${(q.options || []).map((opt, oIdx) => {
+                  const isCorrect = oIdx === correctIdx;
+                  return `
+                    <div class="p-2.5 rounded-xl text-xs flex items-center justify-between border ${isCorrect ? 'bg-emerald-50/90 border-emerald-300 text-emerald-900 font-bold shadow-xs' : 'bg-slate-50 border-slate-200 text-slate-700 font-medium'}">
+                      <div class="flex items-center gap-2">
+                        <span class="w-5 h-5 rounded-md ${isCorrect ? 'bg-emerald-600 text-white' : 'bg-slate-200 text-slate-700'} font-bold text-[10px] flex items-center justify-center shrink-0">
+                          ${String.fromCharCode(65 + oIdx)}
+                        </span>
+                        <span>${opt}</span>
+                      </div>
+                      ${isCorrect ? `<i class="fa-solid fa-check text-emerald-600 text-xs"></i>` : ''}
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+            </div>
+
+            <!-- Footer Verse & Explanation -->
+            <div class="pt-3 border-t border-amber-100 text-xs space-y-1.5">
+              <div class="flex items-center justify-between text-slate-500 font-medium">
+                <span>📖 Ref: <strong class="text-amber-800 font-mono">${q.verseRef || '-'}</strong></span>
+                <span class="text-emerald-700 font-bold">Kunci: Opsi ${String.fromCharCode(65 + correctIdx)}</span>
+              </div>
+              ${q.explanation ? `
+                <div class="p-2.5 rounded-xl bg-amber-50/70 border border-amber-200 text-[11px] text-slate-600 leading-relaxed italic">
+                  “${q.explanation}”
+                </div>
+              ` : ''}
+            </div>
           </div>
-        `).join('')}
+        `;
+      }).join('')}
+    </div>
+  `;
+};
+
+// ========================== MODAL CRUD: TAMBAH & EDIT SOAL ========================== //
+APP.openManageQuestionModal = function(questionId = null, defaultBook = null, defaultLessonId = null) {
+  this.initQuizSelectOptions();
+  const form = document.getElementById('form-manage-quiz-question');
+  const titleEl = document.getElementById('modal-quiz-form-title');
+  const idInput = document.getElementById('input-quiz-id');
+  const bookSelect = document.getElementById('input-quiz-book');
+  const lessonSelect = document.getElementById('input-quiz-lesson-id');
+  const qText = document.getElementById('input-quiz-question');
+  const typeSelect = document.getElementById('input-quiz-type');
+  const correctSelect = document.getElementById('input-quiz-correct');
+  const refInput = document.getElementById('input-quiz-ref');
+  const diffSelect = document.getElementById('input-quiz-difficulty');
+  const levelSelect = document.getElementById('input-quiz-level');
+  const explText = document.getElementById('input-quiz-explanation');
+
+  if (form) form.reset();
+
+  if (questionId) {
+    const q = (this.questions || []).find(item => item.id === questionId);
+    if (!q) return;
+
+    if (titleEl) titleEl.textContent = `Edit Soal Kuis (${q.book} • ${q.id})`;
+    if (idInput) idInput.value = q.id;
+    if (bookSelect) bookSelect.value = q.book || 'Kejadian';
+    if (lessonSelect) lessonSelect.value = q.lessonId || 'GENERAL';
+    if (qText) qText.value = q.question || '';
+    if (typeSelect) typeSelect.value = q.type || 'multiple_choice';
+    if (correctSelect) correctSelect.value = String(typeof q.correctAnswer === 'number' ? q.correctAnswer : 0);
+    if (refInput) refInput.value = q.verseRef || '';
+    if (diffSelect) diffSelect.value = q.difficulty || 'Mudah';
+    if (levelSelect) levelSelect.value = q.level || 'Level A';
+    if (explText) explText.value = q.explanation || '';
+
+    // Options
+    const opts = q.options || ["", "", "", ""];
+    for (let i = 0; i < 4; i++) {
+      const optInput = document.getElementById(`input-quiz-opt-${i}`);
+      if (optInput) optInput.value = opts[i] || '';
+    }
+
+    this.onQuizFormTypeChange();
+  } else {
+    if (titleEl) titleEl.textContent = 'Tambah Soal Kuis Baru';
+    if (idInput) idInput.value = '';
+    if (bookSelect && defaultBook) bookSelect.value = defaultBook;
+    if (lessonSelect && defaultLessonId) lessonSelect.value = defaultLessonId;
+    if (typeSelect) typeSelect.value = 'multiple_choice';
+    if (correctSelect) correctSelect.value = '0';
+    if (diffSelect) diffSelect.value = 'Mudah';
+    if (levelSelect) levelSelect.value = 'Level A';
+
+    this.onQuizFormTypeChange();
+  }
+
+  this.openModal('modal-manage-quiz-question');
+};
+
+APP.onQuizFormTypeChange = function() {
+  const type = document.getElementById('input-quiz-type')?.value || 'multiple_choice';
+  const rowC = document.getElementById('row-quiz-opt-2');
+  const rowD = document.getElementById('row-quiz-opt-3');
+  const optC = document.getElementById('opt-correct-c');
+  const optD = document.getElementById('opt-correct-d');
+  const opt0 = document.getElementById('input-quiz-opt-0');
+  const opt1 = document.getElementById('input-quiz-opt-1');
+
+  if (type === 'true_false') {
+    if (rowC) rowC.classList.add('hidden');
+    if (rowD) rowD.classList.add('hidden');
+    if (optC) optC.disabled = true;
+    if (optD) optD.disabled = true;
+    if (opt0 && (!opt0.value || opt0.value === '')) opt0.value = 'Benar';
+    if (opt1 && (!opt1.value || opt1.value === '')) opt1.value = 'Salah';
+  } else {
+    if (rowC) rowC.classList.remove('hidden');
+    if (rowD) rowD.classList.remove('hidden');
+    if (optC) optC.disabled = false;
+    if (optD) optD.disabled = false;
+  }
+};
+
+APP.onQuizFormBookChange = function() {
+  const bookName = document.getElementById('input-quiz-book')?.value;
+  const bookObj = (this.bibleBooks || []).find(b => b.name === bookName);
+  const refInput = document.getElementById('input-quiz-ref');
+  if (bookObj && refInput && !refInput.value) {
+    refInput.value = `${bookObj.name} 1:1`;
+  }
+};
+
+APP.handleSaveQuizQuestion = function(e) {
+  e.preventDefault();
+  const idInput = document.getElementById('input-quiz-id');
+  const isEdit = idInput && idInput.value.trim().length > 0;
+  const questionId = isEdit ? idInput.value.trim() : `QST-${Date.now().toString().slice(-6)}`;
+
+  const book = document.getElementById('input-quiz-book')?.value || 'Kejadian';
+  const lessonId = document.getElementById('input-quiz-lesson-id')?.value || 'GENERAL';
+  const question = document.getElementById('input-quiz-question')?.value.trim();
+  const type = document.getElementById('input-quiz-type')?.value || 'multiple_choice';
+  const correctAnswer = Number(document.getElementById('input-quiz-correct')?.value) || 0;
+  const verseRef = document.getElementById('input-quiz-ref')?.value.trim() || `${book} 1:1`;
+  const difficulty = document.getElementById('input-quiz-difficulty')?.value || 'Mudah';
+  const level = document.getElementById('input-quiz-level')?.value || 'Level A';
+  const explanation = document.getElementById('input-quiz-explanation')?.value.trim() || '';
+
+  let options = [];
+  if (type === 'true_false') {
+    options = [
+      document.getElementById('input-quiz-opt-0')?.value.trim() || 'Benar',
+      document.getElementById('input-quiz-opt-1')?.value.trim() || 'Salah'
+    ];
+  } else {
+    options = [
+      document.getElementById('input-quiz-opt-0')?.value.trim() || 'Opsi A',
+      document.getElementById('input-quiz-opt-1')?.value.trim() || 'Opsi B',
+      document.getElementById('input-quiz-opt-2')?.value.trim() || 'Opsi C',
+      document.getElementById('input-quiz-opt-3')?.value.trim() || 'Opsi D'
+    ];
+  }
+
+  const questionObj = {
+    id: questionId,
+    lessonId,
+    book,
+    type,
+    question,
+    options,
+    correctAnswer,
+    explanation,
+    verseRef,
+    difficulty,
+    level,
+    createdAt: new Date().toISOString()
+  };
+
+  if (isEdit) {
+    const idx = this.questions.findIndex(q => q.id === questionId);
+    if (idx !== -1) {
+      this.questions[idx] = { ...this.questions[idx], ...questionObj };
+    } else {
+      this.questions.unshift(questionObj);
+    }
+  } else {
+    this.questions.unshift(questionObj);
+  }
+
+  // Save State
+  this.saveState();
+
+  // Update UI components
+  this.renderQuizCenter();
+  this.renderAdminQuestionsTable();
+  this.renderBooksGrid();
+  const totalQuestionsEl = document.getElementById('adm-total-questions');
+  if (totalQuestionsEl) totalQuestionsEl.textContent = this.questions.length;
+
+  // Sync to GAS SSOT Backend
+  if (this.settings.gasUrl) {
+    fetchGAS('saveQuestion', questionObj).catch(err => console.warn("GAS saveQuestion error:", err));
+  }
+
+  this.closeModal('modal-manage-quiz-question');
+
+  // If Module Quiz Manager is open for this book, refresh it
+  if (this._currentModQuizBook) {
+    this.openModuleQuizManager(this._currentModQuizBook);
+  }
+
+  Swal.fire({
+    icon: 'success',
+    title: `<span style="font-family:'Cinzel',serif;color:#059669;">${isEdit ? 'Soal Diperbarui!' : 'Soal Berhasil Disimpan!'}</span>`,
+    html: `
+      <div class="text-center text-xs text-slate-600">
+        Soal kuis untuk <strong>Kitab ${book}</strong> berhasil tersimpan dan langsung terhubung dengan Bank Kuis & kurikulum pembelajaran.
       </div>
-      <div class="text-xs text-slate-500 pt-3 border-t-2 border-amber-100 flex items-center justify-between font-medium">
-        <span>Ref: <strong class="text-slate-800">${q.verseRef}</strong></span>
-        <span class="text-emerald-400">Kunci: <strong>Opsi ${String.fromCharCode(65 + (typeof q.correctAnswer === 'number' ? q.correctAnswer : 0))}</strong></span>
+    `,
+    timer: 2000,
+    showConfirmButton: false
+  });
+};
+
+// ========================== MODAL: SETTING SOAL PER MODUL / KITAB ========================== //
+APP.openModuleQuizManager = function(bookNameOrId) {
+  this.initQuizSelectOptions();
+  let bookObj = null;
+  if (typeof bookNameOrId === 'number') {
+    bookObj = (this.bibleBooks || []).find(b => b.id === bookNameOrId);
+  } else if (bookNameOrId) {
+    bookObj = (this.bibleBooks || []).find(b => b.name.toLowerCase() === bookNameOrId.toLowerCase() || b.abbr.toLowerCase() === bookNameOrId.toLowerCase());
+  }
+
+  if (!bookObj) bookObj = (this.bibleBooks || [])[0] || { id: 1, name: "Kejadian", abbr: "Kej", testament: "PL", chapters: 50 };
+  this._currentModQuizBook = bookObj.name;
+
+  const titleEl = document.getElementById('mod-quiz-book-title');
+  const subEl = document.getElementById('mod-quiz-book-subtitle');
+  const badgeEl = document.getElementById('mod-quiz-testament-badge');
+  const selectEl = document.getElementById('mod-quiz-select-book');
+  const listEl = document.getElementById('mod-quiz-questions-list');
+
+  const bookQuestions = (this.questions || []).filter(q => q.book === bookObj.name);
+
+  if (titleEl) titleEl.textContent = `Pengaturan Soal: Kitab ${bookObj.name}`;
+  if (subEl) subEl.textContent = `Kelompok: ${bookObj.group || 'Alkitab'} • ${bookObj.chapters} Pasal • ${bookQuestions.length} Soal Terdaftar`;
+  if (badgeEl) {
+    badgeEl.textContent = bookObj.testament;
+    badgeEl.className = bookObj.testament === 'PL' ? "px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800" : "px-2 py-0.5 rounded text-[10px] font-bold bg-sky-100 text-sky-800";
+  }
+  if (selectEl) selectEl.value = bookObj.name;
+
+  if (listEl) {
+    if (bookQuestions.length === 0) {
+      listEl.innerHTML = `
+        <div class="text-center py-10 px-4 bg-amber-50/50 rounded-2xl border-2 border-dashed border-amber-200">
+          <i class="fa-solid fa-layer-group text-3xl text-amber-400 mb-2"></i>
+          <h5 class="text-sm font-bold text-slate-800 mb-1">Belum Ada Soal Kuis untuk Kitab ${bookObj.name}</h5>
+          <p class="text-xs text-slate-500 max-w-sm mx-auto mb-4">
+            Tambahkan pertanyaan kuis pertama untuk modul kitab ini agar peserta dapat menguji pemahaman materi.
+          </p>
+          <button onclick="APP.openManageQuestionModal(null, '${bookObj.name}')" class="px-4 py-2 rounded-xl gold-gradient-bg text-white font-bold text-xs shadow-md">
+            <i class="fa-solid fa-plus mr-1"></i> Buat Soal Pertama Kitab ${bookObj.name}
+          </button>
+        </div>
+      `;
+    } else {
+      listEl.innerHTML = bookQuestions.map((q, idx) => `
+        <div class="p-4 rounded-2xl bg-white border border-amber-200 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-amber-400 transition-all">
+          <div class="flex-grow">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-bold">${idx + 1}. ${q.id}</span>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded ${q.difficulty === 'Sulit' ? 'bg-rose-100 text-rose-700' : (q.difficulty === 'Sedang' ? 'bg-amber-100 text-amber-700' : 'bg-emerald-100 text-emerald-700')}">${q.difficulty || 'Mudah'}</span>
+              <span class="text-[10px] text-slate-400 font-mono">Ref: ${q.verseRef}</span>
+            </div>
+            <h5 class="text-xs font-bold text-slate-800 leading-snug">${q.question}</h5>
+            <div class="text-[11px] text-emerald-700 font-medium mt-1">
+              ✓ Kunci: <strong>Opsi ${String.fromCharCode(65 + (typeof q.correctAnswer === 'number' ? q.correctAnswer : 0))} (${(q.options || [])[q.correctAnswer] || '-'})</strong>
+            </div>
+          </div>
+          <div class="flex items-center gap-1.5 shrink-0 self-end sm:self-center">
+            <button onclick="APP.openManageQuestionModal('${q.id}')" class="px-2.5 py-1.5 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-800 text-xs font-bold border border-amber-200 flex items-center gap-1">
+              <i class="fa-regular fa-pen-to-square"></i> Edit
+            </button>
+            <button onclick="APP.deleteAdminQuestion('${q.id}')" class="px-2.5 py-1.5 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-700 text-xs font-bold border border-rose-200 flex items-center gap-1">
+              <i class="fa-regular fa-trash-can"></i>
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+  }
+
+  this.openModal('modal-module-quiz-manager');
+};
+
+// ========================== MODAL: SIMULASI & PLAYER KUIS INTERAKTIF ========================== //
+APP.startInteractiveQuiz = function(filterBookOrLesson = null) {
+  let targetQuestions = [];
+  let filterTitle = "Semua Kitab & Modul";
+
+  if (filterBookOrLesson) {
+    targetQuestions = (this.questions || []).filter(q => q.book === filterBookOrLesson || q.lessonId === filterBookOrLesson);
+    filterTitle = `Kitab ${filterBookOrLesson}`;
+  }
+
+  if (targetQuestions.length === 0) {
+    targetQuestions = [...(this.questions || [])];
+    filterTitle = "Bank Soal Alkitab Terpadu";
+  }
+
+  if (targetQuestions.length === 0) {
+    Swal.fire({
+      icon: 'info',
+      title: 'Belum Ada Soal',
+      text: 'Bank soal kuis masih kosong. Silakan buat soal kuis baru terlebih dahulu.',
+      confirmButtonText: '+ Buat Soal Sekarang',
+      confirmButtonColor: '#f59e0b'
+    }).then(r => {
+      if (r.isConfirmed) APP.openManageQuestionModal(null, filterBookOrLesson);
+    });
+    return;
+  }
+
+  this.interactiveQuizState = {
+    questions: targetQuestions,
+    currentIndex: 0,
+    score: 0,
+    answers: {},
+    correctCount: 0,
+    wrongCount: 0,
+    filterTarget: filterTitle,
+    selectedThisStep: false
+  };
+
+  this.renderInteractiveQuizStep();
+  this.openModal('modal-interactive-quiz-player');
+};
+
+APP.renderInteractiveQuizStep = function() {
+  const container = document.getElementById('iq-screen-container');
+  if (!container) return;
+
+  const state = this.interactiveQuizState;
+  const currentQ = state.questions[state.currentIndex];
+  if (!currentQ) {
+    this.renderInteractiveQuizSummary();
+    return;
+  }
+
+  state.selectedThisStep = false;
+  const total = state.questions.length;
+  const currNum = state.currentIndex + 1;
+  const progressPct = Math.round((currNum / total) * 100);
+
+  container.innerHTML = `
+    <!-- Quiz Top Bar -->
+    <div class="mb-5 pb-3 border-b border-amber-100">
+      <div class="flex items-center justify-between text-xs text-slate-500 mb-2">
+        <div class="flex items-center gap-2">
+          <span class="px-2.5 py-0.5 rounded-full font-bold bg-amber-100 text-amber-900 border border-amber-300">
+            ${state.filterTarget}
+          </span>
+          <span class="font-bold text-slate-700">Soal ${currNum} dari ${total}</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-bold text-amber-600">Skor: ${state.score}</span>
+        </div>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden border border-slate-200">
+        <div class="bg-gradient-to-r from-amber-400 to-amber-600 h-full rounded-full transition-all duration-300" style="width: ${progressPct}%"></div>
       </div>
     </div>
-  `).join('');
+
+    <!-- Question Card -->
+    <div class="mb-6">
+      <div class="flex items-center gap-2 mb-2">
+        <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-slate-100 text-slate-700">${currentQ.book}</span>
+        <span class="text-[11px] font-bold px-2 py-0.5 rounded ${currentQ.difficulty === 'Sulit' ? 'bg-rose-100 text-rose-700' : 'bg-emerald-100 text-emerald-700'}">${currentQ.difficulty || 'Mudah'}</span>
+      </div>
+      <h3 class="text-base sm:text-lg font-bold text-slate-900 leading-snug">
+        ${currentQ.question}
+      </h3>
+    </div>
+
+    <!-- Options List -->
+    <div class="space-y-2.5 mb-6" id="iq-options-box">
+      ${(currentQ.options || []).map((opt, idx) => `
+        <div onclick="APP.selectInteractiveQuizOption(${idx})" id="iq-opt-card-${idx}" class="p-3.5 sm:p-4 rounded-2xl bg-white border-2 border-slate-200 hover:border-amber-400 hover:bg-amber-50/60 cursor-pointer text-xs sm:text-sm font-semibold text-slate-800 transition-all flex items-center justify-between shadow-xs">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-xl bg-amber-100 text-amber-900 font-bold text-xs flex items-center justify-center shrink-0 border border-amber-300">
+              ${String.fromCharCode(65 + idx)}
+            </span>
+            <span>${opt}</span>
+          </div>
+          <span id="iq-opt-icon-${idx}" class="text-slate-300"><i class="fa-regular fa-circle"></i></span>
+        </div>
+      `).join('')}
+    </div>
+
+    <!-- Instant Feedback & Scripture Explanation -->
+    <div id="iq-feedback-box" class="hidden mb-6 p-4 rounded-2xl text-xs leading-relaxed transition-all"></div>
+
+    <!-- Action Buttons -->
+    <div class="flex items-center justify-between pt-3 border-t border-amber-100">
+      <button type="button" onclick="APP.closeModal('modal-interactive-quiz-player')" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold text-xs">
+        Keluar Kuis
+      </button>
+
+      <button id="iq-btn-next" onclick="APP.nextInteractiveQuizQuestion()" disabled class="px-6 py-2.5 rounded-xl gold-gradient-bg text-white font-extrabold text-xs shadow-md opacity-40 cursor-not-allowed transition-all flex items-center gap-1.5">
+        <span>${currNum === total ? 'Selesai & Lihat Skor' : 'Soal Selanjutnya'}</span>
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </div>
+  `;
+};
+
+APP.selectInteractiveQuizOption = function(selectedIdx) {
+  const state = this.interactiveQuizState;
+  if (state.selectedThisStep) return; // Prevent multi-click
+  state.selectedThisStep = true;
+
+  const currentQ = state.questions[state.currentIndex];
+  const correctIdx = typeof currentQ.correctAnswer === 'number' ? currentQ.correctAnswer : 0;
+  const isCorrect = selectedIdx === correctIdx;
+
+  if (isCorrect) {
+    state.score += 100;
+    state.correctCount += 1;
+  } else {
+    state.wrongCount += 1;
+  }
+
+  // Update card styling
+  for (let i = 0; i < (currentQ.options || []).length; i++) {
+    const card = document.getElementById(`iq-opt-card-${i}`);
+    const icon = document.getElementById(`iq-opt-icon-${i}`);
+    if (!card) continue;
+
+    card.classList.remove('cursor-pointer', 'hover:border-amber-400', 'hover:bg-amber-50/60');
+
+    if (i === correctIdx) {
+      card.className = "p-3.5 sm:p-4 rounded-2xl bg-emerald-50 border-2 border-emerald-500 text-xs sm:text-sm font-bold text-emerald-900 flex items-center justify-between shadow-sm";
+      if (icon) icon.innerHTML = '<i class="fa-solid fa-circle-check text-emerald-600 text-base"></i>';
+    } else if (i === selectedIdx && !isCorrect) {
+      card.className = "p-3.5 sm:p-4 rounded-2xl bg-rose-50 border-2 border-rose-500 text-xs sm:text-sm font-bold text-rose-900 flex items-center justify-between shadow-sm";
+      if (icon) icon.innerHTML = '<i class="fa-solid fa-circle-xmark text-rose-600 text-base"></i>';
+    } else {
+      card.className = "p-3.5 sm:p-4 rounded-2xl bg-slate-50/60 border border-slate-200 text-xs sm:text-sm text-slate-400 flex items-center justify-between opacity-70";
+    }
+  }
+
+  // Show Feedback Box
+  const fb = document.getElementById('iq-feedback-box');
+  if (fb) {
+    fb.classList.remove('hidden');
+    fb.className = `mb-6 p-4 rounded-2xl text-xs leading-relaxed ${isCorrect ? 'bg-emerald-50 border border-emerald-300 text-emerald-900' : 'bg-amber-50 border border-amber-300 text-slate-800'}`;
+    fb.innerHTML = `
+      <div class="flex items-center gap-2 font-bold mb-1.5 ${isCorrect ? 'text-emerald-700' : 'text-amber-800'}">
+        <i class="fa-solid ${isCorrect ? 'fa-circle-check' : 'fa-lightbulb'}"></i>
+        <span>${isCorrect ? 'Luar Biasa! Jawaban Anda Benar (+100 Poin)' : `Jawaban Benar adalah Opsi ${String.fromCharCode(65 + correctIdx)}: ${(currentQ.options || [])[correctIdx]}`}</span>
+      </div>
+      <p class="text-slate-700 mb-2 italic">“${currentQ.explanation || 'Terus bertumbuh dalam pengenalan firman Tuhan.'}”</p>
+      <div class="text-[11px] font-bold text-amber-800 font-mono">📖 Referensi Ayat: ${currentQ.verseRef || '-'}</div>
+    `;
+  }
+
+  // Enable Next button
+  const nextBtn = document.getElementById('iq-btn-next');
+  if (nextBtn) {
+    nextBtn.disabled = false;
+    nextBtn.classList.remove('opacity-40', 'cursor-not-allowed');
+    nextBtn.classList.add('hover:opacity-95', 'cursor-pointer');
+  }
+};
+
+APP.nextInteractiveQuizQuestion = function() {
+  const state = this.interactiveQuizState;
+  state.currentIndex += 1;
+
+  if (state.currentIndex >= state.questions.length) {
+    this.renderInteractiveQuizSummary();
+  } else {
+    this.renderInteractiveQuizStep();
+  }
+};
+
+APP.renderInteractiveQuizSummary = function() {
+  const container = document.getElementById('iq-screen-container');
+  if (!container) return;
+
+  const state = this.interactiveQuizState;
+  const total = state.questions.length;
+  const pct = Math.round((state.correctCount / total) * 100);
+  const isPass = pct >= 70;
+
+  // Add points to current user if logged in
+  if (this.currentUser && state.score > 0) {
+    this.currentUser.points = (this.currentUser.points || 0) + state.score;
+    this.saveState();
+  }
+
+  container.innerHTML = `
+    <div class="text-center py-6">
+      <div class="w-20 h-20 rounded-3xl ${isPass ? 'bg-emerald-500/20 text-emerald-600 border-2 border-emerald-400' : 'bg-amber-500/20 text-amber-600 border-2 border-amber-400'} flex items-center justify-center mx-auto mb-4 text-3xl shadow-lg">
+        <i class="fa-solid ${isPass ? 'fa-trophy' : 'fa-award'}"></i>
+      </div>
+
+      <div class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full ${isPass ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'} text-[10px] font-extrabold uppercase tracking-wider mb-2">
+        ${isPass ? '✦ KUIS SELESAI DENGAN BAIK ✦' : '✦ EVALUASI KUIS ALKITAB ✦'}
+      </div>
+
+      <h3 class="text-2xl font-extrabold font-serif-sacred text-slate-900 mb-1">
+        ${isPass ? 'Puji Tuhan! Pemahaman Firman Sangat Baik' : 'Tetap Semangat & Terus Belajar!'}
+      </h3>
+      <p class="text-xs text-slate-500 max-w-md mx-auto mb-6">
+        ${isPass ? 'Kiranya firman Tuhan yang telah dipelajari tertanam kuat di dalam hati dan berbuah dalam kehidupan sehari-hari.' : 'Jadikan setiap pertanyaan sebagai kesempatan mengenal isi hati Tuhan lebih dalam lagi.'}
+      </p>
+
+      <!-- Score KPI Cards -->
+      <div class="grid grid-cols-3 gap-3 max-w-md mx-auto mb-6">
+        <div class="p-3 rounded-2xl bg-amber-50 border border-amber-200">
+          <div class="text-[10px] text-slate-500 uppercase font-bold">Skor Nilai</div>
+          <div class="text-xl font-bold text-amber-700">${pct}%</div>
+        </div>
+        <div class="p-3 rounded-2xl bg-emerald-50 border border-emerald-200">
+          <div class="text-[10px] text-slate-500 uppercase font-bold">Benar</div>
+          <div class="text-xl font-bold text-emerald-700">${state.correctCount}</div>
+        </div>
+        <div class="p-3 rounded-2xl bg-rose-50 border border-rose-200">
+          <div class="text-[10px] text-slate-500 uppercase font-bold">Salah</div>
+          <div class="text-xl font-bold text-rose-700">${state.wrongCount}</div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        <button onclick="APP.startInteractiveQuiz('${state.filterTarget === 'Bank Soal Alkitab Terpadu' ? '' : state.filterTarget}')" class="px-5 py-2.5 rounded-xl gold-gradient-bg text-white font-extrabold text-xs shadow-md flex items-center gap-1.5 cursor-pointer">
+          <i class="fa-solid fa-rotate-right"></i> Ulangi Kuis
+        </button>
+        <button onclick="APP.closeModal('modal-interactive-quiz-player'); APP.navigateTo('page-quiz-center');" class="px-5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs cursor-pointer">
+          Buka Bank Kuis Lengkap
+        </button>
+      </div>
+    </div>
+  `;
 };
 
 APP.renderMinistryTrack = function() {
@@ -6109,22 +7480,90 @@ APP.renderAdminLessonsTable = function() {
   `).join('');
 };
 
-APP.renderAdminQuestionsTable = function() {
+APP.renderAdminQuestionsTable = function(customList = null) {
   const tbody = document.getElementById('adm-table-questions-body');
   if (!tbody) return;
 
-  tbody.innerHTML = this.questions.map((q, idx) => `
-    <tr class="border-b border-amber-50 hover:bg-amber-50/60">
-      <td class="p-3 text-xs font-mono text-slate-400">${idx + 1}</td>
-      <td class="p-3 text-xs font-bold text-indigo-400">${q.book}</td>
-      <td class="p-3 text-sm text-slate-700 max-w-xs truncate">${q.question}</td>
-      <td class="p-3 text-xs text-emerald-400 font-semibold">Opsi ${String.fromCharCode(65 + (typeof q.correctAnswer === 'number' ? q.correctAnswer : 0))}</td>
-      <td class="p-3 text-xs text-slate-400">${q.verseRef}</td>
-      <td class="p-3 text-xs text-right">
-        <button onclick="APP.deleteAdminQuestion('${q.id}')" class="text-rose-400 hover:text-rose-800 p-1.5"><i class="fa-regular fa-trash-can"></i></button>
-      </td>
-    </tr>
-  `).join('');
+  const list = customList !== null ? customList : (this.questions || []);
+
+  if (list.length === 0) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="7" class="p-8 text-center text-slate-400">
+          <i class="fa-solid fa-inbox text-2xl mb-2 block text-slate-300"></i>
+          Tidak ada data soal kuis yang cocok dengan filter.
+          <button onclick="APP.openManageQuestionModal()" class="block mx-auto mt-2 text-xs text-amber-600 font-bold hover:underline">
+            + Tambah Soal Kuis Baru
+          </button>
+        </td>
+      </tr>
+    `;
+    return;
+  }
+
+  tbody.innerHTML = list.map((q, idx) => {
+    const correctIdx = typeof q.correctAnswer === 'number' ? q.correctAnswer : 0;
+    const optText = (q.options || [])[correctIdx] || '';
+    const diffColor = q.difficulty === 'Sulit' ? 'bg-rose-100 text-rose-800' : (q.difficulty === 'Sedang' ? 'bg-amber-100 text-amber-800' : 'bg-emerald-100 text-emerald-800');
+
+    return `
+      <tr class="border-b border-emerald-50 hover:bg-emerald-50/40 transition-colors">
+        <td class="p-3 text-xs font-mono text-slate-400">${idx + 1}</td>
+        <td class="p-3 text-xs">
+          <div class="font-bold text-slate-900 flex items-center gap-1.5">
+            <span class="px-2 py-0.5 rounded bg-amber-100 text-amber-900 border border-amber-300 text-[10px]">${q.book}</span>
+          </div>
+          ${q.lessonId && q.lessonId !== 'GENERAL' ? `<div class="text-[10px] text-slate-400 font-mono mt-0.5">${q.lessonId}</div>` : ''}
+        </td>
+        <td class="p-3 text-xs text-slate-800 font-medium max-w-xs">
+          <div class="line-clamp-2" title="${q.question}">${q.question}</div>
+        </td>
+        <td class="p-3 text-xs">
+          <span class="px-2 py-0.5 rounded-lg bg-emerald-100 text-emerald-900 font-bold text-[10px] inline-block mb-0.5">
+            Opsi ${String.fromCharCode(65 + correctIdx)}
+          </span>
+          <div class="text-[10px] text-slate-500 truncate max-w-[120px]">${optText}</div>
+        </td>
+        <td class="p-3 text-xs font-mono font-bold text-amber-800">${q.verseRef || '-'}</td>
+        <td class="p-3 text-xs">
+          <span class="px-2 py-0.5 rounded text-[10px] font-bold ${diffColor}">${q.difficulty || 'Mudah'}</span>
+        </td>
+        <td class="p-3 text-xs text-right space-x-1 whitespace-nowrap">
+          <button onclick="APP.startInteractiveQuiz('${q.book}')" class="p-1.5 rounded-lg bg-emerald-50 text-emerald-700 hover:bg-emerald-100 font-bold text-xs" title="Uji Kuis">
+            <i class="fa-solid fa-play"></i>
+          </button>
+          <button onclick="APP.openManageQuestionModal('${q.id}')" class="p-1.5 rounded-lg bg-amber-50 text-amber-700 hover:bg-amber-100 font-bold text-xs" title="Edit Soal">
+            <i class="fa-regular fa-pen-to-square"></i>
+          </button>
+          <button onclick="APP.deleteAdminQuestion('${q.id}')" class="p-1.5 rounded-lg bg-rose-50 text-rose-600 hover:bg-rose-100 font-bold text-xs" title="Hapus Soal">
+            <i class="fa-regular fa-trash-can"></i>
+          </button>
+        </td>
+      </tr>
+    `;
+  }).join('');
+};
+
+APP.filterAdminQuestions = function() {
+  const query = (document.getElementById('adm-quiz-search')?.value || '').toLowerCase().trim();
+  const book = document.getElementById('adm-quiz-book-filter')?.value || 'ALL';
+  const diff = document.getElementById('adm-quiz-diff-filter')?.value || 'ALL';
+
+  const filtered = (this.questions || []).filter(q => {
+    const matchQuery = !query ||
+      (q.question && q.question.toLowerCase().includes(query)) ||
+      (q.id && q.id.toLowerCase().includes(query)) ||
+      (q.verseRef && q.verseRef.toLowerCase().includes(query)) ||
+      (q.book && q.book.toLowerCase().includes(query)) ||
+      (q.options && q.options.some(o => o.toLowerCase().includes(query)));
+
+    const matchBook = (book === 'ALL') || (q.book === book);
+    const matchDiff = (diff === 'ALL') || (q.difficulty === diff);
+
+    return matchQuery && matchBook && matchDiff;
+  });
+
+  this.renderAdminQuestionsTable(filtered);
 };
 
 APP.renderAdminAnnouncementsTable = function() {
@@ -6166,9 +7605,46 @@ APP.deleteAdminLesson = function(id) {
 };
 
 APP.deleteAdminQuestion = function(id) {
-  this.questions = this.questions.filter(q => q.id !== id);
-  this.renderAdminQuestionsTable();
-  if (this.settings.gasUrl) fetchGAS('deleteQuestion', { id }).catch(e => console.warn(e));
+  const q = (this.questions || []).find(item => item.id === id);
+  const qTitle = q ? `"${q.question.slice(0, 40)}..."` : id;
+
+  Swal.fire({
+    title: 'Hapus Soal Kuis?',
+    text: `Anda yakin ingin menghapus soal ${qTitle}? Tindakan ini tidak dapat dibatalkan.`,
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#e11d48',
+    cancelButtonColor: '#64748b',
+    confirmButtonText: 'Ya, Hapus!',
+    cancelButtonText: 'Batal'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.questions = this.questions.filter(item => item.id !== id);
+      this.saveState();
+      this.renderAdminQuestionsTable();
+      this.renderQuizCenter();
+      this.renderBooksGrid();
+
+      const totalQuestionsEl = document.getElementById('adm-total-questions');
+      if (totalQuestionsEl) totalQuestionsEl.textContent = this.questions.length;
+
+      if (this._currentModQuizBook) {
+        this.openModuleQuizManager(this._currentModQuizBook);
+      }
+
+      if (this.settings.gasUrl) {
+        fetchGAS('deleteQuestion', { id }).catch(e => console.warn(e));
+      }
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Soal Dihapus',
+        text: 'Soal kuis telah berhasil dihapus dari sistem.',
+        timer: 1500,
+        showConfirmButton: false
+      });
+    }
+  });
 };
 
 APP.deleteAdminAnnouncement = function(id) {
