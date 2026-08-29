@@ -4563,6 +4563,7 @@ async function fetchGAS(actionName, payloadData = {}) {
     try {
       const response = await fetch(targetUrl, {
         method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify({ action: actionName, data: payloadData }),
         redirect: "follow" // KRITIKAL: Wajib follow redirect 302 dari GAS
       });
@@ -4580,10 +4581,10 @@ async function fetchGAS(actionName, payloadData = {}) {
         return JSON.parse(getText);
       } catch (getErr) {
         console.error("GAS API GET Fallback failed:", getErr);
-        if (error.message === 'Failed to fetch') {
+        if (error.message === 'Failed to fetch' || (getErr && getErr.message === 'Failed to fetch')) {
           throw new Error("Akses ditolak server Google. Pastikan Web App diset ke 'Execute as: Me' dan 'Who has access: Anyone'.");
         }
-        throw error;
+        throw (getErr || error);
       }
     }
   }
@@ -4594,7 +4595,8 @@ async function fetchGAS(actionName, payloadData = {}) {
 
 // ========================== 9. SSOT SYNC & AUTO SYNC ENGINE ========================== //
 APP.syncFromGoogleSheets = async function(isSilent = false) {
-  if (!this.settings.gasUrl && !LIVE_GAS_URL) {
+  const targetGasUrl = (this.settings.gasUrl || LIVE_GAS_URL || "").trim();
+  if (!targetGasUrl) {
     if (!isSilent) {
       Swal.fire({
         icon: 'info',
@@ -4637,7 +4639,14 @@ APP.syncFromGoogleSheets = async function(isSilent = false) {
         this.supportTickets = res.data.supportTickets;
       }
       if (Array.isArray(res.data.users) && res.data.users.length > 0) {
-        this.users = res.data.users;
+        const profs = Array.isArray(res.data.profiles) ? res.data.profiles : [];
+        this.users = res.data.users.map(u => {
+          if (!u.profile || Object.keys(u.profile).length === 0) {
+            const matchedProf = profs.find(p => p.userId === u.userId);
+            if (matchedProf) u.profile = matchedProf;
+          }
+          return u;
+        });
       }
       if (Array.isArray(res.data.donations)) {
         this.donations = res.data.donations;
@@ -4677,7 +4686,7 @@ APP.syncFromGoogleSheets = async function(isSilent = false) {
         Swal.fire({
           icon: 'success',
           title: 'Sinkronisasi Berhasil!',
-          text: `Data sinkron (${this.lessons.length} materi, ${this.questions.length} soal). Single Source of Truth aktif.`,
+          text: `Data sinkron (${this.lessons.length} materi, ${this.questions.length} soal, ${this.users.length} pengguna). Single Source of Truth aktif.`,
           timer: 2000,
           showConfirmButton: false,
           background: '#0f172a',
@@ -4692,7 +4701,7 @@ APP.syncFromGoogleSheets = async function(isSilent = false) {
       Swal.fire({
         icon: 'error',
         title: 'Sinkronisasi Gagal',
-        text: err.message || 'Periksa kembali URL Web App Google Apps Script Anda di Pengaturan.',
+        text: err.message || 'Periksa kembali koneksi atau URL Web App Google Apps Script Anda.',
         background: '#0f172a',
         color: '#f8fafc'
       });
@@ -4711,15 +4720,13 @@ APP.initAutoSync = function() {
   const intervalSec = Number(this.settings.autoSyncInterval) || 30;
   if (this.settings.autoSyncEnabled && intervalSec > 0) {
     this.autoSyncTimer = setInterval(() => {
-      if (this.settings.gasUrl) {
-        this.syncFromGoogleSheets(true);
-      }
+      this.syncFromGoogleSheets(true);
     }, intervalSec * 1000);
   }
 
   if (!window._appFocusListenerAttached) {
     window.addEventListener('focus', () => {
-      if (this.settings.autoSyncEnabled && this.settings.syncOnFocus && this.settings.gasUrl) {
+      if (this.settings.autoSyncEnabled && this.settings.syncOnFocus) {
         this.syncFromGoogleSheets(true);
       }
     });
@@ -4976,25 +4983,26 @@ APP.handleLoginGate = async function(e) {
     Swal.fire({ icon: 'warning', title: 'Perhatian', text: 'Mohon isi username/email dan password.' });
     return;
   }
-  // Sync with GAS backend if configured
-  if (this.settings && this.settings.gasUrl) {
-    try {
-      Swal.showLoading();
-      const res = await fetchGAS('login', { usernameOrEmail: identifier, password });
-      Swal.close();
-      if (res && res.success && res.user) {
-        this.currentUser = res.user;
-        this.saveState();
-        this.updateUserNavbar(true);
-        this.closeLoginGate();
-        this.showLoginWelcome(this.currentUser);
-        return;
-      } else {
-        Swal.fire({ icon: 'error', title: 'Login Gagal', text: res.message || 'Username atau password salah.' });
-        return;
-      }
-    } catch (err) { console.warn('Backend login failed, fallback:', err); }
+
+  Swal.showLoading();
+  try {
+    const res = await fetchGAS('login', { usernameOrEmail: identifier, password });
+    Swal.close();
+    if (res && res.success && res.user) {
+      this.currentUser = res.user;
+      this.saveState();
+      this.updateUserNavbar(true);
+      this.closeLoginGate();
+      this.showLoginWelcome(this.currentUser);
+      return;
+    } else if (res && !res.success && !res.offline) {
+      Swal.fire({ icon: 'error', title: 'Login Gagal', text: res.message || 'Username atau password salah.' });
+      return;
+    }
+  } catch (err) {
+    console.warn('Backend login failed, fallback to local check:', err);
   }
+
   // Local / Demo fallback
   const found = (this.users || []).find(u =>
     (u.username && u.username.toLowerCase() === identifier.toLowerCase()) ||
@@ -5011,7 +5019,7 @@ APP.handleLoginGate = async function(e) {
       username: identifier,
       email: identifier.includes('@') ? identifier : `${identifier}@belajaralkitab.id`,
       role: isMockAdmin ? 'admin' : 'user',
-      profile: { age: 18, ageGroup: 'SMA', gender: 'Laki-laki', city: 'Jakarta', province: 'DKI Jakarta', country: 'Indonesia', church: 'Gereja Kristen', whatsapp: '', bibleLevel: 'Level A', learningGoal: 'Mengenal Firman Tuhan', dailyTargetMinutes: 30, totalPoints: 0, streakDays: 1 }
+      profile: { age: 18, ageGroup: 'SMA', gender: 'Laki-laki', city: 'Jakarta', province: 'DKI Jakarta', country: 'Indonesia', church: 'Gereja Kristen', whatsapp: '', bibleLevel: 'Level A', learningGoal: 'Mengenal Firman Tuhan', dailyTargetMinutes: 30, totalPoints: 100, streakDays: 1 }
     };
   } else {
     Swal.fire({ icon: 'error', title: 'Password Salah', text: 'Gunakan password minimal 4 karakter.' });
@@ -5033,6 +5041,7 @@ APP.handleRegisterGate = async function(e) {
   const confirmPassword = document.getElementById('gate-reg-confirm').value;
   const city = document.getElementById('gate-reg-city').value.trim();
   const church = document.getElementById('gate-reg-church').value.trim();
+
   if (!name || !email || !username || !password) {
     Swal.fire({ icon: 'warning', title: 'Data Belum Lengkap', text: 'Harap isi nama, email, username, dan password.' });
     return;
@@ -5045,26 +5054,88 @@ APP.handleRegisterGate = async function(e) {
     Swal.fire({ icon: 'warning', title: 'Password Terlalu Pendek', text: 'Minimal 6 karakter.' });
     return;
   }
-  const dup = (this.users || []).find(u => u.username === username || u.email === email);
-  if (dup) {
-    Swal.fire({ icon: 'error', title: 'Sudah Terdaftar', text: 'Username atau email sudah digunakan.' });
-    return;
-  }
-  const newUser = {
-    userId: 'USR-' + Date.now().toString().slice(-6),
-    name, nickname, username, email, password,
+
+  Swal.fire({
+    title: 'Mendaftarkan Akun...',
+    text: 'Menyimpan profil baru ke Google Sheets...',
+    allowOutsideClick: false,
+    didOpen: () => { Swal.showLoading(); }
+  });
+
+  const payload = {
+    name: name,
+    nickname: nickname,
+    username: username,
+    email: email,
+    password: password,
     role: 'user',
     status: 'active',
-    registeredAt: new Date().toISOString(),
-    profile: { city, church, age: 0, ageGroup: 'Umum', gender: '', province: '', country: 'Indonesia', whatsapp: '', bibleLevel: 'Level A', learningGoal: 'Mengenal Firman Tuhan', dailyTargetMinutes: 30, totalPoints: 0, streakDays: 0 }
+    age: 18,
+    ageGroup: 'Umum',
+    gender: 'Lainnya',
+    city: city,
+    province: '',
+    country: 'Indonesia',
+    church: church,
+    whatsapp: '',
+    bibleLevel: 'Level A',
+    learningGoal: 'Mengenal Firman Tuhan',
+    dailyTargetMinutes: 30,
+    totalPoints: 100,
+    streakDays: 1
   };
-  this.users = this.users || [];
-  this.users.push(newUser);
-  this.currentUser = newUser;
-  this.saveState();
-  this.updateUserNavbar(true);
-  this.closeLoginGate();
-  this.showLoginWelcome(this.currentUser, true);
+
+  try {
+    const res = await fetchGAS('register', payload);
+    Swal.close();
+
+    if (res && res.success && res.user) {
+      const user = res.user;
+      if (!user.profile) {
+        user.profile = {
+          city, church, age: 18, ageGroup: 'Umum', gender: '', province: '', country: 'Indonesia',
+          whatsapp: '', bibleLevel: 'Level A', learningGoal: 'Mengenal Firman Tuhan',
+          dailyTargetMinutes: 30, totalPoints: 100, streakDays: 1
+        };
+      }
+      this.users = this.users || [];
+      this.users = this.users.filter(u => u.username !== user.username && u.email !== user.email && u.userId !== user.userId);
+      this.users.unshift(user);
+      this.currentUser = user;
+      this.saveState();
+      this.updateUserNavbar(true);
+      this.closeLoginGate();
+      this.showLoginWelcome(this.currentUser, true);
+      this.renderAdminUsersTable();
+      this.renderAdminSettingsUsersTable();
+    } else if (res && !res.success && !res.offline) {
+      Swal.fire({ icon: 'error', title: 'Pendaftaran Gagal', text: res.message || 'Username atau email sudah digunakan.' });
+    } else {
+      // Offline fallback
+      const newUser = {
+        userId: 'USR-' + Date.now().toString().slice(-6),
+        name, nickname, username, email, password,
+        role: 'user',
+        status: 'active',
+        createdAt: new Date().toISOString(),
+        profile: { city, church, age: 18, ageGroup: 'Umum', gender: '', province: '', country: 'Indonesia', whatsapp: '', bibleLevel: 'Level A', learningGoal: 'Mengenal Firman Tuhan', dailyTargetMinutes: 30, totalPoints: 100, streakDays: 1 }
+      };
+      this.users = this.users || [];
+      this.users = this.users.filter(u => u.username !== username && u.email !== email);
+      this.users.unshift(newUser);
+      this.currentUser = newUser;
+      this.saveState();
+      this.updateUserNavbar(true);
+      this.closeLoginGate();
+      this.showLoginWelcome(this.currentUser, true);
+      this.renderAdminUsersTable();
+      this.renderAdminSettingsUsersTable();
+    }
+  } catch (err) {
+    Swal.close();
+    console.error("Register gate error:", err);
+    Swal.fire({ icon: 'error', title: 'Gagal Menghubungi Server', text: err.message || 'Terjadi kesalahan saat pendaftaran.' });
+  }
 };
 
 APP.loginAsGuest = function() {
@@ -5122,26 +5193,23 @@ APP.handleLoginUser = async function(e) {
     return;
   }
 
-  // Cek backend jika ada koneksi
-  if (this.settings.gasUrl) {
-    try {
-      Swal.showLoading();
-      const res = await fetchGAS('login', { usernameOrEmail: identifier, password: password });
-      Swal.close();
-      if (res && res.success && res.user) {
-        this.currentUser = res.user;
-        this.saveState();
-        this.updateUserNavbar(true);
-        this.closeModal('modal-login-user');
-        this.showLoginWelcome(this.currentUser);
-        return;
-      } else {
-        Swal.fire({ icon: 'error', title: 'Login Gagal', text: res.message || 'Username atau password salah.' });
-        return;
-      }
-    } catch (err) {
-      console.warn("Backend login failed, fallback to local check:", err);
+  Swal.showLoading();
+  try {
+    const res = await fetchGAS('login', { usernameOrEmail: identifier, password: password });
+    Swal.close();
+    if (res && res.success && res.user) {
+      this.currentUser = res.user;
+      this.saveState();
+      this.updateUserNavbar(true);
+      this.closeModal('modal-login-user');
+      this.showLoginWelcome(this.currentUser);
+      return;
+    } else if (res && !res.success && !res.offline) {
+      Swal.fire({ icon: 'error', title: 'Login Gagal', text: res.message || 'Username atau password salah.' });
+      return;
     }
+  } catch (err) {
+    console.warn("Backend login failed, fallback to local check:", err);
   }
 
   // Mock / Local Demo Login Fallback
@@ -5235,46 +5303,109 @@ APP.handleRegisterUser = async function(e) {
     Swal.fire({ icon: 'warning', title: 'Perhatian', text: 'Password dan Konfirmasi Password tidak sama.' });
     return;
   }
+  if (password.length < 6) {
+    Swal.fire({ icon: 'warning', title: 'Password Terlalu Pendek', text: 'Minimal 6 karakter.' });
+    return;
+  }
 
-  const newUserData = {
-    userId: "USR-" + Date.now().toString().slice(-6),
+  Swal.fire({
+    title: 'Mendaftarkan Akun...',
+    text: 'Menyimpan profil baru ke Google Sheets...',
+    allowOutsideClick: false,
+    didOpen: () => { Swal.showLoading(); }
+  });
+
+  const payload = {
     name: name,
     nickname: nickname,
     username: username,
     email: email,
+    password: password,
     role: "user",
-    createdAt: new Date().toISOString(),
     status: "active",
-    profile: {
-      age: age,
-      ageGroup: ageGroup,
-      gender: gender,
-      city: city,
-      province: province,
-      country: "Indonesia",
-      church: church,
-      whatsapp: whatsapp,
-      bibleLevel: bibleLevel,
-      learningGoal: "Mengenal Firman Tuhan & Bertumbuh",
-      dailyTargetMinutes: targetMinutes,
-      totalPoints: 100, // Bonus Poin Pendaftaran
-      streakDays: 1
-    }
+    age: age,
+    ageGroup: ageGroup,
+    gender: gender,
+    city: city,
+    province: province,
+    country: "Indonesia",
+    church: church,
+    whatsapp: whatsapp,
+    bibleLevel: bibleLevel,
+    learningGoal: "Mengenal Firman Tuhan & Bertumbuh",
+    dailyTargetMinutes: targetMinutes,
+    totalPoints: 100, // Bonus Poin Pendaftaran
+    streakDays: 1
   };
 
-  // Kirim ke backend jika tersedia
-  if (this.settings.gasUrl) {
-    fetchGAS('register', { ...newUserData, password: password })
-      .catch(err => console.warn("Backend register error:", err));
-  }
+  try {
+    const res = await fetchGAS('register', payload);
+    Swal.close();
 
-  // Tambahkan user baru ke daftar pengguna sistem
-  this.users.unshift(newUserData);
-  this.currentUser = newUserData;
-  this.saveState();
-  this.updateUserNavbar(true);
-  this.closeModal('modal-register-user');
-  this.showLoginWelcome(this.currentUser, true);
+    if (res && res.success && res.user) {
+      const user = res.user;
+      if (!user.profile) {
+        user.profile = {
+          age, ageGroup, gender, city, province, country: "Indonesia",
+          church, whatsapp, bibleLevel, learningGoal: "Mengenal Firman Tuhan & Bertumbuh",
+          dailyTargetMinutes: targetMinutes, totalPoints: 100, streakDays: 1
+        };
+      }
+      this.users = this.users || [];
+      this.users = this.users.filter(u => u.username !== user.username && u.email !== user.email && u.userId !== user.userId);
+      this.users.unshift(user);
+      this.currentUser = user;
+      this.saveState();
+      this.updateUserNavbar(true);
+      this.closeModal('modal-register-user');
+      this.showLoginWelcome(this.currentUser, true);
+      this.renderAdminUsersTable();
+      this.renderAdminSettingsUsersTable();
+    } else if (res && !res.success && !res.offline) {
+      Swal.fire({ icon: 'error', title: 'Pendaftaran Gagal', text: res.message || 'Username atau email mungkin sudah terdaftar.' });
+    } else {
+      // Offline fallback
+      const newUserData = {
+        userId: "USR-" + Date.now().toString().slice(-6),
+        name: name,
+        nickname: nickname,
+        username: username,
+        email: email,
+        role: "user",
+        createdAt: new Date().toISOString(),
+        status: "active",
+        profile: {
+          age: age,
+          ageGroup: ageGroup,
+          gender: gender,
+          city: city,
+          province: province,
+          country: "Indonesia",
+          church: church,
+          whatsapp: whatsapp,
+          bibleLevel: bibleLevel,
+          learningGoal: "Mengenal Firman Tuhan & Bertumbuh",
+          dailyTargetMinutes: targetMinutes,
+          totalPoints: 100,
+          streakDays: 1
+        }
+      };
+      this.users = this.users || [];
+      this.users = this.users.filter(u => u.username !== username && u.email !== email);
+      this.users.unshift(newUserData);
+      this.currentUser = newUserData;
+      this.saveState();
+      this.updateUserNavbar(true);
+      this.closeModal('modal-register-user');
+      this.showLoginWelcome(this.currentUser, true);
+      this.renderAdminUsersTable();
+      this.renderAdminSettingsUsersTable();
+    }
+  } catch (err) {
+    Swal.close();
+    console.error("Register user error:", err);
+    Swal.fire({ icon: 'error', title: 'Gagal Menghubungi Server', text: err.message || 'Terjadi kesalahan saat mendaftar.' });
+  }
 };
 
 APP.logout = function() {
@@ -5764,10 +5895,8 @@ APP.toggleMemorizeCurrentVerse = function(verseFull) {
   this.renderLessonStage(); // re-render state button
 
   // Sync background
-  if (this.settings.gasUrl) {
-    fetchGAS('saveMemorization', { verseRef: ref, verseText: text, isMemorized: idx === -1 })
-      .catch(e => console.warn(e));
-  }
+  fetchGAS('saveMemorization', { verseRef: ref, verseText: text, isMemorized: idx === -1 })
+    .catch(e => console.warn(e));
 };
 
 APP.finishLesson = function() {
@@ -5808,9 +5937,7 @@ APP.finishLesson = function() {
   this.saveState();
 
   // Non-blocking background sync
-  if (this.settings.gasUrl) {
-    fetchGAS('saveProgress', progressRecord).catch(e => console.warn(e));
-  }
+  fetchGAS('saveProgress', progressRecord).catch(e => console.warn(e));
 
   Swal.fire({
     icon: 'success',
@@ -6649,9 +6776,7 @@ APP.handleSaveQuizQuestion = function(e) {
   if (totalQuestionsEl) totalQuestionsEl.textContent = this.questions.length;
 
   // Sync to GAS SSOT Backend
-  if (this.settings.gasUrl) {
-    fetchGAS('saveQuestion', questionObj).catch(err => console.warn("GAS saveQuestion error:", err));
-  }
+  fetchGAS('saveQuestion', questionObj).catch(err => console.warn("GAS saveQuestion error:", err));
 
   this.closeModal('modal-manage-quiz-question');
 
@@ -7374,11 +7499,9 @@ APP.handleSaveUserRole = async function(e) {
   this.renderAdminDashboard();
   this.renderProfilePage();
 
-  // Sinkronisasi backend jika terhubung GAS
-  if (this.settings.gasUrl) {
-    fetchGAS('updateUserRole', { userId, role: newRole, status: newStatus })
-      .catch(err => console.warn("Backend updateUserRole error:", err));
-  }
+  // Sinkronisasi backend
+  fetchGAS('updateUserRole', { userId, role: newRole, status: newStatus })
+    .catch(err => console.warn("Backend updateUserRole error:", err));
 
   Swal.fire({
     icon: 'success',
@@ -7404,10 +7527,8 @@ APP.updateUserRoleDirectly = async function(userId, newRole) {
   this.renderAdminDashboard();
   this.renderProfilePage();
 
-  if (this.settings.gasUrl) {
-    fetchGAS('updateUserRole', { userId, role: newRole, status: this.users[userIdx].status || 'active' })
-      .catch(err => console.warn("Backend updateUserRole error:", err));
-  }
+  fetchGAS('updateUserRole', { userId, role: newRole, status: this.users[userIdx].status || 'active' })
+    .catch(err => console.warn("Backend updateUserRole error:", err));
 
   const Toast = Swal.mixin({
     toast: true,
@@ -7447,9 +7568,7 @@ APP.deleteAdminUser = function(userId) {
       this.renderAdminDashboard();
       this.renderProfilePage();
 
-      if (this.settings.gasUrl) {
-        fetchGAS('deleteUser', { userId }).catch(e => console.warn(e));
-      }
+      fetchGAS('deleteUser', { userId }).catch(e => console.warn(e));
 
       Swal.fire({
         icon: 'success',
@@ -7601,7 +7720,7 @@ APP.renderAdminTicketsTable = function() {
 APP.deleteAdminLesson = function(id) {
   this.lessons = this.lessons.filter(l => l.id !== id);
   this.renderAdminLessonsTable();
-  if (this.settings.gasUrl) fetchGAS('deleteLesson', { id }).catch(e => console.warn(e));
+  fetchGAS('deleteLesson', { id }).catch(e => console.warn(e));
 };
 
 APP.deleteAdminQuestion = function(id) {
@@ -7632,9 +7751,7 @@ APP.deleteAdminQuestion = function(id) {
         this.openModuleQuizManager(this._currentModQuizBook);
       }
 
-      if (this.settings.gasUrl) {
-        fetchGAS('deleteQuestion', { id }).catch(e => console.warn(e));
-      }
+      fetchGAS('deleteQuestion', { id }).catch(e => console.warn(e));
 
       Swal.fire({
         icon: 'success',
@@ -7650,7 +7767,7 @@ APP.deleteAdminQuestion = function(id) {
 APP.deleteAdminAnnouncement = function(id) {
   this.announcements = this.announcements.filter(a => a.id !== id);
   this.renderAdminAnnouncementsTable();
-  if (this.settings.gasUrl) fetchGAS('deleteAnnouncement', { id }).catch(e => console.warn(e));
+  fetchGAS('deleteAnnouncement', { id }).catch(e => console.warn(e));
 };
 
 // ========================== 15. DIGITAL CERTIFICATE GENERATOR ========================== //
@@ -8932,18 +9049,16 @@ APP.handleSaveUserProfile = async function(e) {
   this.saveState();
   this.updateUserNavbar(true);
 
-  // Sync dengan backend GAS jika terhubung
-  if (this.settings.gasUrl) {
-    const payload = {
-      userId: this.currentUser.userId,
-      name,
-      nickname,
-      email,
-      password: newPassword || undefined,
-      ...this.currentUser.profile
-    };
-    fetchGAS('saveProfile', payload).catch(e => console.warn("Backend saveProfile error:", e));
-  }
+  // Sync dengan backend GAS
+  const payload = {
+    userId: this.currentUser.userId,
+    name,
+    nickname,
+    email,
+    password: newPassword || undefined,
+    ...this.currentUser.profile
+  };
+  fetchGAS('saveProfile', payload).catch(e => console.warn("Backend saveProfile error:", e));
 
   Swal.fire({
     icon: 'success',
@@ -8977,12 +9092,10 @@ APP.handleSaveLearningPreferences = function(e) {
     this.currentUser.profile.learningGoal = learningGoal;
     this.saveState();
 
-    if (this.settings.gasUrl) {
-      fetchGAS('saveProfile', {
-        userId: this.currentUser.userId,
-        ...this.currentUser.profile
-      }).catch(e => console.warn(e));
-    }
+    fetchGAS('saveProfile', {
+      userId: this.currentUser.userId,
+      ...this.currentUser.profile
+    }).catch(e => console.warn(e));
   }
 
   Swal.fire({
@@ -9015,10 +9128,7 @@ APP.handleSaveAdminPlatformSettings = function(e) {
   };
 
   this.savePlatformSettings();
-
-  if (this.settings.gasUrl) {
-    fetchGAS('saveAppSettings', this.platformSettings).catch(e => console.warn(e));
-  }
+  fetchGAS('saveAppSettings', this.platformSettings).catch(e => console.warn(e));
 
   Swal.fire({
     icon: 'success',
