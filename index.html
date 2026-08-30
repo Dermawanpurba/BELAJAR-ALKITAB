@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
   <title>BELAJAR ALKITAB — Belajar Firman Tuhan dengan Mudah, Bertahap, dan Berdasarkan Alkitab</title>
   <meta name="description" content="Platform pembelajaran Alkitab bertahap dari Kitab Kejadian sampai Wahyu untuk semua kelompok usia, pemula hingga pendalaman pelayanan. Gratis, aman, dan terstruktur.">
   <meta name="author" content="Raymond Sirait (Raymond Isak Junius Sirait)">
@@ -580,6 +580,37 @@ body {
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1.5px solid rgba(245, 158, 11, 0.18) !important;
   box-shadow: 0 4px 20px rgba(245, 158, 11, 0.08) !important;
+  /* iPhone notch safe area */
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+/* ===== MOBILE RESPONSIVE HEADER ===== */
+@media (max-width: 640px) {
+  /* Compact header on mobile — was h-20 (80px), reduce to h-16 (64px) */
+  header .max-w-7xl.h-20 {
+    height: 56px !important;
+  }
+  /* Smaller logo on mobile */
+  header .w-12.h-12 {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 12px !important;
+  }
+  header .w-full.gold-gradient-bg.rounded-\[14px\] {
+    border-radius: 10px !important;
+    font-size: 1rem !important;
+  }
+  /* Logo text compact */
+  header .text-xl.font-extrabold {
+    font-size: 1rem !important;
+  }
+}
+
+/* ===== TABLET RESPONSIVE HEADER (iPad 768-1023px) ===== */
+@media (min-width: 641px) and (max-width: 1023px) {
+  header .max-w-7xl.h-20 {
+    height: 64px !important;
+  }
 }
 
 .glass-card-hover {
@@ -725,6 +756,10 @@ div.relative > i.fa-regular {
   transition: opacity 0.25s ease, visibility 0.25s ease;
   background-color: rgba(15, 23, 42, 0.65) !important;
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  /* Use dvh so mobile browser address bar doesn't clip modal */
+  min-height: 100dvh;
+  overscroll-behavior: contain;
 }
 
 .modal-overlay.hidden {
@@ -1097,45 +1132,340 @@ div.relative > i.fa-regular {
 .table-scroll-x::-webkit-scrollbar-thumb { background: #f59e0b; border-radius: 9999px; }
 
 /* ======================== MOBILE BOTTOM NAV ======================== */
+/* ====================== MOBILE RESPONSIVE SYSTEM ====================== */
+/* Safe-area variables for iPhone notch & gesture home indicator */
+:root {
+  --safe-top:    env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left:   env(safe-area-inset-left, 0px);
+  --safe-right:  env(safe-area-inset-right, 0px);
+  --mobile-nav-h: 60px;
+}
+
+/* Modal uses dvh (Dynamic Viewport Height) so address bar doesn't hide content on mobile */
+.modal-overlay {
+  min-height: 100dvh;
+}
+.modal-overlay > div {
+  max-height: min(90dvh, 700px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Momentum scrolling for all overflow-x tables on iOS */
+.overflow-x-auto, .table-scroll-x {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: none;
+}
+
+/* Horizontal tab scroll with fade hint */
+.tab-scroll-x {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  mask-image: linear-gradient(to right, transparent 0, #000 20px, #000 calc(100% - 20px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 20px, #000 calc(100% - 20px), transparent 100%);
+}
+.tab-scroll-x::-webkit-scrollbar { display: none; }
+
 @media (max-width: 640px) {
-  .mobile-bottom-nav-spacer { height: 72px; }
+  /* Spacer accounts for nav height + iPhone home indicator */
+  .mobile-bottom-nav-spacer {
+    height: calc(var(--mobile-nav-h) + var(--safe-bottom) + 8px);
+  }
+
   #mobile-bottom-nav {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
     z-index: 50;
-    background: rgba(255,255,255,0.98);
-    backdrop-filter: blur(16px);
-    border-top: 1px solid rgba(245,158,11,0.15);
-    box-shadow: 0 -4px 20px rgba(0,0,0,0.06);
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1.5px solid rgba(245,158,11,0.18);
+    box-shadow: 0 -4px 24px rgba(0,0,0,0.08);
     display: flex;
     align-items: stretch;
-    height: 64px;
+    height: calc(var(--mobile-nav-h) + var(--safe-bottom));
+    padding-bottom: var(--safe-bottom);
+    /* Safe area for landscape iPhone notch left/right */
+    padding-left: var(--safe-left);
+    padding-right: var(--safe-right);
   }
+
   [data-theme="dark"] #mobile-bottom-nav {
-    background: rgba(15,23,42,0.98);
-    border-top-color: rgba(245,158,11,0.15);
+    background: rgba(15,23,42,0.97);
+    border-top-color: rgba(245,158,11,0.2);
+    box-shadow: 0 -4px 24px rgba(0,0,0,0.35);
   }
+
   .mobile-nav-btn {
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 4px;
-    font-size: 0.6rem;
-    font-weight: 600;
-    color: #64748b;
+    gap: 3px;
+    font-size: 0.62rem;
+    font-weight: 700;
+    color: #94a3b8;
     border: none;
     background: none;
     cursor: pointer;
-    padding: 8px 4px;
-    transition: color 0.2s;
+    padding: 8px 4px 6px;
+    transition: color 0.15s, transform 0.15s;
+    min-height: 44px; /* iOS minimum touch target */
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
   }
-  .mobile-nav-btn i { font-size: 1.1rem; }
+  .mobile-nav-btn i { font-size: 1.2rem; transition: transform 0.15s; }
+  /* Active indicator pill on top */
+  .mobile-nav-btn.active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 24px;
+    height: 3px;
+    background: #d97706;
+    border-radius: 0 0 3px 3px;
+  }
   .mobile-nav-btn.active { color: #d97706; }
-  .mobile-nav-btn:hover { color: #d97706; }
+  .mobile-nav-btn.active i { transform: scale(1.1); }
+  .mobile-nav-btn:active { transform: scale(0.93); }
+  [data-theme="dark"] .mobile-nav-btn { color: #64748b; }
+  [data-theme="dark"] .mobile-nav-btn.active { color: #f59e0b; }
+}
+/* ====================== GLOBAL MOBILE UX IMPROVEMENTS ====================== */
+
+/* --- Tap highlight removal for all interactive elements on mobile --- */
+button, a, [role="button"], .mobile-nav-btn, .nav-tab-btn, .glass-card-hover {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* --- Touch feedback: scale down on active (all buttons) --- */
+@media (hover: none) and (pointer: coarse) {
+  button:not(:disabled):active,
+  [role="button"]:active,
+  a:active {
+    transform: scale(0.96);
+    transition: transform 0.1s;
+  }
+  /* Exception: card hover — don't double-animate */
+  .glass-card-hover:active {
+    transform: translateY(-2px) scale(0.99) !important;
+  }
+}
+
+/* --- Minimum touch target enforcement (44px iOS / 48px Android) --- */
+@media (max-width: 1023px) {
+  /* Nav tab buttons */
+  .nav-tab-btn {
+    min-height: 44px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+  }
+  /* Icon-only buttons (theme toggle, settings, logout) */
+  button.w-9, button.h-9,
+  button[title*="Ganti Tema"],
+  button[title*="Pengaturan"],
+  button[title*="Keluar"] {
+    min-width: 44px !important;
+    min-height: 44px !important;
+    width: 44px !important;
+    height: 44px !important;
+  }
+}
+
+/* --- Hero Section: Mobile-first responsive --- */
+@media (max-width: 640px) {
+  .hero-gradient-bg {
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+  .hero-main-title {
+    font-size: 2rem !important;     /* 32px — fit 375px without overflow */
+    line-height: 1.2 !important;
+    margin-bottom: 1rem !important;
+  }
+  .hero-motto {
+    font-size: 1rem !important;     /* 16px — readable on small screens */
+    line-height: 1.6 !important;
+    margin-bottom: 1rem !important;
+  }
+  .hero-description {
+    font-size: 0.9rem !important;
+    line-height: 1.65 !important;
+    padding: 0 0.5rem;
+  }
+  /* Hero CTA buttons stack vertically on mobile */
+  .hero-gradient-bg .flex.flex-wrap {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.75rem !important;
+  }
+  .hero-gradient-bg .flex.flex-wrap > button,
+  .hero-gradient-bg .flex.flex-wrap > a {
+    width: 100% !important;
+    justify-content: center !important;
+    min-height: 52px !important;
+    font-size: 0.95rem !important;
+  }
+}
+
+/* --- Section vertical padding mobile reduction --- */
+@media (max-width: 640px) {
+  .py-16 { padding-top: 2.5rem !important; padding-bottom: 2.5rem !important; }
+  .py-20 { padding-top: 3rem !important;   padding-bottom: 3rem !important; }
+  .py-24 { padding-top: 3rem !important;   padding-bottom: 3rem !important; }
+  /* Card padding mobile */
+  .p-6.sm\:p-8 { padding: 1rem !important; }
+  .p-8 { padding: 1.25rem !important; }
+}
+
+/* --- Card grid: single column on mobile, 2-col on tablet --- */
+@media (max-width: 640px) {
+  .grid-cols-2:not(.force-2col),
+  .grid-cols-3:not(.force-2col),
+  .sm\:grid-cols-2,
+  .sm\:grid-cols-3 {
+    grid-template-columns: 1fr !important;
+  }
+  .lg\:grid-cols-4 { grid-template-columns: 1fr 1fr !important; }
+}
+@media (min-width: 641px) and (max-width: 1023px) {
+  .lg\:grid-cols-4 { grid-template-columns: 1fr 1fr !important; }
+  .lg\:grid-cols-3 { grid-template-columns: 1fr 1fr !important; }
+}
+
+/* --- Horizontal tab scroll bars (nav tabs, settings tabs) --- */
+@media (max-width: 640px) {
+  /* Apply mobile scroll snap to tab groups */
+  .flex.items-center.gap-1.border-b,
+  .flex.items-center.gap-2.border-b {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior-x: contain !important;
+    scrollbar-width: none !important;
+    flex-wrap: nowrap !important;
+    padding-bottom: 0 !important;
+  }
+  .flex.items-center.gap-1.border-b::-webkit-scrollbar,
+  .flex.items-center.gap-2.border-b::-webkit-scrollbar { display: none; }
+  
+  /* Tab buttons — no shrink on mobile scroll */
+  .flex.items-center.gap-1.border-b > button,
+  .flex.items-center.gap-2.border-b > button {
+    flex-shrink: 0 !important;
+  }
+}
+
+/* --- Modal DVH fix (mobile browser address bar) --- */
+.modal-overlay {
+  min-height: 100dvh !important;
+  height: 100dvh !important;
+}
+@media (max-width: 640px) {
+  .modal-overlay > div {
+    max-height: 88dvh !important;
+    border-radius: 1.25rem 1.25rem 0 0 !important;
+    margin-top: auto !important;
+    margin-bottom: 0 !important;
+    align-self: flex-end !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    /* Bottom safe area for iPhone */
+    padding-bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px)) !important;
+  }
+  /* Modal overlay as bottom sheet on mobile */
+  .modal-overlay {
+    align-items: flex-end !important;
+  }
+}
+
+/* --- Toast notification: full width on mobile --- */
+@media (max-width: 640px) {
+  #toast-container {
+    left: 12px !important;
+    right: 12px !important;
+    bottom: calc(var(--mobile-nav-h) + var(--safe-bottom) + 12px) !important;
+    max-width: unset !important;
+    width: auto !important;
+  }
+}
+
+/* --- Font size floor: no content text below 13px --- */
+@media (max-width: 640px) {
+  /* Quiz option text */
+  .quiz-opt-card {
+    font-size: 0.88rem !important;
+    padding: 0.75rem 0.9rem !important;
+  }
+  /* Settings nav tabs text */
+  .settings-nav-btn {
+    font-size: 0.75rem !important;
+    padding: 0.6rem 0.75rem !important;
+  }
+}
+
+/* --- iPad / Tablet specific (768px - 1024px) --- */
+@media (min-width: 641px) and (max-width: 1024px) {
+  /* Comfortable reading width for tablets */
+  .max-w-2xl.mx-auto {
+    max-width: 90% !important;
+  }
+  /* Two column layouts stay 2-col on tablet */
+  .md\:grid-cols-2 {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  /* Hero text tablet sizing */
+  .hero-main-title {
+    font-size: 3rem !important;
+  }
+  .hero-motto {
+    font-size: 1.2rem !important;
+  }
+  /* Hero CTA row on tablet */
+  .hero-gradient-bg .flex.flex-wrap {
+    flex-direction: row !important;
+    justify-content: center !important;
+  }
+}
+
+/* --- Horizontal scroll fade hint for tables --- */
+.table-scroll-x {
+  position: relative;
+}
+
+/* --- Prevent text zoom on input focus (iOS) --- */
+@media (max-width: 640px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="number"],
+  input[type="tel"],
+  input[type="url"],
+  select,
+  textarea {
+    font-size: 16px !important; /* Prevents iOS auto-zoom on focus */
+  }
+}
+
+/* --- Quiz option cards mobile --- */
+@media (max-width: 640px) {
+  .quiz-opt-card {
+    border-radius: 0.75rem !important;
+  }
+}
+
+/* --- Breadcrumb mobile: hide on xs, show on sm+ --- */
+@media (max-width: 400px) {
+  .breadcrumb {
+    display: none !important;
+  }
 }
 </style>
 </head>
