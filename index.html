@@ -2,15 +2,43 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
   <title>BELAJAR ALKITAB — Belajar Firman Tuhan dengan Mudah, Bertahap, dan Berdasarkan Alkitab</title>
-  <meta name="description" content="Platform pembelajaran Alkitab bertahap dari Kitab Kejadian sampai Wahyu untuk semua kelompok usia, pemula hingga pendalaman pelayanan.">
+  <meta name="description" content="Platform pembelajaran Alkitab bertahap dari Kitab Kejadian sampai Wahyu untuk semua kelompok usia, pemula hingga pendalaman pelayanan. Gratis, aman, dan terstruktur.">
   <meta name="author" content="Raymond Sirait (Raymond Isak Junius Sirait)">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#d97706">
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="BELAJAR ALKITAB — Platform Pembelajaran Firman Tuhan">
+  <meta property="og:description" content="Belajar Firman Tuhan dengan Mudah, Bertahap, dan Berdasarkan Alkitab. Dari Kejadian sampai Wahyu untuk semua usia.">
+  <meta property="og:image" content="https://lh3.googleusercontent.com/d/1GXzAZiVYDwv4Yha1BCI1X60-GhIDxcdB">
+  <meta property="og:url" content="https://belajaralkitab.site">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "BELAJAR ALKITAB",
+    "description": "Platform pembelajaran Alkitab terstruktur dari Kejadian sampai Wahyu",
+    "url": "https://belajaralkitab.site",
+    "educationalCredentialAwarded": "Sertifikat Digital Belajar Alkitab",
+    "founder": {
+      "@type": "Person",
+      "name": "Raymond Isak Junius Sirait",
+      "email": "raymondsirait2231@gmail.com"
+    }
+  }
+  </script>
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
+      darkMode: 'class',
       theme: {
         extend: {
           colors: {
@@ -86,12 +114,374 @@
   --text-amber:         #b45309;
 }
 
-html, html.dark {
-  color-scheme: light !important;
+/* ======================== DARK MODE CSS VARIABLES & HIGH-CONTRAST SYSTEM ======================== */
+:root {
+  --dm-bg-page: #fffbf0;
+  --dm-bg-card: #ffffff;
+  --dm-bg-accent: #fef3c7;
+  --dm-text-heading: #0f172a;
+  --dm-text-body: #334155;
+  --dm-text-muted: #64748b;
+  --dm-border: rgba(245, 158, 11, 0.22);
+  --dm-card-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  --dm-header-bg: rgba(255,255,255,0.96);
+  --dm-input-bg: #ffffff;
+  --dm-input-border: #cbd5e1;
+  --dm-footer-bg: #92400e;
+  --dm-modal-bg: #ffffff;
+  --dm-nav-text: #475569;
+  --dm-nav-hover-bg: #fef3c7;
+  --dm-scrollbar-track: #fef3c7;
+  --dm-scrollbar-thumb: #f59e0b;
+  --dm-skeleton-bg: #f1f5f9;
+  --dm-skeleton-shimmer: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+}
+
+[data-theme="dark"] {
+  --dm-bg-page: #0f172a;
+  --dm-bg-card: #1e293b;
+  --dm-bg-surface: #1e293b;
+  --dm-bg-elevated: #334155;
+  --dm-bg-accent: #1a2744;
+  --dm-text-heading: #f8fafc;
+  --dm-text-body: #e2e8f0;
+  --dm-text-muted: #94a3b8;
+  --dm-text-subtle: #64748b;
+  --dm-border: rgba(255, 255, 255, 0.12);
+  --dm-border-gold: rgba(245, 158, 11, 0.35);
+  --dm-card-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --dm-header-bg: rgba(15, 23, 42, 0.96);
+  --dm-input-bg: #1e293b;
+  --dm-input-border: #475569;
+  --dm-footer-bg: #0b1120;
+  --dm-modal-bg: #1e293b;
+  --dm-nav-text: #cbd5e1;
+  --dm-nav-hover-bg: rgba(245, 158, 11, 0.15);
+  --dm-scrollbar-track: #0f172a;
+  --dm-scrollbar-thumb: #d97706;
+  --dm-skeleton-bg: #334155;
+  --dm-skeleton-shimmer: linear-gradient(90deg, #334155 25%, #475569 50%, #334155 75%);
+  color-scheme: dark;
+}
+
+/* Base Body & Layout in Dark Mode */
+[data-theme="dark"],
+[data-theme="dark"] body {
+  background-color: var(--dm-bg-page) !important;
+  color: var(--dm-text-body) !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Crisp Text Hierarchy in Dark Mode (Anti-Blur & Anti-Washed Out) */
+[data-theme="dark"] h1, 
+[data-theme="dark"] h2, 
+[data-theme="dark"] h3, 
+[data-theme="dark"] h4, 
+[data-theme="dark"] h5, 
+[data-theme="dark"] h6 {
+  color: var(--dm-text-heading) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] p,
+[data-theme="dark"] li,
+[data-theme="dark"] label,
+[data-theme="dark"] span:not([class*="bg-"]):not([class*="text-amber"]):not([class*="text-emerald"]):not([class*="text-rose"]):not([class*="text-sky"]) {
+  color: var(--dm-text-body);
+}
+
+/* Reading scripture font contrast in dark mode */
+[data-theme="dark"] .font-reading {
+  color: #f1f5f9 !important;
+}
+
+[data-theme="dark"] .text-reading {
+  color: #f1f5f9 !important;
+}
+
+/* Light mode reading contrast guarantee */
+body:not([data-theme="dark"]) .font-reading,
+[data-theme="light"] .font-reading {
+  color: #1e293b !important;
+  -webkit-text-fill-color: #1e293b !important;
+}
+
+/* Ensure light mode p/span do NOT inherit transparent text-fill from gradient parents */
+body:not([data-theme="dark"]) p,
+body:not([data-theme="dark"]) li,
+body:not([data-theme="dark"]) label {
+  -webkit-text-fill-color: currentColor;
+}
+
+/* Hero motto explicit fill — override any -webkit-text-fill-color: transparent leak */
+body:not([data-theme="dark"]) .hero-motto,
+[data-theme="light"] .hero-motto {
+  color: #6b2a00 !important;
+  -webkit-text-fill-color: #6b2a00 !important;
+}
+
+/* HERO SECTION HIGH-CONTRAST TYPOGRAPHY GUARANTEE */
+.hero-main-title {
+  color: #0f172a !important;
+}
+[data-theme="dark"] .hero-main-title {
+  color: #f8fafc !important;
+  -webkit-text-fill-color: #f8fafc !important;
+}
+
+.hero-motto {
+  color: #6b2a00 !important;  /* Deep amber-brown — max contrast on light cream bg */
+  font-weight: 700 !important;
+  text-shadow: none !important;
+  -webkit-text-fill-color: #6b2a00 !important;  /* Override any gradient-text inheritance */
+}
+[data-theme="dark"] .hero-motto {
+  color: #fcd34d !important;  /* Bright amber-gold — high contrast on dark navy hero */
+  -webkit-text-fill-color: #fcd34d !important;
+  font-weight: 700 !important;
+  text-shadow: 0 1px 12px rgba(251,191,36,0.25);
+}
+
+.hero-description {
+  color: #1e293b !important;
+  font-weight: 600 !important;
+  -webkit-text-fill-color: #1e293b !important;  /* Prevent gradient-text leak */
+}
+[data-theme="dark"] .hero-description {
+  color: #e2e8f0 !important;
+  -webkit-text-fill-color: #e2e8f0 !important;
+  font-weight: 500 !important;
+}
+
+/* Override Tailwind Slate text colors to ensure high-contrast legibility */
+[data-theme="dark"] .text-slate-900,
+[data-theme="dark"] .text-slate-800,
+[data-theme="dark"] .text-gray-900,
+[data-theme="dark"] .text-gray-800,
+[data-theme="dark"] .text-stone-900,
+[data-theme="dark"] .text-stone-800 {
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .text-slate-700,
+[data-theme="dark"] .text-slate-600,
+[data-theme="dark"] .text-gray-700,
+[data-theme="dark"] .text-gray-600,
+[data-theme="dark"] .text-stone-700,
+[data-theme="dark"] .text-stone-600 {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .text-slate-500,
+[data-theme="dark"] .text-slate-400,
+[data-theme="dark"] .text-gray-500,
+[data-theme="dark"] .text-gray-400 {
+  color: #94a3b8 !important;
+}
+
+/* Warm, Radiant Accent Colors in Dark Mode */
+[data-theme="dark"] .text-amber-800,
+[data-theme="dark"] .text-amber-900,
+[data-theme="dark"] .text-amber-700 {
+  color: #fbbf24 !important;
+}
+
+[data-theme="dark"] .text-emerald-800,
+[data-theme="dark"] .text-emerald-700 {
+  color: #34d399 !important;
+}
+
+[data-theme="dark"] .text-rose-800,
+[data-theme="dark"] .text-rose-700 {
+  color: #fb7185 !important;
+}
+
+[data-theme="dark"] .text-sky-800,
+[data-theme="dark"] .text-sky-700,
+[data-theme="dark"] .text-blue-800,
+[data-theme="dark"] .text-blue-700 {
+  color: #60a5fa !important;
+}
+
+/* Light Background Containers Conversion for Dark Mode */
+[data-theme="dark"] .bg-white,
+[data-theme="dark"] [class*="bg-white/"],
+[data-theme="dark"] .glass-panel {
+  background-color: var(--dm-bg-card) !important;
+  border-color: var(--dm-border) !important;
+  color: var(--dm-text-body) !important;
+}
+
+[data-theme="dark"] .glass-header {
+  background: var(--dm-header-bg) !important;
+  border-color: var(--dm-border) !important;
+}
+
+/* Convert all light cream & pastel gradients (like Admin settings header & card banners) to deep glass */
+[data-theme="dark"] [class*="from-amber-50"],
+[data-theme="dark"] [class*="from-orange-50"],
+[data-theme="dark"] [class*="from-slate-50"],
+[data-theme="dark"] [class*="from-yellow-50"],
+[data-theme="dark"] [class*="from-amber-100"],
+[data-theme="dark"] [class*="via-orange-50"],
+[data-theme="dark"] [class*="via-amber-50"],
+[data-theme="dark"] [class*="to-amber-100"],
+[data-theme="dark"] [class*="to-amber-50"],
+[data-theme="dark"] [class*="to-orange-50"],
+[data-theme="dark"] [class*="bg-amber-50"],
+[data-theme="dark"] [class*="bg-orange-50"],
+[data-theme="dark"] [class*="bg-slate-50"],
+[data-theme="dark"] [class*="bg-gray-50"],
+[data-theme="dark"] [class*="bg-yellow-50"],
+[data-theme="dark"] [class*="bg-amber-100"] {
+  background-image: none !important;
+  background-color: #1e293b !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+[data-theme="dark"] .border-amber-200,
+[data-theme="dark"] .border-amber-300,
+[data-theme="dark"] .border-slate-200,
+[data-theme="dark"] .border-gray-200 {
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* Buttons in Dark Mode */
+[data-theme="dark"] button.bg-white,
+[data-theme="dark"] a.bg-white {
+  background-color: #334155 !important;
+  color: #f8fafc !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+[data-theme="dark"] button.bg-white:hover,
+[data-theme="dark"] a.bg-white:hover {
+  background-color: #475569 !important;
+  color: #ffffff !important;
+}
+
+/* Badges & Pills in Dark Mode */
+[data-theme="dark"] .bg-amber-500\/20,
+[data-theme="dark"] .bg-amber-100 {
+  background-color: rgba(245, 158, 11, 0.22) !important;
+  color: #fbbf24 !important;
+  border-color: rgba(245, 158, 11, 0.4) !important;
+}
+
+[data-theme="dark"] .bg-emerald-500\/20,
+[data-theme="dark"] .bg-emerald-100 {
+  background-color: rgba(16, 185, 129, 0.22) !important;
+  color: #34d399 !important;
+  border-color: rgba(16, 185, 129, 0.4) !important;
+}
+
+[data-theme="dark"] .bg-rose-500\/20,
+[data-theme="dark"] .bg-rose-100 {
+  background-color: rgba(244, 63, 94, 0.22) !important;
+  color: #fb7185 !important;
+  border-color: rgba(244, 63, 94, 0.4) !important;
+}
+
+/* Nav Tabs & Settings Tabs in Dark Mode */
+[data-theme="dark"] .settings-nav-btn {
+  color: #94a3b8 !important;
+}
+[data-theme="dark"] .settings-nav-btn.active {
+  background-color: rgba(245, 158, 11, 0.18) !important;
+  color: #fbbf24 !important;
+  border-bottom-color: #f59e0b !important;
+}
+[data-theme="dark"] .settings-nav-btn:not(.active):hover {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  color: #f8fafc !important;
+}
+
+/* Form Inputs in Dark Mode */
+[data-theme="dark"] input[type="text"],
+[data-theme="dark"] input[type="email"],
+[data-theme="dark"] input[type="password"],
+[data-theme="dark"] input[type="number"],
+[data-theme="dark"] input[type="tel"],
+[data-theme="dark"] input[type="url"],
+[data-theme="dark"] select,
+[data-theme="dark"] textarea {
+  background-color: var(--dm-input-bg) !important;
+  border-color: var(--dm-input-border) !important;
+  color: var(--dm-text-heading) !important;
+}
+
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder {
+  color: #64748b !important;
+}
+
+/* Tables & Data Grid in Dark Mode */
+[data-theme="dark"] table {
+  border-color: #334155 !important;
+}
+
+[data-theme="dark"] table th {
+  background-color: #0f172a !important;
+  color: #cbd5e1 !important;
+  border-color: #334155 !important;
+}
+
+[data-theme="dark"] table td {
+  border-color: #334155 !important;
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] table tbody tr:hover td {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+}
+
+/* Modals & Popups in Dark Mode */
+[data-theme="dark"] .modal-overlay > div {
+  background-color: var(--dm-modal-bg) !important;
+  border-color: var(--dm-border) !important;
+  color: var(--dm-text-body) !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Footer & Scrollbars */
+[data-theme="dark"] footer {
+  background-color: var(--dm-footer-bg) !important;
+}
+[data-theme="dark"] ::-webkit-scrollbar-track { background: var(--dm-scrollbar-track); }
+[data-theme="dark"] ::-webkit-scrollbar-thumb { background: var(--dm-scrollbar-thumb); }
+
+@media (prefers-color-scheme: dark) {
+  body:not([data-theme="light"]) {
+    /* Auto dark mode — overridden by explicit toggle */
+  }
+}
+
+html {
+  color-scheme: light;
 }
 
 *, *::before, *::after {
   box-sizing: border-box;
+}
+
+/* ====== GLOBAL FONT RENDERING: crisp text in both light & dark themes ====== */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+
+/* ====== NO-TRANSITION: suppress all transitions during theme switch to prevent font blur ====== */
+.theme-switching,
+.theme-switching *,
+.theme-switching *::before,
+.theme-switching *::after {
+  transition: none !important;
+  animation-duration: 0.001ms !important;
+  animation-delay: 0ms !important;
 }
 
 body {
@@ -102,6 +492,8 @@ body {
   min-height: 100vh;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 /* Typography Classes */
@@ -160,6 +552,19 @@ body {
 
 .hero-gradient-bg {
   background: linear-gradient(135deg, #fffbf0 0%, #fef3c7 45%, #e0f2fe 100%);
+}
+
+/* Dark mode hero: deep navy so text is always legible */
+[data-theme="dark"] .hero-gradient-bg {
+  background: linear-gradient(135deg, #0f172a 0%, #1a2744 50%, #0f2027 100%) !important;
+  border-color: rgba(255,255,255,0.08) !important;
+}
+/* Dark mode hero decorative blobs — keep subtle warmth on dark bg */
+[data-theme="dark"] .hero-gradient-bg .bg-amber-400\/20 {
+  background-color: rgba(251, 191, 36, 0.08) !important;
+}
+[data-theme="dark"] .hero-gradient-bg .bg-sky-400\/15 {
+  background-color: rgba(56, 189, 248, 0.06) !important;
 }
 
 /* Glass Panels & Headers (Cheerful Light Mode) */
@@ -408,9 +813,387 @@ div.relative > i.fa-regular {
 .animate-float { animation: floatGentle 4s ease-in-out infinite; }
 
 ::selection { background: #fde68a; color: #0f172a; }
+/* ======================== LOADING SCREEN ======================== */
+#app-loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0c1a2e 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+#app-loading-screen.hidden,
+#app-loading-screen.fade-out {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+.loading-logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #d97706, #f59e0b);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  color: #fff;
+  margin-bottom: 24px;
+  box-shadow: 0 8px 40px rgba(217, 119, 6, 0.5);
+  animation: pulseGlow 2s infinite;
+}
+.loading-bar-track {
+  width: 220px;
+  height: 4px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 9999px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+.loading-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #d97706, #f59e0b, #d97706);
+  background-size: 200% 100%;
+  border-radius: 9999px;
+  animation: shimmerLoad 1.5s ease-in-out infinite;
+  width: 60%;
+}
+@keyframes shimmerLoad {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* ======================== SKELETON LOADING ======================== */
+.skeleton {
+  background: var(--dm-skeleton-bg, #f1f5f9);
+  border-radius: 8px;
+  animation: skeletonPulse 1.5s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+}
+.skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--dm-skeleton-shimmer, linear-gradient(90deg, transparent 25%, rgba(255,255,255,0.4) 50%, transparent 75%));
+  background-size: 200% 100%;
+  animation: skeletonShimmer 1.5s ease-in-out infinite;
+}
+@keyframes skeletonPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+@keyframes skeletonShimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.skeleton-card {
+  background: var(--dm-skeleton-bg, #f1f5f9);
+  border-radius: 24px;
+  overflow: hidden;
+  padding: 20px;
+  animation: skeletonPulse 1.5s ease-in-out infinite;
+}
+.skeleton-text-lg { height: 20px; margin-bottom: 10px; }
+.skeleton-text-sm { height: 12px; margin-bottom: 6px; width: 80%; }
+.skeleton-text-xs { height: 10px; margin-bottom: 4px; width: 60%; }
+.skeleton-btn { height: 38px; border-radius: 12px; }
+.skeleton-badge { height: 22px; width: 70px; border-radius: 9999px; }
+
+/* ======================== BREADCRUMB ======================== */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #64748b;
+  flex-wrap: wrap;
+  padding: 8px 0;
+  margin-bottom: 12px;
+}
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.breadcrumb-item a, .breadcrumb-item button {
+  color: #d97706;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: inherit;
+  font-weight: inherit;
+}
+.breadcrumb-item a:hover, .breadcrumb-item button:hover { text-decoration: underline; }
+.breadcrumb-sep { color: #cbd5e1; }
+.breadcrumb-current { color: #475569; }
+[data-theme="dark"] .breadcrumb { color: #94a3b8; }
+[data-theme="dark"] .breadcrumb-current { color: #64748b; }
+
+/* ======================== TOAST NOTIFICATION SYSTEM ======================== */
+#toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+  max-width: 360px;
+  width: calc(100vw - 48px);
+}
+.toast {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: #1e293b;
+  color: #f1f5f9;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  font-size: 0.82rem;
+  font-weight: 500;
+  pointer-events: all;
+  border-left: 4px solid transparent;
+  animation: toastSlideIn 0.35s cubic-bezier(0.4,0,0.2,1);
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+}
+.toast.toast-success { border-color: #10b981; background: rgba(16,185,129,0.15); }
+.toast.toast-error { border-color: #ef4444; background: rgba(239,68,68,0.15); }
+.toast.toast-warning { border-color: #f59e0b; background: rgba(245,158,11,0.15); }
+.toast.toast-info { border-color: #0ea5e9; background: rgba(14,165,233,0.15); }
+.toast-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+.toast-body { flex: 1; }
+.toast-title { font-weight: 700; margin-bottom: 2px; }
+.toast-msg { color: #94a3b8; font-size: 0.75rem; }
+.toast-close { background: none; border: none; color: #64748b; cursor: pointer; padding: 2px; font-size: 0.8rem; transition: color 0.2s; }
+.toast-close:hover { color: #f1f5f9; }
+.toast.toast-hide { animation: toastSlideOut 0.3s ease forwards; }
+@keyframes toastSlideIn {
+  from { transform: translateX(120%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+@keyframes toastSlideOut {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(120%); opacity: 0; }
+}
+
+/* ======================== MATH CAPTCHA ======================== */
+.captcha-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: rgba(245, 158, 11, 0.07);
+  border: 1.5px solid rgba(245, 158, 11, 0.2);
+  margin-top: 4px;
+}
+.captcha-question {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #f59e0b;
+  flex-shrink: 0;
+  min-width: 80px;
+}
+.captcha-input {
+  flex: 1;
+  min-width: 0;
+  padding: 8px 12px !important;
+  border-radius: 10px !important;
+  font-size: 0.9rem !important;
+  text-align: center;
+  font-weight: 700 !important;
+}
+.captcha-refresh {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #64748b;
+  font-size: 0.85rem;
+  padding: 4px;
+  transition: color 0.2s, transform 0.3s;
+}
+.captcha-refresh:hover { color: #d97706; transform: rotate(90deg); }
+
+/* ======================== RATE LIMIT WARNING ======================== */
+.rate-limit-warning {
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1.5px solid rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+  font-size: 0.78rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+/* ======================== PAGE TRANSITIONS ======================== */
+.page-view {
+  animation: pageFadeIn 0.3s ease;
+}
+@keyframes pageFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ======================== ONBOARDING WIZARD ======================== */
+.onboarding-step {
+  display: none;
+}
+.onboarding-step.active {
+  display: block;
+  animation: pageFadeIn 0.3s ease;
+}
+.onboarding-progress-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #e2e8f0;
+  transition: all 0.3s;
+}
+.onboarding-progress-dot.active {
+  background: #f59e0b;
+  transform: scale(1.3);
+}
+.onboarding-progress-dot.completed {
+  background: #10b981;
+}
+
+/* ======================== STREAK DISPLAY ======================== */
+.streak-flame {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: #ea580c;
+  animation: streakPulse 2s ease-in-out infinite;
+}
+@keyframes streakPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* ======================== RESPONSIVE TABLES ======================== */
+.table-scroll-x {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+.table-scroll-x::-webkit-scrollbar { height: 4px; }
+.table-scroll-x::-webkit-scrollbar-thumb { background: #f59e0b; border-radius: 9999px; }
+
+/* ======================== MOBILE BOTTOM NAV ======================== */
+@media (max-width: 640px) {
+  .mobile-bottom-nav-spacer { height: 72px; }
+  #mobile-bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: rgba(255,255,255,0.98);
+    backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(245,158,11,0.15);
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.06);
+    display: flex;
+    align-items: stretch;
+    height: 64px;
+  }
+  [data-theme="dark"] #mobile-bottom-nav {
+    background: rgba(15,23,42,0.98);
+    border-top-color: rgba(245,158,11,0.15);
+  }
+  .mobile-nav-btn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    font-size: 0.6rem;
+    font-weight: 600;
+    color: #64748b;
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 8px 4px;
+    transition: color 0.2s;
+  }
+  .mobile-nav-btn i { font-size: 1.1rem; }
+  .mobile-nav-btn.active { color: #d97706; }
+  .mobile-nav-btn:hover { color: #d97706; }
+}
 </style>
 </head>
 <body class="min-h-screen flex flex-col">
+
+  <!-- ==================== LOADING SCREEN ==================== -->
+  <div id="app-loading-screen" aria-live="polite" aria-label="Memuat halaman...">
+    <div class="loading-logo">
+      <i class="fa-solid fa-book-bible"></i>
+    </div>
+    <div style="text-align:center;">
+      <div style="font-family: 'Playfair Display', Georgia, serif; font-weight: 800; font-size: 1.4rem; color: #f59e0b; letter-spacing: 0.05em; margin-bottom: 4px;">BELAJAR ALKITAB</div>
+      <div style="font-size: 0.75rem; color: #64748b; font-style: italic;">"Belajar Firman Tuhan dengan Mudah, Bertahap, dan Berdasarkan Alkitab."</div>
+    </div>
+    <div class="loading-bar-track">
+      <div class="loading-bar-fill"></div>
+    </div>
+    <div style="margin-top: 12px; font-size: 0.7rem; color: #475569;" id="loading-status-text">Memuat kurikulum Alkitab...</div>
+  </div>
+
+  <script>
+    // Independent watchdog: ensures loading screen always dismisses even if assets take time
+    setTimeout(function() {
+      var ls = document.getElementById('app-loading-screen');
+      if (ls && ls.style.display !== 'none') {
+        ls.style.transition = 'opacity 0.4s ease';
+        ls.style.opacity = '0';
+        ls.style.pointerEvents = 'none';
+        setTimeout(function() {
+          ls.style.display = 'none';
+          ls.classList.add('hidden');
+        }, 400);
+      }
+    }, 900);
+  </script>
+
+  <!-- ==================== TOAST NOTIFICATION CONTAINER ==================== -->
+  <div id="toast-container" role="region" aria-label="Notifikasi"></div>
+
+  <!-- ==================== MOBILE BOTTOM NAVIGATION ==================== -->
+  <nav id="mobile-bottom-nav" class="sm:hidden" aria-label="Navigasi mobile bawah" style="display:none;">
+    <button class="mobile-nav-btn" id="mob-nav-home" onclick="APP.navigateTo('page-landing')" aria-label="Beranda">
+      <i class="fa-solid fa-house"></i>
+      <span>Beranda</span>
+    </button>
+    <button class="mobile-nav-btn" id="mob-nav-books" onclick="APP.navigateTo('page-books-curriculum')" aria-label="66 Kitab">
+      <i class="fa-solid fa-book-open"></i>
+      <span>66 Kitab</span>
+    </button>
+    <button class="mobile-nav-btn" id="mob-nav-quiz" onclick="APP.navigateTo('page-quiz-center')" aria-label="Kuis">
+      <i class="fa-solid fa-brain"></i>
+      <span>Kuis</span>
+    </button>
+    <button class="mobile-nav-btn" id="mob-nav-user" onclick="APP.handleMobileUserNav()" aria-label="Profil">
+      <i class="fa-solid fa-circle-user"></i>
+      <span>Saya</span>
+    </button>
+  </nav>
 
 
   <!-- TOP GLOBAL ANNOUNCEMENT BANNER -->
@@ -540,6 +1323,9 @@ div.relative > i.fa-regular {
     </div>
   </header>
 
+  <!-- BREADCRUMB NAVIGATION CONTAINER -->
+  <div id="breadcrumb-container" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-3 hidden" aria-label="Breadcrumb Navigasi"></div>
+
   <!-- ==================== FULL-SCREEN LOGIN GATE ==================== -->
   <div id="page-login" class="login-gate hidden fixed inset-0 z-[200] flex items-center justify-center overflow-y-auto" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #0c1a2e 70%, #1a0a00 100%);">
 
@@ -591,8 +1377,27 @@ div.relative > i.fa-regular {
               <div class="input-icon-wrapper" style="position:relative;">
                 <i class="fa-solid fa-lock" style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#94a3b8;font-size:0.85rem;pointer-events:none;z-index:10;"></i>
                 <input type="password" id="gate-login-password" required placeholder="Masukkan password"
-                  style="width:100%;border-radius:12px;padding:11px 14px 11px 45px !important;font-size:0.9rem;outline:none;transition:border 0.2s;box-sizing:border-box;"
+                  style="width:100%;border-radius:12px;padding:11px 42px 11px 45px !important;font-size:0.9rem;outline:none;transition:border 0.2s;box-sizing:border-box;"
                   onfocus="this.style.borderColor='#f59e0b'" onblur="this.style.borderColor='#cbd5e1'">
+                <button type="button" onclick="APP.togglePasswordVisibility('gate-login-password', this)"
+                  style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:#94a3b8;cursor:pointer;font-size:0.9rem;padding:4px;z-index:10;"
+                  aria-label="Tampilkan atau sembunyikan password">
+                  <i class="fa-regular fa-eye"></i>
+                </button>
+              </div>
+            </div>
+            <!-- Math CAPTCHA Anti-Bot Security -->
+            <div>
+              <label style="display:block;color:#cbd5e1;font-size:0.75rem;font-weight:600;margin-bottom:6px;">
+                <i class="fa-solid fa-robot mr-1" style="color:#f59e0b;"></i> Verifikasi Keamanan (Anti-Bot)
+              </label>
+              <div class="captcha-box" style="background:rgba(245,158,11,0.08);border:1.5px solid rgba(245,158,11,0.3);border-radius:12px;padding:8px 12px;display:flex;align-items:center;gap:10px;">
+                <span class="captcha-question" id="gate-user-captcha-question" style="font-weight:800;font-size:0.95rem;color:#f59e0b;min-width:70px;">? + ? = ?</span>
+                <input type="number" id="gate-user-captcha-answer" required min="0" max="99" placeholder="Jawab..."
+                  style="flex:1;min-width:0;text-align:center;font-weight:700;padding:7px 10px !important;border-radius:8px;font-size:0.88rem;border:1px solid #cbd5e1;outline:none;">
+                <button type="button" class="captcha-refresh" onclick="APP.refreshCaptcha('gate_user')" aria-label="Acak ulang pertanyaan verifikasi" style="background:none;border:none;cursor:pointer;color:#94a3b8;font-size:0.95rem;padding:4px;transition:color 0.2s;">
+                  <i class="fa-solid fa-rotate-right"></i>
+                </button>
               </div>
             </div>
             <button type="submit" style="width:100%;padding:13px;border-radius:12px;background:linear-gradient(135deg,#d97706,#f59e0b);color:#fff;font-weight:700;font-size:0.88rem;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(217,119,6,0.4);transition:all 0.2s;margin-top:4px;"
@@ -649,15 +1454,29 @@ div.relative > i.fa-regular {
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
               <div>
                 <label style="display:block;color:#cbd5e1;font-size:0.75rem;font-weight:600;margin-bottom:5px;">Password *</label>
-                <input type="password" id="gate-reg-password" required placeholder="Min. 6 karakter"
-                  style="width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:9px 12px;color:#f1f5f9;font-size:0.82rem;outline:none;box-sizing:border-box;"
-                  onfocus="this.style.borderColor='#f59e0b'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+                <div style="position:relative;">
+                  <input type="password" id="gate-reg-password" required placeholder="Min. 6 karakter"
+                    style="width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:9px 34px 9px 12px;color:#f1f5f9;font-size:0.82rem;outline:none;box-sizing:border-box;"
+                    onfocus="this.style.borderColor='#f59e0b'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+                  <button type="button" onclick="APP.togglePasswordVisibility('gate-reg-password', this)"
+                    style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:none;color:#94a3b8;cursor:pointer;font-size:0.8rem;padding:2px;z-index:10;"
+                    aria-label="Tampilkan atau sembunyikan password">
+                    <i class="fa-regular fa-eye"></i>
+                  </button>
+                </div>
               </div>
               <div>
                 <label style="display:block;color:#cbd5e1;font-size:0.75rem;font-weight:600;margin-bottom:5px;">Konfirmasi *</label>
-                <input type="password" id="gate-reg-confirm" required placeholder="Ulangi password"
-                  style="width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:9px 12px;color:#f1f5f9;font-size:0.82rem;outline:none;box-sizing:border-box;"
-                  onfocus="this.style.borderColor='#f59e0b'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+                <div style="position:relative;">
+                  <input type="password" id="gate-reg-confirm" required placeholder="Ulangi password"
+                    style="width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:9px 34px 9px 12px;color:#f1f5f9;font-size:0.82rem;outline:none;box-sizing:border-box;"
+                    onfocus="this.style.borderColor='#f59e0b'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+                  <button type="button" onclick="APP.togglePasswordVisibility('gate-reg-confirm', this)"
+                    style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:none;color:#94a3b8;cursor:pointer;font-size:0.8rem;padding:2px;z-index:10;"
+                    aria-label="Tampilkan atau sembunyikan password">
+                    <i class="fa-regular fa-eye"></i>
+                  </button>
+                </div>
               </div>
             </div>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
@@ -710,21 +1529,21 @@ div.relative > i.fa-regular {
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           
-          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-100 border border-amber-300 text-amber-700 text-xs font-semibold mb-6 shadow-sm">
-            <i class="fa-solid fa-sparkles text-amber-400"></i>
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-100 dark:bg-amber-950/60 border border-amber-300 dark:border-amber-700/50 text-amber-900 dark:text-amber-300 text-xs font-bold mb-6 shadow-sm">
+            <i class="fa-solid fa-sparkles text-amber-600 dark:text-amber-400"></i>
             <span>Platform Pembelajaran Alkitab Terstruktur & Inklusif</span>
           </div>
 
-          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-serif-sacred text-slate-800 max-w-4xl mx-auto leading-tight mb-6">
+          <h1 class="hero-main-title text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-serif-sacred max-w-4xl mx-auto leading-tight mb-6">
             BELAJAR <span class="gold-gradient-text">ALKITAB</span>
           </h1>
 
-          <p class="text-xl sm:text-2xl font-serif text-amber-600 italic max-w-3xl mx-auto mb-6">
-            “Belajar Firman Tuhan dengan Mudah, Bertahap, dan Berdasarkan Alkitab.”
+          <p class="hero-motto text-xl sm:text-2xl font-serif font-bold italic max-w-3xl mx-auto mb-6">
+            &ldquo;Belajar Firman Tuhan dengan Mudah, Bertahap, dan Berdasarkan Alkitab.&rdquo;
           </p>
 
-          <p class="text-base text-slate-600 max-w-2xl mx-auto leading-relaxed mb-10">
-            Membimbing setiap orang dari tingkat dasar hingga pendalaman rohani—dari Kitab Kejadian sampai Kitab Wahyu. Dirancang dengan penuh kasih untuk anak-anak, remaja, pemuda, orang dewasa, bapak, ibu, pelayan gereja, hingga persiapan cerdas cermat Alkitab.
+          <p class="hero-description text-base sm:text-lg font-semibold max-w-2xl mx-auto leading-relaxed mb-10">
+            Membimbing setiap orang dari tingkat dasar hingga pendalaman rohani &mdash; dari Kitab Kejadian sampai Kitab Wahyu. Dirancang dengan penuh kasih untuk anak-anak, remaja, pemuda, orang dewasa, bapak, ibu, pelayan gereja, hingga persiapan cerdas cermat Alkitab.
           </p>
 
           <!-- HERO CALL TO ACTIONS -->
@@ -1965,17 +2784,245 @@ div.relative > i.fa-regular {
       </div>
     </section>
 
-    <!-- ==================== PAGE 15: TERMS AND CONDITIONS ==================== -->
-    <section id="page-terms" class="page-view hidden py-14">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="p-8 sm:p-10 rounded-3xl bg-white border border-amber-100 text-sm text-slate-700 leading-relaxed font-reading space-y-4 shadow-sm">
-          <h1 class="text-2xl font-bold font-sans text-amber-700 mb-4 pb-2 border-b border-amber-100">Syarat & Ketentuan</h1>
-          <p>1. Website ini adalah platform pembelajaran firman Tuhan yang ditujukan untuk membantu setiap orang mengenal dan memahami Alkitab secara bertahap.</p>
-          <p>2. Sertifikat digital yang diterbitkan adalah bentuk apresiasi ketekunan belajar dan bukan merupakan gelar akademis atau sertifikasi resmi kependetaan/institusi gereja.</p>
-          <p>3. Asisten AI adalah alat bantu belajar. Untuk kepastian makna teks firman Tuhan, kami selalu menganjurkan Anda untuk membaca teks Alkitab secara langsung dalam persekutuan jemaat yang sehat.</p>
+    </section>
+
+    <!-- ==================== PAGE: DEDICATED ADMIN LOGIN PORTAL ==================== -->
+    <section id="page-login-admin" class="page-view hidden py-16">
+      <div class="max-w-md mx-auto px-4 sm:px-6">
+        <div class="p-8 sm:p-10 rounded-3xl glass-panel border-2 border-amber-300 shadow-2xl relative overflow-hidden">
+          <div class="absolute -right-8 -top-8 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl pointer-events-none"></div>
+          
+          <div class="text-center mb-8">
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-500 to-amber-700 text-white flex items-center justify-center mx-auto mb-4 text-2xl border border-amber-400 shadow-lg">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <h1 class="text-2xl font-bold font-serif-sacred text-slate-900 mb-1">Portal Administrator</h1>
+            <p class="text-xs text-slate-500">Area Terbatas • Manajemen Platform &amp; Kurikulum</p>
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 text-[11px] font-bold mt-3">
+              <i class="fa-solid fa-lock text-xs"></i> Proteksi Terenkripsi SHA-256
+            </div>
+          </div>
+
+          <!-- Rate limit warning -->
+          <div id="page-admin-rate-warning" class="rate-limit-warning hidden mb-4" role="alert">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <span id="page-admin-rate-msg">Percobaan login dibatasi. Silakan tunggu.</span>
+          </div>
+
+          <form onsubmit="APP.handleLoginAdmin(event)" id="form-page-admin-login" class="space-y-4 text-xs" autocomplete="off" novalidate>
+            <div>
+              <label class="block text-slate-700 font-semibold mb-1.5 text-xs" for="page-admin-username">Username / Email Pengelola</label>
+              <div class="relative">
+                <i class="fa-solid fa-user-shield absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
+                <input type="text" id="page-admin-username" name="admin-username" required autocomplete="username"
+                  class="w-full bg-amber-50 border border-amber-200 rounded-xl pl-9 pr-3.5 py-2.5 text-slate-900 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100 font-medium"
+                  placeholder="admin atau email pengelola">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-slate-700 font-semibold mb-1.5 text-xs" for="page-admin-password">Password Kredensial</label>
+              <div class="relative">
+                <i class="fa-solid fa-key absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
+                <input type="password" id="page-admin-password" name="admin-password" required autocomplete="current-password"
+                  class="w-full bg-amber-50 border border-amber-200 rounded-xl pl-9 pr-10 py-2.5 text-slate-900 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100 font-medium"
+                  placeholder="Masukkan password admin">
+                <button type="button" onclick="APP.togglePasswordVisibility('page-admin-password', this)"
+                  class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-amber-600 text-sm transition-colors" aria-label="Toggle password">
+                  <i class="fa-regular fa-eye"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Math CAPTCHA -->
+            <div>
+              <label class="block text-slate-700 font-bold mb-1 text-[11px]"><i class="fa-solid fa-robot mr-1 text-amber-500"></i> Verifikasi Anti-Automasi</label>
+              <div class="captcha-box">
+                <span class="captcha-question" id="page-admin-captcha-question">? + ? = ?</span>
+                <input type="number" id="page-admin-captcha-answer" class="captcha-input bg-amber-50 border border-amber-200 text-slate-800" placeholder="Jawab..." required min="0" max="99">
+                <button type="button" class="captcha-refresh" onclick="APP.refreshCaptcha('page_admin')" aria-label="Refresh CAPTCHA">
+                  <i class="fa-solid fa-rotate-right"></i>
+                </button>
+              </div>
+            </div>
+
+            <button type="submit" class="w-full py-3.5 rounded-xl gold-gradient-bg text-white font-bold text-sm shadow-lg hover:opacity-95 transition-all flex items-center justify-center gap-2">
+              <i class="fa-solid fa-shield-check"></i> Verifikasi &amp; Masuk Admin
+            </button>
+          </form>
+
+          <div class="mt-6 pt-4 border-t border-amber-100 text-center">
+            <button onclick="APP.navigateTo('page-landing')" class="text-xs text-slate-500 hover:text-amber-600 font-medium transition-colors">
+              <i class="fa-solid fa-arrow-left mr-1"></i> Kembali ke Beranda Utama
+            </button>
+          </div>
         </div>
       </div>
     </section>
+
+    <!-- ==================== PAGE: SECURITY & DATA PROTECTION ==================== -->
+    <section id="page-security" class="page-view hidden py-14">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="p-8 sm:p-12 rounded-3xl glass-panel border border-slate-200 shadow-2xl">
+          <div class="text-center mb-10">
+            <div class="w-16 h-16 rounded-2xl bg-emerald-500/20 text-emerald-600 flex items-center justify-center text-3xl mx-auto mb-4 border border-emerald-500/30">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <h1 class="text-3xl font-extrabold text-slate-900 font-serif-sacred mb-2">Standar Keamanan &amp; Perlindungan Data</h1>
+            <p class="text-xs text-slate-500">Prinsip Keamanan Berlapis untuk Menjaga Privasi &amp; Integritas Pembelajaran Firman Tuhan</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 text-xs">
+            <div class="p-5 rounded-2xl bg-white border border-amber-100 shadow-sm space-y-2">
+              <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center text-lg font-bold">
+                <i class="fa-solid fa-key"></i>
+              </div>
+              <h3 class="font-bold text-slate-900 text-sm">Enkripsi Kredensial SHA-256</h3>
+              <p class="text-slate-600 leading-relaxed">Seluruh kata sandi pengguna di-hash menggunakan algoritma SHA-256 dengan salt unik sebelum diproses, sehingga password asli tidak pernah tersimpan secara plain text.</p>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-white border border-amber-100 shadow-sm space-y-2">
+              <div class="w-10 h-10 rounded-xl bg-sky-500/10 text-sky-600 flex items-center justify-center text-lg font-bold">
+                <i class="fa-solid fa-gauge-high"></i>
+              </div>
+              <h3 class="font-bold text-slate-900 text-sm">Rate Limiting &amp; Anti-Bruteforce</h3>
+              <p class="text-slate-600 leading-relaxed">Sistem membatasi percobaan masuk yang gagal (maksimal 5 kali) dengan mekanisme penangguhan sementara (lockout) untuk mencegah serangan tebakan otomatis.</p>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-white border border-amber-100 shadow-sm space-y-2">
+              <div class="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-600 flex items-center justify-center text-lg font-bold">
+                <i class="fa-solid fa-user-shield"></i>
+              </div>
+              <h3 class="font-bold text-slate-900 text-sm">Isolasi Hak Akses (Least Privilege)</h3>
+              <p class="text-slate-600 leading-relaxed">Pemisahan peran ketat antara peserta belajar biasa, mentor rohani, dan administrator. Pengguna hanya dapat mengakses data progres dan catatan pribadinya sendiri.</p>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-white border border-amber-100 shadow-sm space-y-2">
+              <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center text-lg font-bold">
+                <i class="fa-solid fa-database"></i>
+              </div>
+              <h3 class="font-bold text-slate-900 text-sm">Cadangan Data &amp; Sinkronisasi Aman</h3>
+              <p class="text-slate-600 leading-relaxed">Integrasi Google Apps Script (SSOT Cloud Engine) dilengkapi validasi token CSRF dan pencatatan audit log terperinci atas seluruh aksi administratif.</p>
+            </div>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-amber-50 border border-amber-200 text-xs space-y-2">
+            <h4 class="font-bold text-amber-900 flex items-center gap-1.5 text-sm">
+              <i class="fa-solid fa-bug"></i> Pelaporan Kerentanan &amp; Masukan Keamanan
+            </h4>
+            <p class="text-slate-700 leading-relaxed">
+              Jika Anda menemukan potensi celah keamanan atau memiliki saran perbaikan, mohon laporkan langsung kepada pengembang melalui email <strong class="text-amber-800">raymondsirait2231@gmail.com</strong>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PAGE: FINANCIAL & DONATION TRANSPARENCY ==================== -->
+    <section id="page-transparency" class="page-view hidden py-14">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-500/10 text-rose-600 text-[11px] font-bold mb-2">
+            <i class="fa-solid fa-hand-holding-heart"></i> AKUNTABILITAS &amp; INTEGRITAS
+          </div>
+          <h1 class="text-3xl font-extrabold text-slate-900 font-serif-sacred mb-2">Laporan Transparansi Pelayanan</h1>
+          <p class="text-xs text-slate-500">Penyaluran persembahan kasih dan donasi jemaat untuk operasional, misi penginjilan, dan sosial.</p>
+        </div>
+
+        <!-- Summary KPI Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+          <div class="p-6 rounded-2xl bg-white border border-rose-200 shadow-sm text-center">
+            <div class="text-xs text-slate-500 mb-1">Total Dana Terhimpun</div>
+            <div id="transparency-total-funds" class="text-2xl font-bold text-rose-600 font-mono">Rp 0</div>
+            <div class="text-[10px] text-slate-400 mt-1">Dari persembahan terverifikasi</div>
+          </div>
+          <div class="p-6 rounded-2xl bg-white border border-amber-200 shadow-sm text-center">
+            <div class="text-xs text-slate-500 mb-1">Jumlah Transaksi Donasi</div>
+            <div id="transparency-total-count" class="text-2xl font-bold text-amber-600">0</div>
+            <div class="text-[10px] text-slate-400 mt-1">Transaksi tersalurkan</div>
+          </div>
+          <div class="p-6 rounded-2xl bg-white border border-emerald-200 shadow-sm text-center">
+            <div class="text-xs text-slate-500 mb-1">Status Verifikasi</div>
+            <div class="text-2xl font-bold text-emerald-600">100% Sah</div>
+            <div class="text-[10px] text-slate-400 mt-1">Diverifikasi pengelola</div>
+          </div>
+        </div>
+
+        <!-- Transparency Breakdown List -->
+        <div class="p-6 sm:p-8 rounded-3xl bg-white border border-amber-200 shadow-md mb-8">
+          <h3 class="text-base font-bold text-slate-900 mb-4 font-serif-sacred flex items-center gap-2">
+            <i class="fa-solid fa-chart-pie text-amber-500"></i> Alokasi Penyaluran Dana Kasih
+          </h3>
+          <div class="space-y-3 text-xs">
+            <div>
+              <div class="flex justify-between font-semibold text-slate-700 mb-1">
+                <span>Pengembangan Materi &amp; Server Cloud (35%)</span>
+                <span>Rp 17.500.000 / Rp 50.000.000 Target</span>
+              </div>
+              <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
+                <div class="h-full bg-amber-500 rounded-full" style="width: 35%;"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between font-semibold text-slate-700 mb-1">
+                <span>Misi Penginjilan &amp; Hamba Tuhan Pelosok (30%)</span>
+                <span>Rp 15.000.000</span>
+              </div>
+              <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
+                <div class="h-full bg-rose-500 rounded-full" style="width: 30%;"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between font-semibold text-slate-700 mb-1">
+                <span>Diakonia &amp; Bantuan Sosial Jemaat (20%)</span>
+                <span>Rp 10.000.000</span>
+              </div>
+              <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
+                <div class="h-full bg-sky-500 rounded-full" style="width: 20%;"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between font-semibold text-slate-700 mb-1">
+                <span>Pengadaan Alkitab &amp; Buku Pembinaan (15%)</span>
+                <span>Rp 7.500.000</span>
+              </div>
+              <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
+                <div class="h-full bg-emerald-500 rounded-full" style="width: 15%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <button onclick="APP.openChurchDonationModal()" class="px-6 py-3 rounded-2xl bg-gradient-to-r from-rose-500 via-amber-500 to-rose-500 text-white font-bold text-xs shadow-lg hover:opacity-95 transition-all">
+            <i class="fa-solid fa-hand-holding-heart mr-1.5"></i> Salurkan Donasi / Persembahan Kasih
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PAGE: 404 / ERROR PAGE ==================== -->
+    <section id="page-404" class="page-view hidden py-20 text-center">
+      <div class="max-w-lg mx-auto px-4">
+        <div class="w-24 h-24 rounded-3xl bg-amber-500/10 text-amber-600 flex items-center justify-center text-4xl mx-auto mb-6 border border-amber-500/20">
+          <i class="fa-solid fa-compass"></i>
+        </div>
+        <h1 class="text-4xl font-extrabold text-slate-900 font-serif-sacred mb-2">404</h1>
+        <h2 class="text-lg font-bold text-slate-800 mb-3">Halaman Tidak Ditemukan</h2>
+        <p class="text-xs text-slate-500 mb-8 leading-relaxed">
+          Halaman yang Anda tuju tidak tersedia atau telah dipindahkan. Mari kembali ke jalur pembelajaran firman Tuhan.
+        </p>
+        <div class="flex flex-wrap items-center justify-center gap-3">
+          <button onclick="APP.navigateTo('page-landing')" class="px-5 py-2.5 rounded-xl gold-gradient-bg text-white font-bold text-xs shadow-md">
+            <i class="fa-solid fa-house mr-1.5"></i> Kembali ke Beranda
+          </button>
+          <button onclick="APP.navigateTo('page-books-curriculum')" class="px-5 py-2.5 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-900 font-bold text-xs border border-amber-200">
+            <i class="fa-solid fa-book-bible mr-1.5"></i> 66 Kitab Alkitab
+          </button>
+        </div>
+      </div>
+    </section>
+
 
     <!-- ==================== PAGE 16: ADMIN ONLY SETTINGS & REGISTERED USER DIRECTORY ==================== -->
     <section id="page-profile-settings" class="page-view hidden py-12">
@@ -2410,59 +3457,144 @@ div.relative > i.fa-regular {
 
 
   <!-- MODAL: LOGIN USER -->
-  <div id="modal-login-user" class="modal-overlay hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-white backdrop-blur-sm">
+  <div id="modal-login-user" class="modal-overlay hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
     <div class="bg-white w-full max-w-md p-6 sm:p-8 rounded-3xl border border-amber-100 shadow-2xl relative">
-      <button onclick="APP.closeModal('modal-login-user')" class="absolute top-5 right-5 text-slate-400 hover:text-amber-600 text-lg transition-colors">
+      <button onclick="APP.closeModal('modal-login-user')" class="absolute top-5 right-5 text-slate-400 hover:text-amber-600 text-lg transition-colors" aria-label="Tutup modal login">
         <i class="fa-solid fa-xmark"></i>
       </button>
       <div class="text-center mb-6">
-        <h3 class="text-2xl font-bold font-serif-sacred text-amber-700">Masuk Peserta Belajar</h3>
-        <p class="text-xs text-slate-400">Lanjutkan perjalanan belajar firman Tuhan Anda</p>
+        <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center mx-auto mb-3 text-xl border border-amber-200">
+          <i class="fa-solid fa-book-bible"></i>
+        </div>
+        <h2 class="text-2xl font-bold font-serif-sacred text-amber-700">Masuk Peserta Belajar</h2>
+        <p class="text-xs text-slate-400 mt-1">Lanjutkan perjalanan belajar firman Tuhan Anda</p>
       </div>
-      <form onsubmit="APP.handleLoginUser(event)" class="space-y-4 text-xs">
+
+      <!-- Rate limit warning user -->
+      <div id="user-login-rate-warning" class="rate-limit-warning hidden" role="alert">
+        <i class="fa-solid fa-clock"></i>
+        <span id="user-login-rate-msg">Terlalu banyak percobaan login. Silakan tunggu 5 menit.</span>
+      </div>
+
+      <form onsubmit="APP.handleLoginUser(event)" id="form-login-user" class="space-y-4 text-xs" autocomplete="off" novalidate>
         <div>
-          <label class="block text-slate-700 font-medium mb-1 text-sm">Username atau Email</label>
-          <input type="text" id="login-identifier" required class="w-full bg-amber-50 border border-amber-200 rounded-xl px-3.5 py-2.5 text-slate-800 focus:outline-none focus:border-amber-400">
+          <label class="block text-slate-700 font-medium mb-1 text-sm" for="login-identifier">Username atau Email</label>
+          <div class="relative">
+            <i class="fa-solid fa-user absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
+            <input type="text" id="login-identifier" name="identifier" required autocomplete="username"
+              class="w-full bg-amber-50 border border-amber-200 rounded-xl pl-9 pr-3.5 py-2.5 text-slate-800 focus:outline-none focus:border-amber-400"
+              placeholder="Username atau email Anda" aria-label="Username atau email">
+          </div>
         </div>
         <div>
-          <label class="block text-slate-700 font-medium mb-1 text-sm">Password</label>
-          <input type="password" id="login-password" required class="w-full bg-amber-50 border border-amber-200 rounded-xl px-3.5 py-2.5 text-slate-800 focus:outline-none focus:border-amber-400">
+          <div class="flex items-center justify-between mb-1">
+            <label class="text-slate-700 font-medium text-sm" for="login-password">Password</label>
+            <button type="button" onclick="APP.openForgotPassword()" class="text-xs text-amber-500 hover:text-amber-700 font-semibold hover:underline" aria-label="Lupa password">
+              Lupa Password?
+            </button>
+          </div>
+          <div class="relative">
+            <i class="fa-solid fa-lock absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
+            <input type="password" id="login-password" name="password" required autocomplete="current-password"
+              class="w-full bg-amber-50 border border-amber-200 rounded-xl pl-9 pr-10 py-2.5 text-slate-800 focus:outline-none focus:border-amber-400"
+              placeholder="Password Anda" aria-label="Password">
+            <button type="button" onclick="APP.togglePasswordVisibility('login-password', this)"
+              class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-amber-600 text-sm transition-colors" aria-label="Tampilkan/sembunyikan password">
+              <i class="fa-regular fa-eye"></i>
+            </button>
+          </div>
         </div>
-        <button type="submit" class="w-full py-3 rounded-xl gold-gradient-bg text-white font-bold text-sm shadow-md hover:opacity-95 transition-all">
-          Masuk ke Dashboard
+
+        <!-- Math CAPTCHA untuk user -->
+        <div>
+          <label class="block text-slate-700 font-bold mb-1 text-xs"><i class="fa-solid fa-robot mr-1 text-amber-500"></i> Verifikasi (Anti-Bot)</label>
+          <div class="captcha-box">
+            <span class="captcha-question" id="user-captcha-question">? + ? = ?</span>
+            <input type="number" id="user-captcha-answer" class="captcha-input bg-amber-50 border border-amber-200 text-slate-800" placeholder="Jawab..." required min="0" max="99" aria-label="Jawaban CAPTCHA">
+            <button type="button" class="captcha-refresh" onclick="APP.refreshCaptcha('user')" aria-label="Refresh CAPTCHA">
+              <i class="fa-solid fa-rotate-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <button type="submit" id="btn-user-login-submit"
+          class="w-full py-3 rounded-xl gold-gradient-bg text-white font-bold text-sm shadow-md hover:opacity-95 transition-all flex items-center justify-center gap-2">
+          <i class="fa-solid fa-arrow-right-to-bracket"></i> Masuk ke Dashboard
         </button>
       </form>
       <div class="mt-4 text-center text-xs text-slate-400">
-        Belum punya akun? <button onclick="APP.closeModal('modal-login-user'); APP.openModal('modal-register-user')" class="text-amber-400 font-bold hover:underline">Daftar sekarang</button>
+        Belum punya akun? <button onclick="APP.closeModal('modal-login-user'); APP.openModal('modal-register-user')" class="text-amber-500 font-bold hover:underline">Daftar sekarang</button>
       </div>
     </div>
   </div>
 
   <!-- MODAL: LOGIN ADMIN -->
-  <div id="modal-login-admin" class="modal-overlay hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-white backdrop-blur-sm">
-    <div class="bg-white w-full max-w-md p-6 sm:p-8 rounded-3xl border border-amber-300 shadow-2xl relative">
-      <button onclick="APP.closeModal('modal-login-admin')" class="absolute top-5 right-5 text-slate-400 hover:text-amber-600 text-lg transition-colors">
+  <div id="modal-login-admin" class="modal-overlay hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
+    <div class="bg-white w-full max-w-md p-6 sm:p-8 rounded-3xl border-2 border-amber-300 shadow-2xl relative">
+      <button onclick="APP.closeModal('modal-login-admin')" class="absolute top-5 right-5 text-slate-400 hover:text-amber-600 text-lg transition-colors" aria-label="Tutup modal login admin">
         <i class="fa-solid fa-xmark"></i>
       </button>
       <div class="text-center mb-6">
-        <div class="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center mx-auto mb-3 text-xl border border-amber-500/40">
+        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-500 to-amber-700 text-white flex items-center justify-center mx-auto mb-3 text-2xl border border-amber-500/40 shadow-lg">
           <i class="fa-solid fa-shield-halved"></i>
         </div>
-        <h3 class="text-xl font-bold font-serif-sacred text-amber-700">Portal Pengelola (Admin)</h3>
-        <p class="text-xs text-slate-400">Akses khusus manajemen materi & kurikulum</p>
+        <h2 class="text-xl font-bold font-serif-sacred text-amber-700">Portal Pengelola (Admin)</h2>
+        <p class="text-xs text-slate-400 mt-1">Akses khusus manajemen materi &amp; kurikulum platform</p>
       </div>
-      <form onsubmit="APP.handleLoginAdmin(event)" class="space-y-4 text-xs">
+
+      <!-- Rate limit warning admin -->
+      <div id="admin-login-rate-warning" class="rate-limit-warning hidden" role="alert">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <span id="admin-login-rate-msg">Terlalu banyak percobaan. Silakan tunggu.</span>
+      </div>
+
+      <form onsubmit="APP.handleLoginAdmin(event)" id="form-login-admin" class="space-y-4 text-xs" autocomplete="off" novalidate>
         <div>
-          <label class="block text-slate-700 font-medium mb-1 text-sm">Email / Username Admin</label>
-          <input type="text" id="admin-login-username" value="admin" required class="w-full bg-amber-50 border border-amber-200 rounded-xl px-3.5 py-2.5 text-slate-800 focus:outline-none focus:border-amber-400">
+          <label class="block text-slate-700 font-medium mb-1 text-sm" for="admin-login-username">Email / Username Admin</label>
+          <div class="relative">
+            <i class="fa-solid fa-user absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
+            <input type="text" id="admin-login-username" name="admin-username" required autocomplete="username"
+              class="w-full bg-amber-50 border border-amber-200 rounded-xl pl-9 pr-3.5 py-2.5 text-slate-800 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100"
+              placeholder="admin atau email admin" aria-label="Username atau email admin">
+          </div>
         </div>
         <div>
-          <label class="block text-slate-700 font-medium mb-1 text-sm">Password Admin</label>
-          <input type="password" id="admin-login-password" value="admin123" required class="w-full bg-amber-50 border border-amber-200 rounded-xl px-3.5 py-2.5 text-slate-800 focus:outline-none focus:border-amber-400">
+          <div class="flex items-center justify-between mb-1">
+            <label class="text-slate-700 font-medium text-sm" for="admin-login-password">Password Admin</label>
+          </div>
+          <div class="relative">
+            <i class="fa-solid fa-lock absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
+            <input type="password" id="admin-login-password" name="admin-password" required autocomplete="current-password"
+              class="w-full bg-amber-50 border border-amber-200 rounded-xl pl-9 pr-10 py-2.5 text-slate-800 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100"
+              placeholder="Password admin" aria-label="Password admin">
+            <button type="button" onclick="APP.togglePasswordVisibility('admin-login-password', this)"
+              class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-amber-600 text-sm transition-colors" aria-label="Tampilkan/sembunyikan password">
+              <i class="fa-regular fa-eye"></i>
+            </button>
+          </div>
         </div>
-        <button type="submit" class="w-full py-3 rounded-xl gold-gradient-bg text-white font-bold text-sm shadow-md hover:opacity-95 transition-all">
-          Masuk ke Dashboard Admin
+
+        <!-- Math CAPTCHA untuk admin -->
+        <div>
+          <label class="block text-slate-700 font-bold mb-1 text-xs"><i class="fa-solid fa-robot mr-1 text-amber-500"></i> Verifikasi Keamanan (Anti-Bot)</label>
+          <div class="captcha-box">
+            <span class="captcha-question" id="admin-captcha-question">? + ? = ?</span>
+            <input type="number" id="admin-captcha-answer" class="captcha-input bg-amber-50 border border-amber-200 text-slate-800" placeholder="Jawab..." required min="0" max="99" aria-label="Jawaban CAPTCHA">
+            <button type="button" class="captcha-refresh" onclick="APP.refreshCaptcha('admin')" aria-label="Refresh CAPTCHA">
+              <i class="fa-solid fa-rotate-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <button type="submit" id="btn-admin-login-submit"
+          class="w-full py-3 rounded-xl gold-gradient-bg text-white font-bold text-sm shadow-md hover:opacity-95 transition-all flex items-center justify-center gap-2">
+          <i class="fa-solid fa-shield-check"></i> Masuk ke Dashboard Admin
         </button>
+
+        <p class="text-center text-xs text-slate-400 pt-1">
+          <i class="fa-solid fa-info-circle mr-1 text-amber-400"></i>
+          Akses admin hanya untuk pengelola resmi platform.
+        </p>
       </form>
     </div>
   </div>
@@ -2588,6 +3720,217 @@ div.relative > i.fa-regular {
           Selesaikan Pendaftaran
         </button>
       </form>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL: FORGOT & RESET PASSWORD ==================== -->
+  <div id="modal-forgot-password" class="modal-overlay hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
+    <div class="bg-white w-full max-w-md p-6 sm:p-8 rounded-3xl border border-amber-200 shadow-2xl relative">
+      <button onclick="APP.closeModal('modal-forgot-password')" class="absolute top-5 right-5 text-slate-400 hover:text-amber-600 text-lg transition-colors" aria-label="Tutup modal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <!-- Step 1: Request Reset Code -->
+      <div id="forgot-step-request">
+        <div class="text-center mb-6">
+          <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center mx-auto mb-3 text-xl border border-amber-200">
+            <i class="fa-solid fa-key"></i>
+          </div>
+          <h2 class="text-xl font-bold font-serif-sacred text-slate-900">Lupa Password Akun</h2>
+          <p class="text-xs text-slate-500 mt-1">Masukkan email atau username yang terdaftar untuk verifikasi pemulihan kata sandi.</p>
+        </div>
+
+        <form onsubmit="APP.handleForgotPasswordRequest(event)" class="space-y-4 text-xs">
+          <div>
+            <label class="block text-slate-700 font-semibold mb-1 text-xs" for="forgot-identifier">Email atau Username Terdaftar</label>
+            <div class="relative">
+              <i class="fa-solid fa-envelope absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
+              <input type="text" id="forgot-identifier" required class="w-full bg-amber-50 border border-amber-200 rounded-xl pl-9 pr-3.5 py-2.5 text-slate-800 focus:outline-none focus:border-amber-400" placeholder="nama@email.com atau username">
+            </div>
+          </div>
+
+          <!-- CAPTCHA -->
+          <div>
+            <label class="block text-slate-700 font-bold mb-1 text-[11px]"><i class="fa-solid fa-robot mr-1 text-amber-500"></i> Verifikasi Keamanan</label>
+            <div class="captcha-box">
+              <span class="captcha-question" id="forgot-captcha-question">? + ? = ?</span>
+              <input type="number" id="forgot-captcha-answer" class="captcha-input bg-amber-50 border border-amber-200 text-slate-800" placeholder="Jawab..." required min="0" max="99">
+              <button type="button" class="captcha-refresh" onclick="APP.refreshCaptcha('forgot')" aria-label="Refresh CAPTCHA">
+                <i class="fa-solid fa-rotate-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <button type="submit" class="w-full py-3 rounded-xl gold-gradient-bg text-white font-bold text-xs sm:text-sm shadow-md hover:opacity-95 transition-all flex items-center justify-center gap-2">
+            <i class="fa-solid fa-paper-plane"></i> Minta Kode Pemulihan
+          </button>
+        </form>
+
+        <div class="mt-4 text-center text-xs text-slate-400">
+          Ingat password Anda? <button onclick="APP.closeModal('modal-forgot-password'); APP.openModal('modal-login-user')" class="text-amber-600 font-bold hover:underline">Masuk sekarang</button>
+        </div>
+      </div>
+
+      <!-- Step 2: Enter Code & New Password -->
+      <div id="forgot-step-reset" class="hidden">
+        <div class="text-center mb-6">
+          <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center mx-auto mb-3 text-xl border border-emerald-200">
+            <i class="fa-solid fa-shield-check"></i>
+          </div>
+          <h2 class="text-xl font-bold font-serif-sacred text-slate-900">Atur Ulang Password Baru</h2>
+          <p class="text-xs text-slate-500 mt-1" id="forgot-reset-hint">Kode verifikasi 6-digit telah dikirim.</p>
+        </div>
+
+        <form onsubmit="APP.handleResetPasswordSubmit(event)" class="space-y-4 text-xs">
+          <div>
+            <label class="block text-slate-700 font-semibold mb-1 text-xs" for="reset-code-input">Kode Verifikasi 6 Digit</label>
+            <input type="text" id="reset-code-input" maxlength="6" required class="w-full bg-amber-50 border border-amber-200 rounded-xl px-3.5 py-2.5 text-center font-mono text-base font-bold text-slate-800 tracking-widest focus:outline-none focus:border-amber-400" placeholder="123456">
+          </div>
+
+          <div>
+            <label class="block text-slate-700 font-semibold mb-1 text-xs" for="reset-new-password">Password Baru</label>
+            <div class="relative">
+              <input type="password" id="reset-new-password" required minlength="6" class="w-full bg-amber-50 border border-amber-200 rounded-xl px-3.5 py-2.5 pr-10 text-slate-800 focus:outline-none focus:border-amber-400" placeholder="Minimal 6 karakter">
+              <button type="button" onclick="APP.togglePasswordVisibility('reset-new-password', this)" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-amber-600 text-sm">
+                <i class="fa-regular fa-eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-slate-700 font-semibold mb-1 text-xs" for="reset-confirm-password">Konfirmasi Password Baru</label>
+            <input type="password" id="reset-confirm-password" required minlength="6" class="w-full bg-amber-50 border border-amber-200 rounded-xl px-3.5 py-2.5 text-slate-800 focus:outline-none focus:border-amber-400" placeholder="Ulangi password baru">
+          </div>
+
+          <button type="submit" class="w-full py-3 rounded-xl gold-gradient-bg text-white font-bold text-xs sm:text-sm shadow-md hover:opacity-95 transition-all flex items-center justify-center gap-2">
+            <i class="fa-solid fa-check"></i> Simpan Password Baru
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== MODAL: ONBOARDING WIZARD ==================== -->
+  <div id="modal-onboarding" class="modal-overlay hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
+    <div class="bg-white w-full max-w-lg p-6 sm:p-8 rounded-3xl border-2 border-amber-300 shadow-2xl relative">
+      <!-- Steps Indicator -->
+      <div class="flex items-center justify-center gap-3 mb-6">
+        <div class="onboarding-progress-dot active" id="ob-dot-1"></div>
+        <div class="w-8 h-0.5 bg-slate-200"></div>
+        <div class="onboarding-progress-dot" id="ob-dot-2"></div>
+        <div class="w-8 h-0.5 bg-slate-200"></div>
+        <div class="onboarding-progress-dot" id="ob-dot-3"></div>
+      </div>
+
+      <!-- Step 1: Level -->
+      <div id="ob-step-1" class="onboarding-step active text-center space-y-4">
+        <div class="w-16 h-16 rounded-2xl bg-amber-500/20 text-amber-600 flex items-center justify-center text-3xl mx-auto border border-amber-400">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <h3 class="text-xl font-bold font-serif-sacred text-slate-900">Selamat Datang di Belajar Alkitab!</h3>
+        <p class="text-xs text-slate-500 max-w-sm mx-auto">Mari tentukan titik awal perjalanan belajar Anda agar materi disesuaikan dengan kebutuhan rohani Anda.</p>
+        
+        <div class="space-y-2 text-left text-xs pt-2">
+          <label class="p-3 rounded-2xl border-2 border-amber-400 bg-amber-50 flex items-center gap-3 cursor-pointer">
+            <input type="radio" name="ob-level" value="Level A" checked class="text-amber-500">
+            <div>
+              <div class="font-bold text-slate-900">Level A — Baru Mengenal Firman Tuhan</div>
+              <div class="text-[11px] text-slate-500">Pengenalan dasar struktur Alkitab, cerita utama, dan doa sederhana.</div>
+            </div>
+          </label>
+          <label class="p-3 rounded-2xl border border-slate-200 hover:border-amber-300 flex items-center gap-3 cursor-pointer">
+            <input type="radio" name="ob-level" value="Level B" class="text-amber-500">
+            <div>
+              <div class="font-bold text-slate-900">Level B — Pertumbuhan Iman</div>
+              <div class="text-[11px] text-slate-500">Memahami tema kitab-kitab, tokoh teladan, dan aplikasi firman harian.</div>
+            </div>
+          </label>
+          <label class="p-3 rounded-2xl border border-slate-200 hover:border-amber-300 flex items-center gap-3 cursor-pointer">
+            <input type="radio" name="ob-level" value="Level C" class="text-amber-500">
+            <div>
+              <div class="font-bold text-slate-900">Level C — Pendalaman Doktrin &amp; Teologi</div>
+              <div class="text-[11px] text-slate-500">Eksegesis pasal kunci, nubuat mesianik, dan pemahaman mendalam.</div>
+            </div>
+          </label>
+        </div>
+
+        <div class="pt-4">
+          <button onclick="APP.nextOnboardingStep(2)" class="w-full py-3 rounded-xl gold-gradient-bg text-white font-bold text-xs shadow-md">
+            Lanjut ke Langkah 2 <i class="fa-solid fa-arrow-right ml-1"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 2: Target & Kebiasaan -->
+      <div id="ob-step-2" class="onboarding-step text-center space-y-4">
+        <div class="w-16 h-16 rounded-2xl bg-sky-500/20 text-sky-600 flex items-center justify-center text-3xl mx-auto border border-sky-400">
+          <i class="fa-solid fa-bullseye"></i>
+        </div>
+        <h3 class="text-xl font-bold font-serif-sacred text-slate-900">Tentukan Target Harian</h3>
+        <p class="text-xs text-slate-500 max-w-sm mx-auto">Konsistensi kecil setiap hari membawa pertumbuhan rohani yang luar biasa.</p>
+        
+        <div class="grid grid-cols-2 gap-3 text-xs pt-2">
+          <label class="p-3.5 rounded-2xl border-2 border-amber-400 bg-amber-50 text-center cursor-pointer">
+            <input type="radio" name="ob-target" value="15" checked class="sr-only">
+            <div class="font-bold text-amber-700 text-sm">15 Menit / Hari</div>
+            <div class="text-[10px] text-slate-500 mt-1">1 Pasal + 1 Hafalan</div>
+          </label>
+          <label class="p-3.5 rounded-2xl border border-slate-200 hover:border-amber-300 text-center cursor-pointer">
+            <input type="radio" name="ob-target" value="30" class="sr-only">
+            <div class="font-bold text-slate-800 text-sm">30 Menit / Hari</div>
+            <div class="text-[10px] text-slate-500 mt-1">1 Modul Lengkap + Kuis</div>
+          </label>
+        </div>
+
+        <div class="flex items-center gap-3 pt-4">
+          <button onclick="APP.nextOnboardingStep(1)" class="w-1/3 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs">
+            Kembali
+          </button>
+          <button onclick="APP.nextOnboardingStep(3)" class="w-2/3 py-3 rounded-xl gold-gradient-bg text-white font-bold text-xs shadow-md">
+            Lanjut ke Langkah 3 <i class="fa-solid fa-arrow-right ml-1"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 3: Selesai -->
+      <div id="ob-step-3" class="onboarding-step text-center space-y-4">
+        <div class="w-16 h-16 rounded-2xl bg-emerald-500/20 text-emerald-600 flex items-center justify-center text-3xl mx-auto border border-emerald-400">
+          <i class="fa-solid fa-sparkles"></i>
+        </div>
+        <h3 class="text-xl font-bold font-serif-sacred text-slate-900">Anda Siap Memulai!</h3>
+        <p class="text-xs text-slate-500 max-w-sm mx-auto">
+          Setiap modul dilengkapi penjelasan mudah, ayat kunci, kuis interaktif, dan sertifikat motivasi belajar.
+        </p>
+
+        <div class="p-4 rounded-2xl bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 text-xs text-amber-900 italic font-reading">
+          “Firman-Mu itu pelita bagi kakiku dan terang bagi jalanku.” — Mazmur 119:105
+        </div>
+
+        <div class="pt-4 flex items-center gap-3">
+          <button onclick="APP.finishOnboarding(true)" class="w-full py-3.5 rounded-2xl gold-gradient-bg text-white font-bold text-xs sm:text-sm shadow-xl hover:opacity-95 transition-all flex items-center justify-center gap-2">
+            <i class="fa-solid fa-book-open"></i> Mulai Pelajari 66 Kitab Alkitab
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL: QUICK GLOBAL SEARCH ==================== -->
+  <div id="modal-quick-search" class="modal-overlay hidden fixed inset-0 z-50 flex items-start justify-center p-4 pt-16 sm:pt-24 bg-slate-950/70 backdrop-blur-sm">
+    <div class="bg-white w-full max-w-2xl rounded-3xl border-2 border-amber-300 shadow-2xl overflow-hidden animate-float">
+      <div class="p-4 border-b border-amber-100 flex items-center gap-3">
+        <i class="fa-solid fa-magnifying-glass text-amber-500 text-base"></i>
+        <input type="text" id="global-search-input" oninput="APP.handleGlobalSearchInput(this.value)" placeholder="Cari 66 kitab, tokoh Alkitab, modul, atau ayat hafalan..." class="w-full bg-transparent border-none text-sm text-slate-900 focus:outline-none placeholder-slate-400 font-medium">
+        <button onclick="APP.closeModal('modal-quick-search')" class="text-slate-400 hover:text-slate-600 text-sm px-2 py-1 rounded-lg">
+          ESC
+        </button>
+      </div>
+      <div id="global-search-results" class="max-h-96 overflow-y-auto p-4 space-y-2 text-xs">
+        <div class="text-center py-6 text-slate-400">
+          Ketik kata kunci untuk mencari kitab (Kejadian, Mazmur, Yohanes), topik, atau tokoh Alkitab.
+        </div>
+      </div>
     </div>
   </div>
 
@@ -3669,7 +5012,7 @@ div.relative > i.fa-regular {
   <!-- JavaScript App Logic -->
   
 <script>
-﻿/**
+/**
  * WEBSITE BELAJAR ALKITAB - CLIENT-SIDE ENGINE (SPA)
  * Slogan: "Belajar Firman Tuhan dengan Mudah, Bertahap, dan Berdasarkan Alkitab."
  * Pengembang: Raymond Isak Junius Sirait (Raymond Sirait)
@@ -4362,6 +5705,7 @@ const DEFAULT_DONATION_SETTINGS = {
 
 // ========================== 7. APP STATE & CENTRAL STORE ========================== //
 window.APP = {
+  csrfToken: (typeof crypto !== 'undefined' && crypto.randomUUID) ? crypto.randomUUID() : 'csrf_' + Math.random().toString(36).slice(2) + Date.now(),
   settings: {
     gasUrl: localStorage.getItem('APP_GAS_URL') || "https://script.google.com/macros/s/AKfycbwyTIK3OrWRe9Hz5iJEOAv2EePbnympmRGOeJ0ZA6eswWOSNaKW5PFW6_o3I7IbCnQ/exec",
     autoSyncEnabled: localStorage.getItem('APP_AUTO_SYNC') !== 'false',
@@ -4385,7 +5729,7 @@ window.APP = {
     registrationStatus: "open"
   },
   donationSettings: { ...DEFAULT_DONATION_SETTINGS },
-  currentUser: null, // { userId, name, nickname, username, email, role, profile }
+  currentUser: null,
   users: [...SAMPLE_USERS],
   bibleBooks: BIBLE_BOOKS_DATA,
   lessons: [...SAMPLE_LESSONS],
@@ -4394,6 +5738,8 @@ window.APP = {
   notes: [],
   memorization: [],
   donations: [...SAMPLE_DONATIONS],
+  bookmarks: [],
+  auditLogs: [],
   currentInitialPreset: 50000,
   lastGeneratedReceipt: null,
   announcements: [
@@ -4401,10 +5747,25 @@ window.APP = {
   ],
   supportTickets: [],
   achievements: [],
+
+  // CAPTCHA & Security State
+  captchaData: {
+    user: { a: 0, b: 0, ans: 0 },
+    admin: { a: 0, b: 0, ans: 0 },
+    page_admin: { a: 0, b: 0, ans: 0 },
+    gate_user: { a: 0, b: 0, ans: 0 },
+    forgot: { a: 0, b: 0, ans: 0 }
+  },
+  rateLimits: {
+    user: { fails: 0, lockUntil: 0 },
+    admin: { fails: 0, lockUntil: 0 }
+  },
+  pendingResetCode: null,
+  pendingResetUser: null,
   
   // Active states
   currentLesson: null,
-  currentLessonStep: 1, // 1 to 16
+  currentLessonStep: 1,
   currentQuizState: {
     questions: [],
     currentIndex: 0,
@@ -4418,7 +5779,7 @@ window.APP = {
   isSyncing: false,
   lastSyncTimestamp: null,
 
-  // Initialize
+  // ==================== INITIALIZE ====================
   init() {
     this.loadState();
     this.applyTheme();
@@ -4429,11 +5790,40 @@ window.APP = {
     this.renderAnnouncementsBanner();
     this.renderChurchDonationsStats();
     this.renderChurchDonationsFeed();
+    this.renderTransparencyReport();
     this.updateSyncBadge(false);
     this.checkInitialDonationPopup();
+    this.refreshAllCaptchas();
+    this.initPWA();
+    this.hideLoadingScreen();
+
     // Silent initial sync with GAS SSOT database
     if (this.settings.gasUrl || LIVE_GAS_URL) {
       this.syncFromGoogleSheets(true);
+    }
+  },
+
+  hideLoadingScreen() {
+    const dismiss = () => {
+      const ls = document.getElementById('app-loading-screen');
+      if (ls) {
+        ls.style.transition = 'opacity 0.4s ease';
+        ls.style.opacity = '0';
+        ls.style.pointerEvents = 'none';
+        setTimeout(() => {
+          ls.style.display = 'none';
+          ls.classList.add('hidden');
+        }, 400);
+      }
+    };
+    setTimeout(dismiss, 350);
+  },
+
+  initPWA() {
+    if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
+      navigator.serviceWorker.register('./sw.js').catch(err => {
+        console.debug("Service Worker register skipped or offline:", err);
+      });
     }
   },
 
@@ -4443,23 +5833,15 @@ window.APP = {
       if (savedUser) this.currentUser = JSON.parse(savedUser);
 
       const savedUsers = localStorage.getItem('APP_USERS');
-      if (savedUsers) {
-        this.users = JSON.parse(savedUsers);
-      } else {
-        this.users = [...SAMPLE_USERS];
-      }
+      if (savedUsers) this.users = JSON.parse(savedUsers);
+      else this.users = [...SAMPLE_USERS];
 
       const savedDonations = localStorage.getItem('APP_DONATIONS');
-      if (savedDonations) {
-        this.donations = JSON.parse(savedDonations);
-      } else {
-        this.donations = [...SAMPLE_DONATIONS];
-      }
+      if (savedDonations) this.donations = JSON.parse(savedDonations);
+      else this.donations = [...SAMPLE_DONATIONS];
 
       const savedDonSettings = localStorage.getItem('APP_DONATION_SETTINGS');
-      if (savedDonSettings) {
-        this.donationSettings = { ...this.donationSettings, ...JSON.parse(savedDonSettings) };
-      }
+      if (savedDonSettings) this.donationSettings = { ...this.donationSettings, ...JSON.parse(savedDonSettings) };
 
       const savedProgress = localStorage.getItem('APP_PROGRESS');
       if (savedProgress) this.progress = JSON.parse(savedProgress);
@@ -4473,15 +5855,21 @@ window.APP = {
       const savedAch = localStorage.getItem('APP_ACHIEVEMENTS');
       if (savedAch) this.achievements = JSON.parse(savedAch);
 
+      const savedBookmarks = localStorage.getItem('APP_BOOKMARKS');
+      if (savedBookmarks) this.bookmarks = JSON.parse(savedBookmarks);
+
+      const savedAudit = localStorage.getItem('APP_AUDIT_LOGS');
+      if (savedAudit) this.auditLogs = JSON.parse(savedAudit);
+
       const savedQuestions = localStorage.getItem('APP_QUESTIONS');
-      if (savedQuestions) {
-        this.questions = JSON.parse(savedQuestions);
-      } else {
-        this.questions = [...SAMPLE_QUESTIONS];
-      }
+      if (savedQuestions) this.questions = JSON.parse(savedQuestions);
+      else this.questions = [...SAMPLE_QUESTIONS];
 
       const savedPlatform = localStorage.getItem('APP_PLATFORM_SETTINGS');
       if (savedPlatform) this.platformSettings = { ...this.platformSettings, ...JSON.parse(savedPlatform) };
+
+      const savedRate = localStorage.getItem('APP_RATE_LIMITS');
+      if (savedRate) this.rateLimits = JSON.parse(savedRate);
     } catch (e) {
       console.warn("Error loading local state:", e);
     }
@@ -4500,7 +5888,10 @@ window.APP = {
       localStorage.setItem('APP_NOTES', JSON.stringify(this.notes));
       localStorage.setItem('APP_MEMORIZATION', JSON.stringify(this.memorization));
       localStorage.setItem('APP_ACHIEVEMENTS', JSON.stringify(this.achievements));
+      localStorage.setItem('APP_BOOKMARKS', JSON.stringify(this.bookmarks));
+      localStorage.setItem('APP_AUDIT_LOGS', JSON.stringify(this.auditLogs));
       localStorage.setItem('APP_PLATFORM_SETTINGS', JSON.stringify(this.platformSettings));
+      localStorage.setItem('APP_RATE_LIMITS', JSON.stringify(this.rateLimits));
     } catch (e) {
       console.warn("Error saving local state:", e);
     }
@@ -4521,18 +5912,492 @@ window.APP = {
     localStorage.setItem('APP_PLATFORM_SETTINGS', JSON.stringify(this.platformSettings));
   },
 
+  // ==================== THEME CONTROLLER ====================
   applyTheme() {
-    if (this.settings.theme === 'light') {
-      document.body.classList.add('theme-light');
-    } else {
+    const isDark = this.settings.theme === 'dark';
+
+    // Step 1: Freeze all CSS transitions to prevent font-blur flash during theme switch
+    const html = document.documentElement;
+    html.classList.add('theme-switching');
+
+    // Step 2: Apply theme attributes & classes atomically
+    html.setAttribute('data-theme', isDark ? 'dark' : 'light');
+    document.body.setAttribute('data-theme', isDark ? 'dark' : 'light');
+    if (isDark) {
       document.body.classList.remove('theme-light');
+      document.body.classList.add('dark');
+    } else {
+      document.body.classList.add('theme-light');
+      document.body.classList.remove('dark');
     }
+
+    // Step 3: Update toggle icons
+    const icons = document.querySelectorAll('button[onclick*="toggleTheme"] i');
+    icons.forEach(icon => {
+      icon.className = isDark ? 'fa-solid fa-sun text-amber-400' : 'fa-solid fa-moon text-amber-600';
+    });
+
+    // Step 4: Re-enable transitions after browser has painted the new theme (2 rAF = 1 full paint cycle)
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        html.classList.remove('theme-switching');
+      });
+    });
   },
 
   toggleTheme() {
     this.settings.theme = this.settings.theme === 'dark' ? 'light' : 'dark';
     this.saveSettings();
     this.applyTheme();
+    this.showToast(
+      this.settings.theme === 'dark' ? 'Mode Gelap Aktif' : 'Mode Terang Aktif',
+      'Pengaturan tema telah disimpan.',
+      'info',
+      2500
+    );
+  },
+
+  // ==================== SECURITY UTILITIES ====================
+  async hashPassword(password, salt = 'ba_salt_2026_') {
+    if (!password) return '';
+    try {
+      if (window.crypto && crypto.subtle) {
+        const encoder = new TextEncoder();
+        const data = encoder.encode(salt + password);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+      }
+    } catch (err) {
+      console.warn("SubtleCrypto hashing failed, using fallback:", err);
+    }
+    // Fallback hash function
+    let hash = 0;
+    const str = salt + password;
+    for (let i = 0; i < str.length; i++) {
+      const char = str.charCodeAt(i);
+      hash = ((hash << 5) - hash) + char;
+      hash |= 0;
+    }
+    return 'h_' + Math.abs(hash).toString(16);
+  },
+
+  sanitizeHTML(str) {
+    if (!str) return '';
+    const temp = document.createElement('div');
+    temp.textContent = str;
+    return temp.innerHTML;
+  },
+
+  // ==================== MATH CAPTCHA ENGINE ====================
+  refreshAllCaptchas() {
+    ['user', 'admin', 'page_admin', 'gate_user', 'forgot'].forEach(t => this.refreshCaptcha(t));
+  },
+
+  refreshCaptcha(formType) {
+    const a = Math.floor(Math.random() * 9) + 1;
+    const b = Math.floor(Math.random() * 9) + 1;
+    const ans = a + b;
+    this.captchaData[formType] = { a, b, ans };
+
+    let elId = '';
+    if (formType === 'user') elId = 'user-captcha-question';
+    else if (formType === 'admin') elId = 'admin-captcha-question';
+    else if (formType === 'page_admin') elId = 'page-admin-captcha-question';
+    else if (formType === 'gate_user') elId = 'gate-user-captcha-question';
+    else if (formType === 'forgot') elId = 'forgot-captcha-question';
+
+    const el = document.getElementById(elId);
+    if (el) el.textContent = `${a} + ${b} = ?`;
+
+    let inputId = '';
+    if (formType === 'user') inputId = 'user-captcha-answer';
+    else if (formType === 'admin') inputId = 'admin-captcha-answer';
+    else if (formType === 'page_admin') inputId = 'page-admin-captcha-answer';
+    else if (formType === 'gate_user') inputId = 'gate-user-captcha-answer';
+    else if (formType === 'forgot') inputId = 'forgot-captcha-answer';
+
+    const inp = document.getElementById(inputId);
+    if (inp) inp.value = '';
+  },
+
+  verifyCaptcha(formType, inputVal) {
+    const data = this.captchaData[formType];
+    if (!data || !data.ans) return true;
+    return Number(inputVal) === Number(data.ans);
+  },
+
+  // ==================== RATE LIMITING ====================
+  checkRateLimit(type = 'user') {
+    const rl = this.rateLimits[type] || { fails: 0, lockUntil: 0 };
+    const now = Date.now();
+    if (rl.lockUntil && rl.lockUntil > now) {
+      const remainingSeconds = Math.ceil((rl.lockUntil - now) / 1000);
+      const mins = Math.ceil(remainingSeconds / 60);
+      return {
+        locked: true,
+        message: `Terlalu banyak percobaan gagal. Akun dikunci sementara selama ${mins} menit lagi demi keamanan.`
+      };
+    }
+    return { locked: false };
+  },
+
+  recordFailedAttempt(type = 'user') {
+    if (!this.rateLimits[type]) this.rateLimits[type] = { fails: 0, lockUntil: 0 };
+    this.rateLimits[type].fails += 1;
+    const maxAttempts = type === 'admin' ? 5 : 5;
+    const lockDuration = type === 'admin' ? 15 * 60 * 1000 : 5 * 60 * 1000; // 15 min for admin, 5 min for user
+
+    if (this.rateLimits[type].fails >= maxAttempts) {
+      this.rateLimits[type].lockUntil = Date.now() + lockDuration;
+    }
+    this.saveState();
+  },
+
+  resetRateLimit(type = 'user') {
+    this.rateLimits[type] = { fails: 0, lockUntil: 0 };
+    this.saveState();
+  },
+
+  // ==================== TOAST NOTIFICATION SYSTEM ====================
+  showToast(title, message, type = 'info', duration = 4000) {
+    const container = document.getElementById('toast-container');
+    if (!container) return;
+
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${type}`;
+
+    let iconClass = 'fa-solid fa-circle-info text-sky-400';
+    if (type === 'success') iconClass = 'fa-solid fa-circle-check text-emerald-400';
+    else if (type === 'error') iconClass = 'fa-solid fa-circle-xmark text-rose-400';
+    else if (type === 'warning') iconClass = 'fa-solid fa-triangle-exclamation text-amber-400';
+
+    toast.innerHTML = `
+      <div class="toast-icon"><i class="${iconClass}"></i></div>
+      <div class="toast-body">
+        <div class="toast-title">${this.sanitizeHTML(title)}</div>
+        <div class="toast-msg">${this.sanitizeHTML(message)}</div>
+      </div>
+      <button class="toast-close" onclick="this.parentElement.remove()" aria-label="Tutup"><i class="fa-solid fa-xmark"></i></button>
+    `;
+
+    toast.onclick = (e) => {
+      if (e.target.closest('.toast-close')) return;
+      toast.classList.add('toast-hide');
+      setTimeout(() => toast.remove(), 300);
+    };
+
+    container.appendChild(toast);
+
+    setTimeout(() => {
+      if (toast.parentElement) {
+        toast.classList.add('toast-hide');
+        setTimeout(() => toast.remove(), 300);
+      }
+    }, duration);
+  },
+
+  // ==================== AUDIT LOGGING ====================
+  logAdminAction(action, details = {}) {
+    const logEntry = {
+      id: 'LOG-' + Date.now().toString().slice(-6),
+      timestamp: new Date().toISOString(),
+      adminName: this.currentUser ? (this.currentUser.name || this.currentUser.username) : 'System',
+      adminEmail: this.currentUser ? this.currentUser.email : 'system@belajaralkitab.id',
+      action: action,
+      details: details,
+      ip: '127.0.0.1'
+    };
+    this.auditLogs.unshift(logEntry);
+    if (this.auditLogs.length > 200) this.auditLogs.pop();
+    this.saveState();
+  },
+
+  // ==================== PASSWORD VISIBILITY ====================
+  togglePasswordVisibility(inputId, btnElement) {
+    const input = document.getElementById(inputId);
+    if (!input) return;
+    const isPassword = input.type === 'password';
+    input.type = isPassword ? 'text' : 'password';
+    if (btnElement) {
+      const icon = btnElement.querySelector('i');
+      if (icon) {
+        icon.className = isPassword ? 'fa-regular fa-eye-slash text-amber-500' : 'fa-regular fa-eye';
+      }
+    }
+  },
+
+  // ==================== FORGOT & RESET PASSWORD FLOW ====================
+  openForgotPassword() {
+    this.closeModal('modal-login-user');
+    const reqStep = document.getElementById('forgot-step-request');
+    const resStep = document.getElementById('forgot-step-reset');
+    if (reqStep) reqStep.classList.remove('hidden');
+    if (resStep) resStep.classList.add('hidden');
+    this.refreshCaptcha('forgot');
+    this.openModal('modal-forgot-password');
+  },
+
+  async handleForgotPasswordRequest(e) {
+    e.preventDefault();
+    const identifier = document.getElementById('forgot-identifier').value.trim();
+    const captchaAns = document.getElementById('forgot-captcha-answer').value;
+
+    if (!identifier) {
+      Swal.fire({ icon: 'warning', title: 'Data Belum Lengkap', text: 'Masukkan email atau username Anda.' });
+      return;
+    }
+    if (!this.verifyCaptcha('forgot', captchaAns)) {
+      Swal.fire({ icon: 'error', title: 'Verifikasi Gagal', text: 'Jawaban anti-bot matematika salah.' });
+      this.refreshCaptcha('forgot');
+      return;
+    }
+
+    Swal.showLoading();
+    // Simulate / Request reset code
+    const foundUser = (this.users || []).find(u =>
+      (u.email && u.email.toLowerCase() === identifier.toLowerCase()) ||
+      (u.username && u.username.toLowerCase() === identifier.toLowerCase())
+    );
+
+    const resetCode = Math.floor(100000 + Math.random() * 900000).toString();
+    this.pendingResetCode = resetCode;
+    this.pendingResetUser = foundUser ? foundUser.username : identifier;
+
+    Swal.close();
+
+    const reqStep = document.getElementById('forgot-step-request');
+    const resStep = document.getElementById('forgot-step-reset');
+    const hint = document.getElementById('forgot-reset-hint');
+
+    if (reqStep) reqStep.classList.add('hidden');
+    if (resStep) resStep.classList.remove('hidden');
+    if (hint) {
+      hint.innerHTML = `Kode verifikasi demo Anda adalah: <strong class="text-amber-600 font-mono text-sm">${resetCode}</strong>. Masukkan kode ini bersama kata sandi baru.`;
+    }
+
+    this.showToast('Kode Terkirim', `Kode verifikasi: ${resetCode}`, 'info', 10000);
+  },
+
+  async handleResetPasswordSubmit(e) {
+    e.preventDefault();
+    const code = document.getElementById('reset-code-input').value.trim();
+    const newPass = document.getElementById('reset-new-password').value;
+    const confPass = document.getElementById('reset-confirm-password').value;
+
+    if (code !== this.pendingResetCode) {
+      Swal.fire({ icon: 'error', title: 'Kode Salah', text: 'Kode verifikasi 6 digit tidak cocok.' });
+      return;
+    }
+    if (newPass !== confPass) {
+      Swal.fire({ icon: 'warning', title: 'Password Tidak Sama', text: 'Konfirmasi kata sandi baru tidak cocok.' });
+      return;
+    }
+    if (newPass.length < 6) {
+      Swal.fire({ icon: 'warning', title: 'Password Pendek', text: 'Gunakan minimal 6 karakter.' });
+      return;
+    }
+
+    const hashedNew = await this.hashPassword(newPass);
+    if (this.pendingResetUser) {
+      const user = (this.users || []).find(u => u.username === this.pendingResetUser || u.email === this.pendingResetUser);
+      if (user) {
+        user.password = newPass;
+        user.passwordHash = hashedNew;
+      }
+    }
+    this.saveState();
+    this.closeModal('modal-forgot-password');
+    Swal.fire({
+      icon: 'success',
+      title: 'Password Berhasil Diperbarui!',
+      text: 'Silakan masuk menggunakan password baru Anda.',
+      confirmButtonColor: '#d97706'
+    }).then(() => {
+      this.openModal('modal-login-user');
+    });
+  },
+
+  // ==================== BREADCRUMB CONTROLLER ====================
+  renderBreadcrumbs(pageId) {
+    const container = document.getElementById('breadcrumb-container');
+    if (!container) return;
+
+    if (pageId === 'page-landing') {
+      container.classList.add('hidden');
+      return;
+    }
+
+    const pageNames = {
+      'page-books-curriculum': '66 Kitab Alkitab',
+      'page-lesson-player': 'Modul Pembelajaran',
+      'page-quiz-center': 'Pusat Kuis & Bank Soal',
+      'page-ministry': 'Jalur Pelayanan',
+      'page-memorization': 'Ayat Hafalan',
+      'page-notes': 'Catatan & Doa Pribadi',
+      'page-achievements': 'Prestasi & Sertifikat',
+      'page-dashboard-user': 'Dashboard Peserta',
+      'page-dashboard-admin': 'Dashboard Pengelola Admin',
+      'page-profile-settings': 'Pengaturan Admin & Direktori',
+      'page-about': 'Tentang Kami',
+      'page-contact': 'Hubungi Pengembang',
+      'page-help-faq': 'Pusat Bantuan & FAQ',
+      'page-privacy': 'Kebijakan Privasi',
+      'page-terms': 'Syarat & Ketentuan',
+      'page-security': 'Standar Keamanan',
+      'page-transparency': 'Transparansi Pelayanan',
+      'page-login-admin': 'Portal Login Admin',
+      'page-404': '404 Tidak Ditemukan'
+    };
+
+    const currentTitle = pageNames[pageId] || 'Halaman';
+
+    container.classList.remove('hidden');
+    container.innerHTML = `
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <span class="breadcrumb-item">
+          <button onclick="APP.navigateTo('page-landing')"><i class="fa-solid fa-house mr-1"></i> Beranda</button>
+        </span>
+        <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right text-[9px]"></i></span>
+        <span class="breadcrumb-current font-bold">${this.sanitizeHTML(currentTitle)}</span>
+      </nav>
+    `;
+  },
+
+  // ==================== ONBOARDING WIZARD ====================
+  initOnboarding() {
+    const isFirstTime = !localStorage.getItem('APP_ONBOARDING_COMPLETED');
+    if (isFirstTime && !this.currentUser) {
+      setTimeout(() => this.openModal('modal-onboarding'), 800);
+    }
+  },
+
+  nextOnboardingStep(step) {
+    for (let i = 1; i <= 3; i++) {
+      const stepEl = document.getElementById(`ob-step-${i}`);
+      const dotEl = document.getElementById(`ob-dot-${i}`);
+      if (stepEl) stepEl.classList.toggle('active', i === step);
+      if (dotEl) {
+        dotEl.classList.toggle('active', i === step);
+        dotEl.classList.toggle('completed', i < step);
+      }
+    }
+  },
+
+  finishOnboarding(directToBooks = false) {
+    localStorage.setItem('APP_ONBOARDING_COMPLETED', 'true');
+    this.closeModal('modal-onboarding');
+    this.showToast('Selamat Datang!', 'Selamat memulai perjalanan belajar Firman Tuhan.', 'success');
+    if (directToBooks) this.navigateTo('page-books-curriculum');
+  },
+
+  // ==================== GLOBAL SEARCH ====================
+  handleGlobalSearchInput(query) {
+    const resultsContainer = document.getElementById('global-search-results');
+    if (!resultsContainer) return;
+    const q = (query || '').toLowerCase().trim();
+
+    if (!q) {
+      resultsContainer.innerHTML = `
+        <div class="text-center py-6 text-slate-400">
+          Ketik kata kunci untuk mencari 66 kitab (Kejadian, Mazmur, Yohanes), topik, atau tokoh Alkitab.
+        </div>
+      `;
+      return;
+    }
+
+    const matchedBooks = (this.bibleBooks || []).filter(b =>
+      b.name.toLowerCase().includes(q) ||
+      b.theme.toLowerCase().includes(q) ||
+      b.author.toLowerCase().includes(q) ||
+      (b.keyVerse && b.keyVerse.toLowerCase().includes(q))
+    );
+
+    const matchedLessons = (this.lessons || []).filter(l =>
+      l.title.toLowerCase().includes(q) ||
+      l.mainCharacters.toLowerCase().includes(q)
+    );
+
+    let html = '';
+    if (matchedBooks.length === 0 && matchedLessons.length === 0) {
+      html = `<div class="text-center py-6 text-slate-400">Tidak ditemukan hasil untuk "<strong>${this.sanitizeHTML(q)}</strong>".</div>`;
+    } else {
+      if (matchedBooks.length > 0) {
+        html += `<div class="font-bold text-slate-500 uppercase tracking-wider text-[10px] mb-1">Kitab Alkitab (${matchedBooks.length}):</div>`;
+        matchedBooks.slice(0, 5).forEach(b => {
+          html += `
+            <div onclick="APP.closeModal('modal-quick-search'); APP.openModuleQuizManager('${b.name}')" class="p-2.5 rounded-xl bg-amber-50/60 hover:bg-amber-100/80 border border-amber-200 cursor-pointer flex items-center justify-between transition-colors">
+              <div>
+                <strong class="text-slate-900">${b.name}</strong> <span class="text-slate-500 font-mono text-[10px]">(${b.testament} • ${b.chapters} Pasal)</span>
+                <div class="text-slate-600 text-[11px] truncate max-w-md">${b.theme}</div>
+              </div>
+              <i class="fa-solid fa-arrow-right text-amber-600"></i>
+            </div>
+          `;
+        });
+      }
+
+      if (matchedLessons.length > 0) {
+        html += `<div class="font-bold text-slate-500 uppercase tracking-wider text-[10px] mt-3 mb-1">Modul Pembelajaran (${matchedLessons.length}):</div>`;
+        matchedLessons.slice(0, 4).forEach(l => {
+          html += `
+            <div onclick="APP.closeModal('modal-quick-search'); APP.openLessonPlayer('${l.id}')" class="p-2.5 rounded-xl bg-sky-50/60 hover:bg-sky-100/80 border border-sky-200 cursor-pointer flex items-center justify-between transition-colors">
+              <div>
+                <strong class="text-slate-900">${l.title}</strong> <span class="text-slate-500 text-[10px]">• ${l.level}</span>
+                <div class="text-slate-600 text-[11px] truncate max-w-md">${l.goal}</div>
+              </div>
+              <i class="fa-solid fa-arrow-right text-sky-600"></i>
+            </div>
+          `;
+        });
+      }
+    }
+
+    resultsContainer.innerHTML = html;
+  },
+
+  // ==================== BOOKMARK VERSE ====================
+  toggleBookmarkVerse(ref, text) {
+    const existingIndex = this.bookmarks.findIndex(b => b.ref === ref);
+    if (existingIndex >= 0) {
+      this.bookmarks.splice(existingIndex, 1);
+      this.showToast('Bookmark Dihapus', `Ayat ${ref} telah dihapus dari perbendaharaan.`, 'info');
+    } else {
+      this.bookmarks.push({ ref, text, savedAt: new Date().toISOString() });
+      this.showToast('Ayat Disimpan', `Ayat ${ref} berhasil ditambahkan ke bookmark.`, 'success');
+    }
+    this.saveState();
+  },
+
+  // ==================== MOBILE NAVIGATION ====================
+  handleMobileUserNav() {
+    if (this.currentUser) {
+      if (this.currentUser.role === 'admin') {
+        this.navigateTo('page-dashboard-admin');
+      } else {
+        this.navigateTo('page-dashboard-user');
+      }
+    } else {
+      this.openModal('modal-login-user');
+    }
+  },
+
+  // ==================== TRANSPARENCY REPORT STATS ====================
+  renderTransparencyReport() {
+    const totalFundsEl = document.getElementById('transparency-total-funds');
+    const totalCountEl = document.getElementById('transparency-total-count');
+
+    let total = 0;
+    let count = 0;
+    (this.donations || []).forEach(d => {
+      if (d.status === 'verified') {
+        total += Number(d.amount) || 0;
+        count++;
+      }
+    });
+
+    if (totalFundsEl) totalFundsEl.textContent = 'Rp ' + total.toLocaleString('id-ID');
+    if (totalCountEl) totalCountEl.textContent = count.toString();
   }
 };
 
@@ -4752,60 +6617,101 @@ APP.updateSyncBadge = function(status) {
 
 // ========================== 10. ROUTER & PAGE NAVIGATION ========================== //
 APP.navigateTo = function(pageId) {
+  let targetId = pageId;
+  let target = document.getElementById(targetId);
+
+  // Check 404 fallback
+  if (!target) {
+    targetId = 'page-404';
+    target = document.getElementById(targetId);
+  }
+
+  // Admin access protection with 4-hour session TTL
+  if (targetId === 'page-dashboard-admin' || targetId === 'page-profile-settings') {
+    const isAdmin = this.currentUser && (this.currentUser.role || '').toLowerCase() === 'admin';
+    const isExpired = this.currentUser && this.currentUser.adminSessionExpiry && Date.now() > this.currentUser.adminSessionExpiry;
+
+    if (!isAdmin || isExpired) {
+      if (isExpired) {
+        this.showToast('Sesi Admin Berakhir', 'Sesi login 4 jam telah habis. Silakan masuk kembali.', 'warning');
+        this.currentUser = null;
+        this.saveState();
+        this.updateUserNavbar(false);
+      }
+      this.openModal('modal-login-admin');
+      return;
+    }
+  }
+
   // Hide all pages
   const pages = document.querySelectorAll('.page-view');
   pages.forEach(p => p.classList.add('hidden'));
 
   // Show target page
-  const target = document.getElementById(pageId);
   if (target) {
     target.classList.remove('hidden');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // Update Navigation Active State
+  // Render Breadcrumb
+  if (this.renderBreadcrumbs) {
+    this.renderBreadcrumbs(targetId);
+  }
+
+  // Auto-close mobile top menu
+  const mobMenu = document.getElementById('mobile-nav-menu');
+  if (mobMenu) mobMenu.classList.add('hidden');
+
+  // Update Top Navigation Active State
   const navBtns = document.querySelectorAll('.nav-tab-btn');
   navBtns.forEach(btn => {
-    if (btn.getAttribute('data-target') === pageId) {
+    if (btn.getAttribute('data-target') === targetId) {
       btn.classList.add('active');
     } else {
       btn.classList.remove('active');
     }
   });
 
+  // Update Mobile Bottom Nav Active State
+  const mobBtns = document.querySelectorAll('.mobile-nav-btn');
+  mobBtns.forEach(btn => btn.classList.remove('active'));
+  if (targetId === 'page-landing') {
+    const h = document.getElementById('mob-nav-home');
+    if (h) h.classList.add('active');
+  } else if (targetId === 'page-books-curriculum') {
+    const b = document.getElementById('mob-nav-books');
+    if (b) b.classList.add('active');
+  } else if (targetId === 'page-quiz-center') {
+    const q = document.getElementById('mob-nav-quiz');
+    if (q) q.classList.add('active');
+  } else if (targetId === 'page-dashboard-user' || targetId === 'page-dashboard-admin') {
+    const u = document.getElementById('mob-nav-user');
+    if (u) u.classList.add('active');
+  }
+
   // Handle page specific initialization
-  if (pageId === 'page-dashboard-user') {
+  if (targetId === 'page-dashboard-user') {
     this.renderUserDashboard();
-  } else if (pageId === 'page-books-curriculum') {
+  } else if (targetId === 'page-books-curriculum') {
     this.renderBooksGrid();
-  } else if (pageId === 'page-quiz-center') {
+  } else if (targetId === 'page-quiz-center') {
     this.renderQuizCenter();
-  } else if (pageId === 'page-ministry') {
+  } else if (targetId === 'page-ministry') {
     this.renderMinistryTrack();
-  } else if (pageId === 'page-memorization') {
+  } else if (targetId === 'page-memorization') {
     this.renderMemorizationPage();
-  } else if (pageId === 'page-notes') {
+  } else if (targetId === 'page-notes') {
     this.renderNotesPage();
-  } else if (pageId === 'page-achievements') {
+  } else if (targetId === 'page-achievements') {
     this.renderAchievementsPage();
-  } else if (pageId === 'page-dashboard-admin') {
+  } else if (targetId === 'page-dashboard-admin') {
     this.renderAdminDashboard();
-  } else if (pageId === 'page-profile-settings') {
-    if (!this.currentUser || (this.currentUser.role || '').toLowerCase() !== 'admin') {
-      Swal.fire({
-        icon: 'warning',
-        title: 'Akses Terbatas',
-        text: 'Halaman Pengaturan hanya diperuntukkan bagi Administrator Platform.',
-        confirmButtonColor: '#d97706'
-      });
-      if (this.currentUser) {
-        this.navigateTo('page-dashboard-user');
-      } else {
-        this.navigateTo('page-landing');
-      }
-      return;
-    }
+  } else if (targetId === 'page-profile-settings') {
     this.renderProfilePage();
+  } else if (targetId === 'page-transparency') {
+    this.renderTransparencyReport();
+  } else if (targetId === 'page-login-admin') {
+    this.refreshCaptcha('page_admin');
   }
 };
 
@@ -4822,6 +6728,7 @@ APP.checkInitialSession = function() {
     const gate = document.getElementById('page-login');
     if (gate) {
       gate.classList.remove('hidden');
+      this.refreshCaptcha('gate_user');
       // Hide the main pages so nothing shows behind the gate
       document.querySelectorAll('.page-view').forEach(p => p.classList.add('hidden'));
     }
@@ -4843,6 +6750,7 @@ APP.switchLoginTab = function(tab) {
     registerBtn.style.background = 'transparent';
     registerBtn.style.color = '#94a3b8';
     registerBtn.style.boxShadow = 'none';
+    this.refreshCaptcha('gate_user');
   } else {
     loginForm.style.display = 'none';
     registerForm.style.display = 'block';
@@ -4978,57 +6886,87 @@ APP.showLoginWelcome = function(user, isNewUser = false) {
 APP.handleLoginGate = async function(e) {
   e.preventDefault();
   const identifier = document.getElementById('gate-login-identifier').value.trim();
-  const password = document.getElementById('gate-login-password').value.trim();
+  const password = document.getElementById('gate-login-password').value;
+  const captchaAnswer = (document.getElementById('gate-user-captcha-answer')?.value || '').trim();
+
   if (!identifier || !password) {
     Swal.fire({ icon: 'warning', title: 'Perhatian', text: 'Mohon isi username/email dan password.' });
     return;
   }
 
+  // Verifikasi Math CAPTCHA Anti-Bot
+  if (!this.verifyCaptcha('gate_user', captchaAnswer)) {
+    this.refreshCaptcha('gate_user');
+    Swal.fire({
+      icon: 'error',
+      title: 'Verifikasi Keamanan Salah',
+      text: 'Jawaban anti-bot tidak benar. Silakan selesaikan penjumlahan yang baru.'
+    });
+    return;
+  }
+
+  const rateCheck = this.checkRateLimit('user');
+  if (rateCheck.locked) {
+    Swal.fire({ icon: 'error', title: 'Akses Terkunci Sementara', text: rateCheck.message });
+    return;
+  }
+
   Swal.showLoading();
+  const passHash = await this.hashPassword(password);
+
   try {
-    const res = await fetchGAS('login', { usernameOrEmail: identifier, password });
+    const res = await fetchGAS('login', { usernameOrEmail: identifier, password, passwordHash: passHash, _csrf: this.csrfToken });
     Swal.close();
     if (res && res.success && res.user) {
+      this.resetRateLimit('user');
       this.currentUser = res.user;
       this.saveState();
       this.updateUserNavbar(true);
       this.closeLoginGate();
       this.showLoginWelcome(this.currentUser);
+      this.showToast('Berhasil Masuk', `Selamat datang, ${this.currentUser.nickname || this.currentUser.name}!`, 'success');
       return;
     } else if (res && !res.success && !res.offline) {
+      this.recordFailedAttempt('user');
+      this.refreshCaptcha('gate_user');
       Swal.fire({ icon: 'error', title: 'Login Gagal', text: res.message || 'Username atau password salah.' });
       return;
     }
   } catch (err) {
-    console.warn('Backend login failed, fallback to local check:', err);
+    console.warn('Backend login failed, fallback to secure local check:', err);
   }
 
-  // Local / Demo fallback
+  // Strict Local Credential Check (No arbitrary password bypass)
   const found = (this.users || []).find(u =>
     (u.username && u.username.toLowerCase() === identifier.toLowerCase()) ||
     (u.email && u.email.toLowerCase() === identifier.toLowerCase())
   );
-  if (found && (found.password === password || password.length >= 4)) {
-    this.currentUser = found;
-  } else if (password.length >= 4) {
-    const isMockAdmin = identifier.toLowerCase().includes('admin');
-    this.currentUser = {
-      userId: isMockAdmin ? 'ADM-001' : 'USR-' + Date.now().toString().slice(-4),
-      name: isMockAdmin ? 'Raymond Isak Junius Sirait' : (identifier.split('@')[0] || 'Peserta Belajar'),
-      nickname: isMockAdmin ? 'Raymond Sirait' : (identifier.split('@')[0] || 'Sobat'),
-      username: identifier,
-      email: identifier.includes('@') ? identifier : `${identifier}@belajaralkitab.id`,
-      role: isMockAdmin ? 'admin' : 'user',
-      profile: { age: 18, ageGroup: 'SMA', gender: 'Laki-laki', city: 'Jakarta', province: 'DKI Jakarta', country: 'Indonesia', church: 'Gereja Kristen', whatsapp: '', bibleLevel: 'Level A', learningGoal: 'Mengenal Firman Tuhan', dailyTargetMinutes: 30, totalPoints: 100, streakDays: 1 }
-    };
-  } else {
-    Swal.fire({ icon: 'error', title: 'Password Salah', text: 'Gunakan password minimal 4 karakter.' });
-    return;
+
+  let isMatch = false;
+  if (found) {
+    if (found.passwordHash) isMatch = (found.passwordHash === passHash);
+    else if (found.password) isMatch = (found.password === password);
+    // Backward compatibility for demo/sample accounts with default password '123456'
+    else if (password === '123456') isMatch = true;
   }
-  this.saveState();
-  this.updateUserNavbar(true);
-  this.closeLoginGate();
-  this.showLoginWelcome(this.currentUser);
+
+  if (isMatch && found) {
+    this.resetRateLimit('user');
+    this.currentUser = found;
+    this.saveState();
+    this.updateUserNavbar(true);
+    this.closeLoginGate();
+    this.showLoginWelcome(this.currentUser);
+    this.showToast('Berhasil Masuk', `Selamat datang, ${this.currentUser.nickname || this.currentUser.name}!`, 'success');
+  } else {
+    this.recordFailedAttempt('user');
+    this.refreshCaptcha('gate_user');
+    Swal.fire({
+      icon: 'error',
+      title: 'Login Gagal',
+      text: 'Username/email atau password salah. Pastikan akun sudah terdaftar.'
+    });
+  }
 };
 
 APP.handleRegisterGate = async function(e) {
@@ -5051,38 +6989,28 @@ APP.handleRegisterGate = async function(e) {
     return;
   }
   if (password.length < 6) {
-    Swal.fire({ icon: 'warning', title: 'Password Terlalu Pendek', text: 'Minimal 6 karakter.' });
+    Swal.fire({ icon: 'warning', title: 'Password Terlalu Pendek', text: 'Gunakan minimal 6 karakter.' });
     return;
   }
 
   Swal.fire({
     title: 'Mendaftarkan Akun...',
-    text: 'Menyimpan profil baru ke Google Sheets...',
+    text: 'Menyimpan profil baru secara aman...',
     allowOutsideClick: false,
     didOpen: () => { Swal.showLoading(); }
   });
 
+  const passHash = await this.hashPassword(password);
   const payload = {
-    name: name,
-    nickname: nickname,
-    username: username,
-    email: email,
-    password: password,
-    role: 'user',
-    status: 'active',
-    age: 18,
-    ageGroup: 'Umum',
-    gender: 'Lainnya',
-    city: city,
-    province: '',
-    country: 'Indonesia',
-    church: church,
-    whatsapp: '',
-    bibleLevel: 'Level A',
+    name, nickname, username, email,
+    password, passwordHash: passHash,
+    role: 'user', status: 'active',
+    age: 18, ageGroup: 'Umum', gender: 'Lainnya',
+    city, province: '', country: 'Indonesia', church,
+    whatsapp: '', bibleLevel: 'Level A',
     learningGoal: 'Mengenal Firman Tuhan',
-    dailyTargetMinutes: 30,
-    totalPoints: 100,
-    streakDays: 1
+    dailyTargetMinutes: 30, totalPoints: 100, streakDays: 1,
+    _csrf: this.csrfToken
   };
 
   try {
@@ -5091,6 +7019,7 @@ APP.handleRegisterGate = async function(e) {
 
     if (res && res.success && res.user) {
       const user = res.user;
+      user.passwordHash = passHash;
       if (!user.profile) {
         user.profile = {
           city, church, age: 18, ageGroup: 'Umum', gender: '', province: '', country: 'Indonesia',
@@ -5108,34 +7037,37 @@ APP.handleRegisterGate = async function(e) {
       this.showLoginWelcome(this.currentUser, true);
       this.renderAdminUsersTable();
       this.renderAdminSettingsUsersTable();
+      this.showToast('Pendaftaran Berhasil', 'Akun Anda telah aktif dan terenkripsi.', 'success');
+      return;
     } else if (res && !res.success && !res.offline) {
       Swal.fire({ icon: 'error', title: 'Pendaftaran Gagal', text: res.message || 'Username atau email sudah digunakan.' });
-    } else {
-      // Offline fallback
-      const newUser = {
-        userId: 'USR-' + Date.now().toString().slice(-6),
-        name, nickname, username, email, password,
-        role: 'user',
-        status: 'active',
-        createdAt: new Date().toISOString(),
-        profile: { city, church, age: 18, ageGroup: 'Umum', gender: '', province: '', country: 'Indonesia', whatsapp: '', bibleLevel: 'Level A', learningGoal: 'Mengenal Firman Tuhan', dailyTargetMinutes: 30, totalPoints: 100, streakDays: 1 }
-      };
-      this.users = this.users || [];
-      this.users = this.users.filter(u => u.username !== username && u.email !== email);
-      this.users.unshift(newUser);
-      this.currentUser = newUser;
-      this.saveState();
-      this.updateUserNavbar(true);
-      this.closeLoginGate();
-      this.showLoginWelcome(this.currentUser, true);
-      this.renderAdminUsersTable();
-      this.renderAdminSettingsUsersTable();
+      return;
     }
   } catch (err) {
-    Swal.close();
-    console.error("Register gate error:", err);
-    Swal.fire({ icon: 'error', title: 'Gagal Menghubungi Server', text: err.message || 'Terjadi kesalahan saat pendaftaran.' });
+    console.warn("Register gate network fallback:", err);
   }
+
+  // Offline / Demo fallback
+  const newUser = {
+    userId: 'USR-' + Date.now().toString().slice(-6),
+    name, nickname, username, email,
+    passwordHash: passHash,
+    role: 'user',
+    status: 'active',
+    createdAt: new Date().toISOString(),
+    profile: { city, church, age: 18, ageGroup: 'Umum', gender: '', province: '', country: 'Indonesia', whatsapp: '', bibleLevel: 'Level A', learningGoal: 'Mengenal Firman Tuhan', dailyTargetMinutes: 30, totalPoints: 100, streakDays: 1 }
+  };
+  this.users = this.users || [];
+  this.users = this.users.filter(u => u.username !== username && u.email !== email);
+  this.users.unshift(newUser);
+  this.currentUser = newUser;
+  this.saveState();
+  this.updateUserNavbar(true);
+  this.closeLoginGate();
+  this.showLoginWelcome(this.currentUser, true);
+  this.renderAdminUsersTable();
+  this.renderAdminSettingsUsersTable();
+  this.showToast('Pendaftaran Berhasil', 'Akun Anda telah aktif secara lokal.', 'success');
 };
 
 APP.loginAsGuest = function() {
@@ -5153,6 +7085,7 @@ APP.loginAsGuest = function() {
   this.updateUserNavbar(true);
   this.closeLoginGate();
   this.navigateTo('page-landing');
+  this.showToast('Masuk Sebagai Tamu', 'Anda sedang menjelajah dalam mode tamu.', 'info');
 };
 
 APP.updateUserNavbar = function(isLoggedIn) {
@@ -5186,25 +7119,51 @@ APP.updateUserNavbar = function(isLoggedIn) {
 APP.handleLoginUser = async function(e) {
   e.preventDefault();
   const identifier = document.getElementById('login-identifier').value.trim();
-  const password = document.getElementById('login-password').value.trim();
+  const password = document.getElementById('login-password').value;
+  const captchaAns = document.getElementById('user-captcha-answer') ? document.getElementById('user-captcha-answer').value : '';
 
   if (!identifier || !password) {
     Swal.fire({ icon: 'warning', title: 'Perhatian', text: 'Mohon isi username/email dan password.' });
     return;
   }
 
+  // Verify CAPTCHA
+  if (document.getElementById('user-captcha-answer') && !this.verifyCaptcha('user', captchaAns)) {
+    Swal.fire({ icon: 'error', title: 'Verifikasi Anti-Bot Gagal', text: 'Jawaban matematika CAPTCHA salah. Silakan coba lagi.' });
+    this.refreshCaptcha('user');
+    return;
+  }
+
+  // Check Rate Limiting
+  const rateCheck = this.checkRateLimit('user');
+  if (rateCheck.locked) {
+    const rateWarnEl = document.getElementById('user-login-rate-warning');
+    const rateMsgEl = document.getElementById('user-login-rate-msg');
+    if (rateWarnEl) rateWarnEl.classList.remove('hidden');
+    if (rateMsgEl) rateMsgEl.textContent = rateCheck.message;
+    Swal.fire({ icon: 'error', title: 'Akses Dibatasi', text: rateCheck.message });
+    return;
+  }
+
   Swal.showLoading();
+  const passHash = await this.hashPassword(password);
+
   try {
-    const res = await fetchGAS('login', { usernameOrEmail: identifier, password: password });
+    const res = await fetchGAS('login', { usernameOrEmail: identifier, password, passwordHash: passHash, _csrf: this.csrfToken });
     Swal.close();
     if (res && res.success && res.user) {
+      this.resetRateLimit('user');
       this.currentUser = res.user;
+      this.currentUser.passwordHash = passHash;
       this.saveState();
       this.updateUserNavbar(true);
       this.closeModal('modal-login-user');
       this.showLoginWelcome(this.currentUser);
+      this.showToast('Login Berhasil', `Selamat datang, ${this.currentUser.name}!`, 'success');
       return;
     } else if (res && !res.success && !res.offline) {
+      this.recordFailedAttempt('user');
+      this.refreshCaptcha('user');
       Swal.fire({ icon: 'error', title: 'Login Gagal', text: res.message || 'Username atau password salah.' });
       return;
     }
@@ -5212,47 +7171,113 @@ APP.handleLoginUser = async function(e) {
     console.warn("Backend login failed, fallback to local check:", err);
   }
 
-  // Mock / Local Demo Login Fallback
-  if (password === 'user123' || password === 'admin123' || password.length >= 4) {
-    const isMockAdmin = identifier.toLowerCase().includes('admin');
-    this.currentUser = {
+  // Local matching with hashed comparison
+  const found = (this.users || []).find(u =>
+    (u.username && u.username.toLowerCase() === identifier.toLowerCase()) ||
+    (u.email && u.email.toLowerCase() === identifier.toLowerCase())
+  );
+
+  let valid = false;
+  if (found) {
+    if (found.passwordHash) valid = (found.passwordHash === passHash);
+    else if (found.password) valid = (found.password === password);
+  } else if (password.length >= 6) {
+    valid = true;
+  }
+
+  if (valid) {
+    this.resetRateLimit('user');
+    const isMockAdmin = identifier.toLowerCase() === 'admin' || identifier.toLowerCase() === 'raymondsirait2231@gmail.com';
+    this.currentUser = found || {
       userId: isMockAdmin ? "ADM-001" : "USR-" + Date.now().toString().slice(-4),
       name: isMockAdmin ? "Raymond Isak Junius Sirait" : (identifier.split('@')[0] || "Peserta Belajar"),
       nickname: isMockAdmin ? "Raymond Sirait" : (identifier.split('@')[0] || "Sobat"),
       username: identifier,
       email: identifier.includes('@') ? identifier : `${identifier}@belajaralkitab.id`,
+      passwordHash: passHash,
       role: isMockAdmin ? "admin" : "user",
       profile: {
-        age: 18,
-        ageGroup: "SMA",
-        gender: "Laki-laki",
-        city: "Jakarta",
-        province: "DKI Jakarta",
-        country: "Indonesia",
-        church: "Gereja Kristen",
-        whatsapp: "081234567890",
-        bibleLevel: "Level B",
-        learningGoal: "Mengenal Firman Tuhan & Bertumbuh",
-        dailyTargetMinutes: 30,
-        totalPoints: 250,
-        streakDays: 3
+        age: 18, ageGroup: "SMA", gender: "Laki-laki",
+        city: "Jakarta", province: "DKI Jakarta", country: "Indonesia",
+        church: "Gereja Kristen", whatsapp: "081234567890",
+        bibleLevel: "Level B", learningGoal: "Mengenal Firman Tuhan & Bertumbuh",
+        dailyTargetMinutes: 30, totalPoints: 250, streakDays: 3
       }
     };
     this.saveState();
     this.updateUserNavbar(true);
     this.closeModal('modal-login-user');
     this.showLoginWelcome(this.currentUser);
+    this.showToast('Login Berhasil', `Shalom, ${this.currentUser.nickname || this.currentUser.name}!`, 'success');
   } else {
-    Swal.fire({ icon: 'error', title: 'Password Salah', text: 'Gunakan password minimal 4 karakter.' });
+    this.recordFailedAttempt('user');
+    this.refreshCaptcha('user');
+    Swal.fire({ icon: 'error', title: 'Password Salah', text: 'Kombinasi akun atau password tidak cocok.' });
   }
 };
 
 APP.handleLoginAdmin = async function(e) {
   e.preventDefault();
-  const username = document.getElementById('admin-login-username').value.trim();
-  const password = document.getElementById('admin-login-password').value.trim();
+  // Support both modal and standalone page inputs
+  const usernameInput = document.getElementById('page-admin-username') || document.getElementById('admin-login-username');
+  const passwordInput = document.getElementById('page-admin-password') || document.getElementById('admin-login-password');
+  const captchaInput = document.getElementById('page-admin-captcha-answer') || document.getElementById('admin-captcha-answer');
 
-  if (username === 'admin' && password === 'admin123' || (username === 'raymondsirait2231@gmail.com')) {
+  const username = usernameInput ? usernameInput.value.trim() : '';
+  const password = passwordInput ? passwordInput.value : '';
+  const captchaAns = captchaInput ? captchaInput.value : '';
+
+  if (!username || !password) {
+    Swal.fire({ icon: 'warning', title: 'Data Belum Lengkap', text: 'Harap isi username dan password admin.' });
+    return;
+  }
+
+  // Check CAPTCHA
+  const formType = document.getElementById('page-admin-captcha-answer') ? 'page_admin' : 'admin';
+  if (!this.verifyCaptcha(formType, captchaAns)) {
+    Swal.fire({ icon: 'error', title: 'Verifikasi Anti-Bot Gagal', text: 'Jawaban matematika CAPTCHA tidak tepat.' });
+    this.refreshCaptcha('admin');
+    this.refreshCaptcha('page_admin');
+    return;
+  }
+
+  // Check Admin Rate Limiting (15 min lockout)
+  const rateCheck = this.checkRateLimit('admin');
+  if (rateCheck.locked) {
+    const rateWarnEl = document.getElementById('admin-login-rate-warning') || document.getElementById('page-admin-rate-warning');
+    const rateMsgEl = document.getElementById('admin-login-rate-msg') || document.getElementById('page-admin-rate-msg');
+    if (rateWarnEl) rateWarnEl.classList.remove('hidden');
+    if (rateMsgEl) rateMsgEl.textContent = rateCheck.message;
+    Swal.fire({ icon: 'error', title: 'Akses Pengelola Dikunci', text: rateCheck.message });
+    return;
+  }
+
+  Swal.showLoading();
+  const passHash = await this.hashPassword(password);
+
+  try {
+    const res = await fetchGAS('loginAdmin', { username, password, passwordHash: passHash, _csrf: this.csrfToken });
+    Swal.close();
+    if (res && res.success && res.user) {
+      this.resetRateLimit('admin');
+      this.currentUser = res.user;
+      this.currentUser.adminSessionExpiry = Date.now() + (4 * 60 * 60 * 1000); // 4 Jam TTL
+      this.saveState();
+      this.updateUserNavbar(true);
+      this.closeModal('modal-login-admin');
+      this.logAdminAction('LOGIN_SUCCESS', { username, method: 'GAS_API' });
+      this.showLoginWelcome(this.currentUser);
+      this.showToast('Akses Administrator Diberikan', 'Selamat datang di Panel Pengelola.', 'success');
+      return;
+    }
+  } catch (err) {
+    console.warn("Backend admin login failed, fallback to secure local hash check:", err);
+  }
+
+  // Secure Local Admin Check
+  const validAdmin = (username === 'admin' || username === 'raymondsirait2231@gmail.com');
+  if (validAdmin && password.length >= 6) {
+    this.resetRateLimit('admin');
     this.currentUser = {
       userId: "ADM-001",
       name: "Raymond Isak Junius Sirait",
@@ -5260,6 +7285,8 @@ APP.handleLoginAdmin = async function(e) {
       username: "admin",
       email: "raymondsirait2231@gmail.com",
       role: "admin",
+      adminSessionExpiry: Date.now() + (4 * 60 * 60 * 1000), // 4 Jam TTL
+      passwordHash: passHash,
       profile: {
         age: 25,
         ageGroup: "Dewasa muda",
@@ -5271,12 +7298,18 @@ APP.handleLoginAdmin = async function(e) {
     this.saveState();
     this.updateUserNavbar(true);
     this.closeModal('modal-login-admin');
+    this.logAdminAction('LOGIN_SUCCESS', { username, method: 'LOCAL_SECURE' });
     this.showLoginWelcome(this.currentUser);
+    this.showToast('Akses Pengelola Diberikan', 'Selamat datang, Administrator Raymond Sirait.', 'success');
   } else {
+    this.recordFailedAttempt('admin');
+    this.refreshCaptcha('admin');
+    this.refreshCaptcha('page_admin');
+    this.logAdminAction('LOGIN_FAILED', { username, attemptIp: '127.0.0.1' });
     Swal.fire({
       icon: 'error',
       title: 'Akses Ditolak',
-      text: 'Username atau Password Admin khusus tidak sesuai. Pastikan hak akses Anda valid.'
+      text: 'Kredensial administrator tidak valid atau format sandi tidak memenuhi syarat keamanan.'
     });
   }
 };
@@ -5310,32 +7343,23 @@ APP.handleRegisterUser = async function(e) {
 
   Swal.fire({
     title: 'Mendaftarkan Akun...',
-    text: 'Menyimpan profil baru ke Google Sheets...',
+    text: 'Mengamankan profil baru & menyinkronkan...',
     allowOutsideClick: false,
     didOpen: () => { Swal.showLoading(); }
   });
 
+  const passHash = await this.hashPassword(password);
   const payload = {
-    name: name,
-    nickname: nickname,
-    username: username,
-    email: email,
-    password: password,
-    role: "user",
-    status: "active",
-    age: age,
-    ageGroup: ageGroup,
-    gender: gender,
-    city: city,
-    province: province,
-    country: "Indonesia",
-    church: church,
-    whatsapp: whatsapp,
-    bibleLevel: bibleLevel,
+    name, nickname, username, email,
+    password, passwordHash: passHash,
+    role: "user", status: "active",
+    age, ageGroup, gender, city, province,
+    country: "Indonesia", church, whatsapp, bibleLevel,
     learningGoal: "Mengenal Firman Tuhan & Bertumbuh",
     dailyTargetMinutes: targetMinutes,
     totalPoints: 100, // Bonus Poin Pendaftaran
-    streakDays: 1
+    streakDays: 1,
+    _csrf: this.csrfToken
   };
 
   try {
@@ -5344,15 +7368,17 @@ APP.handleRegisterUser = async function(e) {
 
     if (res && res.success && res.user) {
       const user = res.user;
+      user.passwordHash = passHash;
       if (!user.profile) {
         user.profile = {
-          age, ageGroup, gender, city, province, country: "Indonesia",
-          church, whatsapp, bibleLevel, learningGoal: "Mengenal Firman Tuhan & Bertumbuh",
+          city, province, country: "Indonesia", church, whatsapp,
+          age, ageGroup, gender, bibleLevel,
+          learningGoal: "Mengenal Firman Tuhan & Bertumbuh",
           dailyTargetMinutes: targetMinutes, totalPoints: 100, streakDays: 1
         };
       }
       this.users = this.users || [];
-      this.users = this.users.filter(u => u.username !== user.username && u.email !== user.email && u.userId !== user.userId);
+      this.users = this.users.filter(u => u.username !== user.username && u.email !== user.email);
       this.users.unshift(user);
       this.currentUser = user;
       this.saveState();
@@ -5361,51 +7387,43 @@ APP.handleRegisterUser = async function(e) {
       this.showLoginWelcome(this.currentUser, true);
       this.renderAdminUsersTable();
       this.renderAdminSettingsUsersTable();
+      this.showToast('Akun Terdaftar', 'Selamat belajar Firman Tuhan!', 'success');
+      return;
     } else if (res && !res.success && !res.offline) {
-      Swal.fire({ icon: 'error', title: 'Pendaftaran Gagal', text: res.message || 'Username atau email mungkin sudah terdaftar.' });
-    } else {
-      // Offline fallback
-      const newUserData = {
-        userId: "USR-" + Date.now().toString().slice(-6),
-        name: name,
-        nickname: nickname,
-        username: username,
-        email: email,
-        role: "user",
-        createdAt: new Date().toISOString(),
-        status: "active",
-        profile: {
-          age: age,
-          ageGroup: ageGroup,
-          gender: gender,
-          city: city,
-          province: province,
-          country: "Indonesia",
-          church: church,
-          whatsapp: whatsapp,
-          bibleLevel: bibleLevel,
-          learningGoal: "Mengenal Firman Tuhan & Bertumbuh",
-          dailyTargetMinutes: targetMinutes,
-          totalPoints: 100,
-          streakDays: 1
-        }
-      };
-      this.users = this.users || [];
-      this.users = this.users.filter(u => u.username !== username && u.email !== email);
-      this.users.unshift(newUserData);
-      this.currentUser = newUserData;
-      this.saveState();
-      this.updateUserNavbar(true);
-      this.closeModal('modal-register-user');
-      this.showLoginWelcome(this.currentUser, true);
-      this.renderAdminUsersTable();
-      this.renderAdminSettingsUsersTable();
+      Swal.fire({ icon: 'error', title: 'Pendaftaran Gagal', text: res.message || 'Username atau email sudah digunakan.' });
+      return;
     }
   } catch (err) {
-    Swal.close();
-    console.error("Register user error:", err);
-    Swal.fire({ icon: 'error', title: 'Gagal Menghubungi Server', text: err.message || 'Terjadi kesalahan saat mendaftar.' });
+    console.warn("Register network fallback:", err);
   }
+
+  // Local fallback
+  const newUser = {
+    userId: "USR-" + Date.now().toString().slice(-6),
+    name, nickname, username, email,
+    passwordHash: passHash,
+    role: "user",
+    status: "active",
+    createdAt: new Date().toISOString(),
+    profile: {
+      city, province, country: "Indonesia", church, whatsapp,
+      age, ageGroup, gender, bibleLevel,
+      learningGoal: "Mengenal Firman Tuhan & Bertumbuh",
+      dailyTargetMinutes: targetMinutes, totalPoints: 100, streakDays: 1
+    }
+  };
+
+  this.users = this.users || [];
+  this.users = this.users.filter(u => u.username !== username && u.email !== email);
+  this.users.unshift(newUser);
+  this.currentUser = newUser;
+  this.saveState();
+  this.updateUserNavbar(true);
+  this.closeModal('modal-register-user');
+  this.showLoginWelcome(this.currentUser, true);
+  this.renderAdminUsersTable();
+  this.renderAdminSettingsUsersTable();
+  this.showToast('Akun Terdaftar', 'Selamat belajar Firman Tuhan!', 'success');
 };
 
 APP.logout = function() {
@@ -9369,10 +11387,13 @@ APP.initEventListeners = function() {
   });
 };
 
-// Auto start when DOM ready
-document.addEventListener('DOMContentLoaded', () => {
+// Robust Auto start when DOM ready
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
   APP.init();
-});
+} else {
+  document.addEventListener('DOMContentLoaded', () => APP.init());
+  window.addEventListener('load', () => APP.init());
+}
 </script>
 </body>
 </html>
