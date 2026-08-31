@@ -219,51 +219,45 @@
       -webkit-text-fill-color: currentColor;
     }
 
-    /* Hero motto explicit fill — override any -webkit-text-fill-color: transparent leak */
-    body:not([data-theme="dark"]) .hero-motto,
-    [data-theme="light"] .hero-motto {
-      color: #6b2a00 !important;
-      -webkit-text-fill-color: #6b2a00 !important;
-    }
-
-    /* HERO SECTION HIGH-CONTRAST TYPOGRAPHY GUARANTEE */
+    /* HERO SECTION TYPOGRAPHY & CLEAN ACCENTS */
     .hero-main-title {
       color: #0f172a !important;
+      -webkit-text-fill-color: #0f172a !important;
+      text-shadow: none !important;
     }
 
     [data-theme="dark"] .hero-main-title {
       color: #f8fafc !important;
       -webkit-text-fill-color: #f8fafc !important;
+      text-shadow: none !important;
     }
 
     .hero-motto {
-      color: #6b2a00 !important;
-      /* Deep amber-brown — max contrast on light cream bg */
+      color: #78350f !important;
+      -webkit-text-fill-color: #78350f !important;
       font-weight: 700 !important;
       text-shadow: none !important;
-      -webkit-text-fill-color: #6b2a00 !important;
-      /* Override any gradient-text inheritance */
     }
 
     [data-theme="dark"] .hero-motto {
       color: #fcd34d !important;
-      /* Bright amber-gold — high contrast on dark navy hero */
       -webkit-text-fill-color: #fcd34d !important;
       font-weight: 700 !important;
-      text-shadow: 0 1px 12px rgba(251, 191, 36, 0.25);
+      text-shadow: none !important;
     }
 
     .hero-description {
-      color: #1e293b !important;
-      font-weight: 600 !important;
-      -webkit-text-fill-color: #1e293b !important;
-      /* Prevent gradient-text leak */
+      color: #334155 !important;
+      -webkit-text-fill-color: #334155 !important;
+      font-weight: 500 !important;
+      text-shadow: none !important;
     }
 
     [data-theme="dark"] .hero-description {
-      color: #e2e8f0 !important;
-      -webkit-text-fill-color: #e2e8f0 !important;
+      color: #cbd5e1 !important;
+      -webkit-text-fill-color: #cbd5e1 !important;
       font-weight: 500 !important;
+      text-shadow: none !important;
     }
 
     /* Override Tailwind Slate text colors to ensure high-contrast legibility */
@@ -572,13 +566,13 @@
     }
 
     .hero-gradient-bg {
-      background: linear-gradient(135deg, #fffbf0 0%, #fef3c7 45%, #e0f2fe 100%);
+      background: linear-gradient(180deg, #fffbf0 0%, #fef3c7 100%);
     }
 
-    /* Dark mode hero: deep navy so text is always legible */
+    /* Dark mode hero */
     [data-theme="dark"] .hero-gradient-bg {
-      background: linear-gradient(135deg, #0f172a 0%, #1a2744 50%, #0f2027 100%) !important;
-      border-color: rgba(255, 255, 255, 0.08) !important;
+      background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%) !important;
+      border-color: rgba(245, 158, 11, 0.2) !important;
     }
 
     /* Dark mode hero decorative blobs — keep subtle warmth on dark bg */
@@ -1573,16 +1567,13 @@
         padding-bottom: 10px !important;
       }
 
-      /* Icon-only buttons (theme toggle, settings, logout) */
-      button.w-9,
-      button.h-9,
+      /* Icon-only buttons in header (theme toggle, mobile nav) */
       button[title*="Ganti Tema"],
-      button[title*="Pengaturan"],
-      button[title*="Keluar"] {
-        min-width: 44px !important;
-        min-height: 44px !important;
-        width: 44px !important;
-        height: 44px !important;
+      #btn-mobile-nav-toggle {
+        min-width: 36px !important;
+        min-height: 36px !important;
+        width: 36px !important;
+        height: 36px !important;
       }
     }
 
@@ -1961,20 +1952,20 @@
         </div>
 
         <!-- Logged In User Dropdown/Button -->
-        <div id="nav-user-loggedin" class="hidden items-center gap-1.5 sm:gap-2 flex-nowrap">
+        <div id="nav-user-loggedin" class="hidden items-center gap-1.5 sm:gap-2 flex-nowrap flex-shrink-0">
           <button id="nav-btn-user-dash"
             onclick="APP.navigateTo(APP.currentUser && APP.currentUser.role === 'admin' ? 'page-dashboard-admin' : 'page-dashboard-user')"
-            class="flex items-center gap-1.5 px-2 sm:px-3 py-1.5 rounded-xl bg-amber-50 dark:bg-slate-800 border border-amber-200 dark:border-slate-700 text-xs font-semibold text-amber-700 dark:text-amber-400 hover:bg-amber-100 dark:hover:bg-slate-700 transition-all max-w-[105px] sm:max-w-[150px] lg:max-w-none flex-shrink-0">
+            class="flex items-center gap-1.5 px-2 sm:px-3 py-1.5 rounded-xl bg-amber-50 dark:bg-slate-800 border border-amber-200 dark:border-slate-700 text-xs font-semibold text-amber-700 dark:text-amber-400 hover:bg-amber-100 dark:hover:bg-slate-700 transition-all max-w-[85px] sm:max-w-[130px] lg:max-w-none flex-shrink-0">
             <i class="fa-solid fa-circle-user text-amber-500 text-sm flex-shrink-0"></i>
             <span id="nav-user-name" class="truncate font-medium">Pengguna</span>
           </button>
           <button id="nav-btn-settings" onclick="APP.navigateTo('page-profile-settings')"
-            class="hidden p-1.5 sm:p-2 rounded-xl bg-amber-50 dark:bg-slate-800 hover:bg-amber-100 dark:hover:bg-slate-700 text-amber-700 dark:text-amber-400 text-xs border border-amber-200 dark:border-slate-700 flex-shrink-0"
+            class="hidden lg:inline-flex p-1.5 sm:p-2 rounded-xl bg-amber-50 dark:bg-slate-800 hover:bg-amber-100 dark:hover:bg-slate-700 text-amber-700 dark:text-amber-400 text-xs border border-amber-200 dark:border-slate-700 flex-shrink-0"
             title="Pengaturan Platform (Admin)" aria-label="Pengaturan">
             <i class="fa-solid fa-gear"></i>
           </button>
           <button onclick="APP.logout()"
-            class="p-1.5 sm:p-2 rounded-xl bg-amber-50 dark:bg-slate-800 hover:bg-rose-50 hover:text-rose-500 text-slate-500 dark:text-slate-400 text-xs transition-all border border-amber-200 dark:border-slate-700 flex-shrink-0"
+            class="hidden lg:inline-flex p-1.5 sm:p-2 rounded-xl bg-amber-50 dark:bg-slate-800 hover:bg-rose-50 hover:text-rose-500 text-slate-500 dark:text-slate-400 text-xs transition-all border border-amber-200 dark:border-slate-700 flex-shrink-0"
             title="Keluar" aria-label="Keluar">
             <i class="fa-solid fa-arrow-right-from-bracket"></i>
           </button>
@@ -1993,6 +1984,29 @@
     <!-- MOBILE / TABLET MENU DROPDOWN -->
     <div id="mobile-nav-menu"
       class="hidden lg:hidden bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-b border-amber-100 dark:border-slate-800 px-4 py-4 space-y-2 text-sm font-semibold shadow-lg max-h-[75vh] overflow-y-auto">
+      
+      <!-- Logged In User Quick Profile Drawer (Mobile) -->
+      <div id="mobile-user-section" class="hidden pb-3 mb-2 border-b border-amber-100 dark:border-slate-800 space-y-1.5">
+        <div class="flex items-center justify-between px-2 py-1 bg-amber-50/80 dark:bg-slate-800/80 rounded-lg text-xs">
+          <span class="text-slate-500 dark:text-slate-400">Masuk sebagai:</span>
+          <strong id="mobile-user-name" class="text-amber-700 dark:text-amber-400 font-bold truncate max-w-[150px]">Pengguna</strong>
+        </div>
+        <button id="mobile-btn-user-dash"
+          onclick="APP.navigateTo(APP.currentUser && APP.currentUser.role === 'admin' ? 'page-dashboard-admin' : 'page-dashboard-user'); document.getElementById('mobile-nav-menu').classList.add('hidden')"
+          class="w-full text-left py-2 px-3 rounded-lg hover:bg-amber-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 text-xs transition-colors flex items-center gap-2 font-medium">
+          <i class="fa-solid fa-gauge text-amber-500"></i> Buka Dashboard Saya
+        </button>
+        <button id="mobile-btn-settings"
+          onclick="APP.navigateTo('page-profile-settings'); document.getElementById('mobile-nav-menu').classList.add('hidden')"
+          class="hidden w-full text-left py-2 px-3 rounded-lg hover:bg-amber-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 text-xs transition-colors flex items-center gap-2 font-medium">
+          <i class="fa-solid fa-gear text-amber-500"></i> Pengaturan Platform Admin
+        </button>
+        <button onclick="APP.logout(); document.getElementById('mobile-nav-menu').classList.add('hidden')"
+          class="w-full text-left py-2 px-3 rounded-lg hover:bg-rose-50 dark:hover:bg-rose-950/40 text-rose-600 dark:text-rose-400 text-xs transition-colors flex items-center gap-2 font-medium">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i> Keluar (Logout)
+        </button>
+      </div>
+
       <button onclick="APP.openUploadDonasiModal(); document.getElementById('mobile-nav-menu').classList.add('hidden')"
         class="w-full text-left py-2.5 px-3 rounded-xl bg-gradient-to-r from-rose-50 via-amber-50 to-rose-50 dark:from-slate-800 dark:to-slate-800 text-rose-700 dark:text-rose-300 font-bold border border-rose-200 dark:border-rose-900/40 shadow-sm flex items-center gap-2">
         <i class="fa-solid fa-cloud-arrow-up text-rose-500 text-base"></i> Upload Donasi & Persembahan
@@ -2284,18 +2298,20 @@
     <section id="page-landing" class="page-view">
 
       <!-- HERO SECTION -->
-      <div class="relative overflow-hidden py-16 lg:py-24 border-b border-amber-100 hero-gradient-bg">
-        <div
-          class="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-amber-400/20 rounded-full blur-3xl pointer-events-none">
-        </div>
-        <div
-          class="absolute -top-20 right-10 w-[400px] h-[400px] bg-sky-400/15 rounded-full blur-3xl pointer-events-none">
+      <div class="relative overflow-hidden py-16 sm:py-20 lg:py-24 border-b border-amber-100 dark:border-slate-800 hero-gradient-bg">
+        <!-- BACKGROUND IMAGE LAYER WITH SOFT TRANSPARENCY (ZERO HARSH SHADOW) -->
+        <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <img src="https://alkitabonline.org/wp-content/uploads/2024/01/Inkarnasi-Tuhan.jpg" 
+               alt="Inkarnasi Tuhan - Belajar Alkitab" 
+               class="w-full h-full object-cover object-center opacity-35 dark:opacity-20 transition-opacity duration-700" />
+          <!-- Smooth gradient blend with page background -->
+          <div class="absolute inset-0 bg-gradient-to-b from-transparent via-amber-50/10 to-amber-100/30 dark:from-transparent dark:via-slate-900/30 dark:to-slate-950/60"></div>
         </div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
 
           <div
-            class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-100 dark:bg-amber-950/60 border border-amber-300 dark:border-amber-700/50 text-amber-900 dark:text-amber-300 text-xs font-bold mb-6 shadow-sm">
+            class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-100/90 dark:bg-slate-900/80 backdrop-blur-md border border-amber-300 dark:border-amber-500/40 text-amber-900 dark:text-amber-300 text-xs font-bold mb-6 shadow-sm">
             <i class="fa-solid fa-sparkles text-amber-600 dark:text-amber-400"></i>
             <span>Platform Pembelajaran Alkitab Terstruktur & Inklusif</span>
           </div>
@@ -2316,28 +2332,28 @@
           </p>
 
           <!-- HERO CALL TO ACTIONS -->
-          <div class="flex flex-wrap items-center justify-center gap-4 mb-16">
+          <div class="flex flex-wrap items-center justify-center gap-4 mb-14">
             <button onclick="APP.navigateTo('page-books-curriculum')"
-              class="px-8 py-4 rounded-2xl gold-gradient-bg text-white font-extrabold text-base shadow-xl shadow-amber-500/20 hover:opacity-95 transform hover:-translate-y-0.5 transition-all flex items-center gap-2.5">
+              class="px-8 py-4 rounded-2xl gold-gradient-bg text-white font-extrabold text-base shadow-xl shadow-amber-500/25 hover:opacity-95 transform hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center gap-2.5 cursor-pointer">
               <i class="fa-solid fa-book-open-reader text-lg"></i> Mulai Belajar Sekarang
             </button>
             <button onclick="APP.startPlacementTest()"
-              class="px-6 py-4 rounded-2xl bg-white hover:bg-amber-50 text-sky-700 border border-sky-200 font-bold text-base shadow-lg transition-all flex items-center gap-2">
-              <i class="fa-solid fa-compass text-amber-400"></i> Ikuti Tes Penempatan Level
+              class="px-6 py-4 rounded-2xl bg-white/90 hover:bg-white dark:bg-slate-800/90 dark:hover:bg-slate-800 text-sky-800 dark:text-sky-300 backdrop-blur-md border border-sky-200 dark:border-slate-700 font-bold text-base shadow-lg transform hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center gap-2 cursor-pointer">
+              <i class="fa-solid fa-compass text-amber-500"></i> Ikuti Tes Penempatan Level
             </button>
           </div>
 
           <!-- PRINSIP UTAMA (ANTI-INFERIORITY BADGE) -->
           <div
-            class="max-w-3xl mx-auto p-5 rounded-2xl bg-white border border-amber-200 text-left flex items-start gap-4 shadow-lg">
+            class="max-w-3xl mx-auto p-5 sm:p-6 rounded-2xl bg-white/90 dark:bg-slate-900/85 backdrop-blur-xl border border-amber-200 dark:border-amber-700/40 text-left flex items-start gap-4 shadow-xl">
             <div
-              class="w-12 h-12 rounded-xl gold-gradient-bg text-white flex items-center justify-center text-xl shrink-0">
+              class="w-12 h-12 rounded-xl gold-gradient-bg text-white flex items-center justify-center text-xl shrink-0 shadow-md shadow-amber-500/20">
               <i class="fa-solid fa-heart-pulse"></i>
             </div>
             <div>
-              <h3 class="font-bold text-amber-700 text-sm sm:text-base mb-1">Prinsip Utama: Belajar Tanpa Rasa Malu atau
+              <h3 class="font-bold text-amber-800 dark:text-amber-300 text-sm sm:text-base mb-1">Prinsip Utama: Belajar Tanpa Rasa Malu atau
                 Tertinggal</h3>
-              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Tidak boleh membuat pengguna merasa bodoh, tertinggal, tidak layak, atau malu karena belum memahami
                 Alkitab. Setiap orang mempunyai titik awal yang berbeda, dan website ini membimbing Anda dengan sabar
                 langkah demi langkah.
@@ -8552,25 +8568,48 @@
       const userGreeting = document.getElementById('nav-user-name');
       const navBtnSettings = document.getElementById('nav-btn-settings');
       const navBtnUserDash = document.getElementById('nav-btn-user-dash');
+      const mobileUserSection = document.getElementById('mobile-user-section');
+      const mobileUserName = document.getElementById('mobile-user-name');
+      const mobileBtnSettings = document.getElementById('mobile-btn-settings');
 
       if (isLoggedIn && this.currentUser) {
-        if (loggedInDiv) loggedInDiv.classList.remove('hidden');
+        if (loggedInDiv) {
+          loggedInDiv.classList.remove('hidden');
+          loggedInDiv.classList.add('flex');
+        }
         if (loggedOutDiv) loggedOutDiv.classList.add('hidden');
         if (userGreeting) userGreeting.textContent = this.currentUser.nickname || this.currentUser.name;
 
         const isAdmin = (this.currentUser.role || '').toLowerCase() === 'admin';
         if (navBtnSettings) {
-          if (isAdmin) navBtnSettings.classList.remove('hidden');
-          else navBtnSettings.classList.add('hidden');
+          if (isAdmin) {
+            navBtnSettings.classList.remove('hidden');
+            navBtnSettings.classList.add('lg:inline-flex');
+          } else {
+            navBtnSettings.classList.add('hidden');
+            navBtnSettings.classList.remove('lg:inline-flex');
+          }
         }
 
         if (navBtnUserDash) {
           navBtnUserDash.setAttribute('onclick', isAdmin ? "APP.navigateTo('page-dashboard-admin')" : "APP.navigateTo('page-dashboard-user')");
         }
+
+        if (mobileUserSection) mobileUserSection.classList.remove('hidden');
+        if (mobileUserName) mobileUserName.textContent = this.currentUser.nickname || this.currentUser.name;
+        if (mobileBtnSettings) {
+          if (isAdmin) mobileBtnSettings.classList.remove('hidden');
+          else mobileBtnSettings.classList.add('hidden');
+        }
       } else {
-        if (loggedInDiv) loggedInDiv.classList.add('hidden');
+        if (loggedInDiv) {
+          loggedInDiv.classList.add('hidden');
+          loggedInDiv.classList.remove('flex');
+        }
         if (loggedOutDiv) loggedOutDiv.classList.remove('hidden');
         if (navBtnSettings) navBtnSettings.classList.add('hidden');
+        if (mobileUserSection) mobileUserSection.classList.add('hidden');
+        if (mobileBtnSettings) mobileBtnSettings.classList.add('hidden');
       }
     };
 
@@ -11425,17 +11464,23 @@
 
     APP.renderAnnouncementsBanner = function () {
       const banner = document.getElementById('global-announcement-banner');
-      if (!banner || this.announcements.length === 0) return;
+      if (!banner || !this.announcements || this.announcements.length === 0) return;
 
       const latest = this.announcements[0];
       banner.innerHTML = `
-    <div class="bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 px-3 sm:px-4 py-2 sm:py-2.5 text-xs text-white flex items-center justify-between gap-2 overflow-hidden shadow-sm">
-      <div class="flex items-center gap-2 min-w-0 flex-1 truncate">
-        <span class="px-2 py-0.5 rounded-full bg-white/20 text-white font-bold text-[10px] flex-shrink-0 tracking-wider">PENGUMUMAN</span>
-        <strong class="flex-shrink-0 text-amber-100">${latest.title}:</strong>
-        <span class="text-white/95 truncate font-normal">${latest.message}</span>
+    <div class="bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 px-3 sm:px-4 py-2 sm:py-2.5 text-xs text-white flex items-center justify-between gap-3 shadow-sm">
+      <div class="flex items-center gap-2 min-w-0 flex-1 flex-wrap sm:flex-nowrap">
+        <span class="px-2.5 py-0.5 rounded-full bg-white/20 text-white font-bold text-[10px] flex-shrink-0 tracking-wider flex items-center gap-1">
+          <i class="fa-solid fa-bullhorn text-amber-100 text-[10px]"></i> PENGUMUMAN
+        </span>
+        <div class="text-xs text-white/95 break-words font-normal leading-relaxed">
+          <strong class="font-bold text-amber-100 mr-1">${latest.title}:</strong>
+          <span>${latest.message}</span>
+        </div>
       </div>
-      <button onclick="document.getElementById('global-announcement-banner').style.display='none'" class="text-white/80 hover:text-white flex-shrink-0 p-1 transition-colors" aria-label="Tutup Pengumuman"><i class="fa-solid fa-xmark"></i></button>
+      <button onclick="document.getElementById('global-announcement-banner').style.display='none'" class="text-white/80 hover:text-white hover:bg-white/10 rounded p-1 flex-shrink-0 transition-colors ml-2" title="Tutup Pengumuman" aria-label="Tutup Pengumuman">
+        <i class="fa-solid fa-xmark text-sm"></i>
+      </button>
     </div>
   `;
     };
